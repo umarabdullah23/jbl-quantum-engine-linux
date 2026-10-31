@@ -113,3 +113,15 @@ Working copy: `~/Documents/Projects/jbl-quantum-linux`.
 - No secrets in repo; no JBL binaries committed; captures are public-attachment copies.
 - UI: replicate real app look (not "gaming style") — owner explicitly rejected gaming UI.
 - Every non-verified control is labeled host-side/pending in the UI; demo mode never sends.
+
+## 9. Deep RE round 2 (added 2026-10-31 late)
+
+- Full Ghidra decompile of AirohaHidCoreLib.dll landed. **PROTOCOL-RACE.md** is the new
+  authoritative RACE doc; highlights: 119 RACE command IDs (re-work/strings/race_cmd_table.txt),
+  relay envelope = ASCII brackets + resp type 0x5D + relay race ID 0x0D01,
+  **NO encryption anywhere in the config channel** (plaintext; verified string+decompile).
+- Lighting 0x4C byte2 = BRIGHTNESS (40/50/60/70/75/80/100), not speed — fixed across
+  GUI/daemon/library; effect speed = 0x4D tail byte (GUI "SEG PARAM" 0–8).
+- Missing features (mic volume, chat-balance SET, voice guidance, wear detection,
+  notification tone, busy light, factory reset, AA gain) now have RACE unlock paths
+  documented — ALL stay fail-closed in the daemon until each is live-captured + verified.
