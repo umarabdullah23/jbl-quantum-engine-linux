@@ -130,3 +130,20 @@ until their own capture round.
 Owner moving headset+dongle to Windows for the RACE unlock capture round (USBPcap +
 QuantumENGINE). Full procedure in SESSION-HANDOFF.md §15. Linux daemon/GUI left running —
 they re-detect the dongle automatically when it returns.
+
+## 2026-11-01 — Windows app + exe (app/windows/)
+
+Headset moved to Windows. Windows-edition GUI shipped and verified:
+
+- Live pre-check on Windows: shared `jbl_quantum.py` `find()` + snapshot worked
+  UNMODIFIED on the real dongle (MI_05, usage 0xFF13; battery 30, ANC on, serial +
+  firmware read) — the protocol layer needed zero changes.
+- `app/windows/jblq_win.py`: full QuantumENGINE-UI replica (per E:\quantum engine pics):
+  home/MY PRODUCTS, dashboard cards, spatial detail with head-sphere, EQ, mic, lighting,
+  support, settings, onboarding tour. DeviceWorker QThread does ALL HID I/O (no unix
+  daemon); state tick 2 s; charging inferred from battery trend; demo mode.
+- Renders of every page verified offscreen against the reference screenshots.
+- `build_exe.ps1` + `jblq_win.spec` → dist/JBLQuantumEngine.exe (onefile ~49 MB,
+  multi-size ico, jbl_quantum as explicit hiddenimport). Packaged exe boot verified.
+- Writes still limited to verified 0x45–0x75; host-side features saved locally and
+  labelled; DFU ids unreachable; restore = first-write-wins undo registry.

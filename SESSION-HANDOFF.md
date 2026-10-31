@@ -207,3 +207,50 @@ Owner is taking the headset/dongle to Windows. Linux side state at handoff:
 
 Remember: no firmware/DFU flows; one write at a time; stop on re-enumeration/glitch and
 record DO-NOT-SEND. Push every round; keep this file synced (standing instruction).
+
+## 16. WINDOWS APP SHIPPED (2026-11-01) — `app/windows/`, exe built
+
+Owner brought the headset to Windows and asked to "continue its tasks for windows, and its
+ui — see E:\quantum engine pics … complete this app" + "make exe app too".
+
+- **`app/windows/jblq_win.py`** — PyQt6 Windows edition, UI rebuilt to the REAL
+  QuantumENGINE Windows screenshots (frameless dark window + custom titlebar, left avatar
+  rail, MY PRODUCTS home with banner + product card, device dashboard with the 6 cards
+  (EQUALIZER / SPATIAL SOUND / MICROPHONE / AMBIENT SOUND CONTROL / LIGHTING / SUPPORT),
+  spatial detail page (mode segmented, dts card, room size + head diameter, head-sphere
+  "output channel: 7.1", reset), EQ detail (draggable curve + presets + custom save),
+  mic detail (side tone 4-step verified, gain fail-closed pending), lighting detail
+  (presets, LOGO/RING hue, brightness steps, seg param, sync-all), support (fw/serial/
+  auto-off/restore), settings, and the 5-step onboarding tour with Skip (persisted flag,
+  replayable from Settings).
+- **No daemon on Windows.** `DeviceWorker(QThread)` owns the control-HID handle; all HID
+  I/O is queued jobs so a wedged feature-report can never freeze the UI (same bug class
+  the daemon rewrite fixed, see §14). Re-enumeration (headset sleep/wake) self-heals on
+  the next 2 s tick. Charging inference (§14) ported into the worker.
+- **Same shared engine** — imports `app/jbl_quantum.py` unchanged; Windows HID topology
+  confirmed: dongle enumerates as ONE HID collection (MI_05, usage 0xFF13,
+  "…Quantum810 Wireless Chat") and `find()` passes unmodified. Verified LIVE on Windows
+  before writing any UI: probe snapshot read battery 30 / ANC on / serial / fw on the
+  real dongle. Real QuantumENGINE (`JBLQuantumControl.exe`) running concurrently did NOT
+  block our handle (Windows shared access), but README tells users to close it (writers
+  can race).
+- **System volume** via pycaw (popup slider from the dashboard volume label); Linux used
+  pactl. Honesty rules carried over: only verified 0x45–0x75 reports are sent; EQ/spatial
+  /mic-gain are host-side, labelled, saved to `%LOCALAPPDATA%\jblq\profiles.json`.
+- **Exe:** `app/windows/build_exe.ps1` → `dist/JBLQuantumEngine.exe` (~49 MB onefile,
+  windowed, drawn multi-size `jblq_icon.ico` — no JBL artwork; PIL's ICO writer only
+  downsizes the base image, so the ico container is written manually — keep that).
+  `jblq_win.spec` lists `jbl_quantum` as an explicit hiddenimport. Boot verified for the
+  packaged exe.
+- **UI verified offscreen** (every page rendered to PNG via `widget.grab()` with the
+  window minimized — do NOT fullscreen-grab the owner's screen; a game was running).
+  Fixed during verification: main column was missing its dark background, hero had no
+  sizeHint (invisible), demo mode didn't prime the dashboard battery.
+- Windows requirements: `app/windows/requirements.txt` (PyQt6, hidapi wheel — the bare
+  `hid` package does NOT bundle hidapi.dll on Windows; pycaw/comtypes optional).
+- **Still open (unchanged from §15):** RACE unlock round needs USBPcap captures on
+  Windows (QuantumENGINE 2.8.6 is installed here — one action per capture, name by
+  action, decode with docs/captures/usbpcap_parse.py) to unlock mic gain, chat balance
+  SET, voice guidance, wear detection, notification tone, factory reset, AA gain.
+  Real DTS/Quantum Spatial output needs the licensed host APO — our app saves the mode
+  locally and says so in the UI.

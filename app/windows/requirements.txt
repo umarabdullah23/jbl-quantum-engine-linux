@@ -1,0 +1,7 @@
+# JBL Quantum Engine — Windows edition
+PyQt6>=6.6
+hidapi>=0.14          # bundles hidapi.dll; provides the `hid` module (legacy API supported)
+pycaw>=20240210       # optional: system volume control on the dashboard
+comtypes>=1.2         # required by pycaw
+# build only:
+pyinstaller>=6.0

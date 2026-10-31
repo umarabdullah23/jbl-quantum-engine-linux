@@ -1,3 +1,8 @@
 reverse-engineering/binaries/
 __pycache__/
 *.pyc
+app/windows/dist/
+app/windows/build/
+app/windows/launch.log
+app/windows/_verify/
+app/windows/build.log
