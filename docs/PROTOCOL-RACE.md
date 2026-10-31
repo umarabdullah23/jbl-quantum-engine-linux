@@ -1,7 +1,7 @@
 # RACE layer (deep RE) — QuantumENGINE's AirohaHidCoreLib.dll
 
 Evidence tags: **[DECOMP]** = Ghidra 12.2 decompile of the installed QuantumENGINE 2.8.6
-`AirohaHidCoreLib.dll` (dumps in `re-work/`: `decomp_dump.c`, `decomp_race_frame.c`;
+`AirohaHidCoreLib.dll` (dumps in `reverse-engineering/decomp/`: `decomp_features.c`, `decomp_race_frame.c`;
 full dump kept locally, 11MB). **[RTTI]** = binary type/strings. **[INFERENCE]** = needs
 live confirmation on the headset.
 
@@ -34,7 +34,7 @@ The dongle wraps inner RACE packets in an ASCII-bracket envelope. The response p
 ## 3. RACE command ID table — COMPLETE [DECOMP]
 
 Recovered from the app's own command-name lookup switch (119 entries). Full list:
-`re-work/race_cmd_table.txt`. Highlights relevant to the 810's missing features:
+`reverse-engineering/strings/race_cmd_table.txt`. Highlights relevant to the 810's missing features:
 
 | cmd | name | maps to |
 |---|---|---|

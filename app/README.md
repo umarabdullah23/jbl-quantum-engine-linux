@@ -2,7 +2,7 @@
 
 Native Linux control for **JBL Quantum wireless headsets** — Python + hidapi/hidraw only.
 No Wine, no VM, no JBL binaries. Protocol documentation + evidence:
-[`research/jbl-quantum/PROTOCOL.md`](../../research/jbl-quantum/PROTOCOL.md).
+[`research/jbl-quantum/PROTOCOL.md`](../../docs/PROTOCOL.md).
 
 Primary target: **JBL Quantum 810 Wireless** (`0ecb:2069`, the USB-C dongle) — verified
 against this user's hardware. ~30 sibling Quantum PIDs (800/850/910/910X/910P/950/950X/ONE/
@@ -69,7 +69,7 @@ future GUI/waybar widget.
 ## EQ / surround (host-side, PipeWire)
 
 The headset applies no EQ from the dongle; QuantumENGINE's own EQ/spatial writes never
-touch the device (see `research/jbl-quantum/captures/CAPTURE-ANALYSIS.md`). The equivalent
+touch the device (see `docs/captures/CAPTURE-ANALYSIS.md`). The equivalent
 Linux implementation is a PipeWire filter-chain (10-band EQ / virtual surround), which can
 be driven from the daemon. Community-measured JBL tuning curves:
 alessandromrc/jbl-quantum-4-linux (EasyEffects presets per model).
@@ -78,7 +78,7 @@ alessandromrc/jbl-quantum-4-linux (EasyEffects presets per model).
 
 - One write at a time; every value read back where the protocol allows.
 - If the headset re-enumerates or glitches after a write, stop — record it as DO-NOT-SEND
-  in `research/jbl-quantum/PROGRESS.md`.
+  in `docs/PROGRESS.md`.
 - Nothing here touches firmware: DFU-suspect report ids `0xF0/0xF1/0xF4/0xF5/0xF6/0x9A`
   are structurally unreachable (see `jbl_quantum.py::FORBIDDEN_REPORTS`).
 - Claiming the vendor interface with libusb/pyusb **destroys the hidraw node until

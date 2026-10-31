@@ -5,22 +5,22 @@ Wireless**, USB `0ecb:2069` dongle) — pure Python + hidapi/hidraw. No Wine, no
 JBL binaries. This is personal interoperability work: reimplementing the subset of
 QuantumENGINE's device protocol that the community has verified, with full evidence.
 
-- **`tools/jbl-quantum/`** — `jblq` CLI, hotplug-aware daemon, library, udev rule
-- **`research/jbl-quantum/`** — protocol documentation, evidence, USB captures
-  - [`PROTOCOL.md`](research/jbl-quantum/PROTOCOL.md) — per-feature report table with
+- **`app/`** — the application: `jblq` CLI, hotplug-aware daemon, GUI, library, installer, udev rule
+- **`docs/`** — protocol documentation, evidence, USB captures
+  - [`PROTOCOL.md`](docs/PROTOCOL.md) — per-feature report table with
     evidence tags (our own capture parse vs upstream projects vs binary RTTI)
-  - [`PHASE0.md`](research/jbl-quantum/PHASE0.md) — existing open-source work audit
+  - [`docs/PHASE0.md`](docs/PHASE0.md) — existing open-source work audit
     (don't re-RE what exists)
-  - [`captures/`](research/jbl-quantum/captures/) — 23 action-labeled USBPcap captures
+  - [`docs/captures/`](docs/captures/) — 23 action-labeled USBPcap captures
     (public, HeadsetControl issue #357) + our parser + analysis
 
 ## Quick start
 
 ```bash
-sudo cp tools/jbl-quantum/udev/99-jbl-quantum.rules /etc/udev/rules.d/
+sudo cp app/udev/99-jbl-quantum.rules /etc/udev/rules.d/
 sudo udevadm control --reload && sudo udevadm trigger
 pip install hid            # hidapi bindings
-./tools/jbl-quantum/jblq probe    # read-only state dump — safe first step
+./app/jblq probe    # read-only state dump — safe first step
 ```
 
 ## Credits / sources

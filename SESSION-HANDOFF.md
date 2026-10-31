@@ -1,7 +1,7 @@
 # SESSION HANDOFF — JBL Quantum Engine (Linux) — 2026-10-31
 
 Everything from the "RE QuantumENGINE → Linux app" task, condensed so any future session
-can continue without re-deriving. Authoritative docs: `research/jbl-quantum/PROTOCOL.md`,
+can continue without re-deriving. Authoritative docs: `docs/PROTOCOL.md`,
 `PHASE0.md`, `PROGRESS.md`, `captures/CAPTURE-ANALYSIS.md`.
 
 ## 1. What was asked
@@ -32,7 +32,7 @@ by open source: **sidmax7/QuantumEngine** (Rust, hardware-verified, MIT/Apache) 
 **taron-sys/JBL-Quantum-810-Linux-Tray-Tool** (auto-off 0x75 + RGB safety ranges).
 We validated + packaged instead of re-RE-ing — independently confirmed by parsing the
 public USBPcap captures ourselves (SWW13, HeadsetControl issue #357; 23 action-labeled
-pcapng files now in `research/jbl-quantum/captures/`).
+pcapng files now in `docs/captures/`).
 
 ## 4. Protocol summary (details + evidence tags in PROTOCOL.md)
 
@@ -59,13 +59,13 @@ pcapng files now in `research/jbl-quantum/captures/`).
 Repo: **github.com/umarabdullah23/jbl-quantum-engine-linux** (public, MIT).
 Working copy: `~/Documents/Projects/jbl-quantum-linux`.
 
-- `tools/jbl_quantum.py` — library: hidapi discovery, verified reports only, undo registry
+- `app/jbl_quantum.py` — library: hidapi discovery, verified reports only, undo registry
   (first-write-wins), safety clamps.
-- `tools/jblq` — CLI: probe/battery/dial/info/sidetone/anc/lights/autooff/restore/listen.
-- `tools/jblq_daemon.py` — hotplug-aware daemon, unix socket `$XDG_RUNTIME_DIR/jblq.sock`,
+- `app/jblq` — CLI: probe/battery/dial/info/sidetone/anc/lights/autooff/restore/listen.
+- `app/jblq_daemon.py` — hotplug-aware daemon, unix socket `$XDG_RUNTIME_DIR/jblq.sock`,
   JSON `{cmd: state|refresh|set}`; set supports sidetone/anc/lights/auto_off/light_zone/
   light_colour.
-- `tools/jblq_gui.py` — **PyQt6 replica of the real QuantumENGINE UI** (built from frame
+- `app/jblq_gui.py` — **PyQt6 replica of the real QuantumENGINE UI** (built from frame
   studies of YouTube walkthroughs + the app's own binary strings): top status bar
   (VOLUME/MICROPHONE/CHAT··GAME dial dots/SPATIAL/ANC/BATTERY icon/CONNECTED TO),
   JBL QUANTUM810 logo row + hatch strip + working USER PROFILES
@@ -75,7 +75,7 @@ Working copy: `~/Documents/Projects/jbl-quantum-linux`.
   red headset wireframe), LIGHTING (presets BREATH…RISE/OFF, ADVANCED MODE + SYNC ALL LIGHTS
   toggles, LOGO/RING colour-gradient + SPEED + TEMPO), SPATIAL (DTS logo card), MIC page,
   SYSTEM SOFTWARE (fw/serial/auto-off/restore), HELP (credits). DEMO pill + amber banner.
-- `tools/install.sh` — user install (`~/.local/bin/jblq*`, app-menu .desktop, icon, udev
+- `app/install.sh` — user install (`~/.local/bin/jblq*`, app-menu .desktop, icon, udev
   rule via sudo), `--uninstall`. Version APP_VERSION="1.0.0".
 - Known crash fixed late: missing QFrame import (verify after any GUI edit with
   `python -m py_compile` AND an actual launch + `ps` check — pgrep self-matches!).
@@ -117,7 +117,7 @@ Working copy: `~/Documents/Projects/jbl-quantum-linux`.
 ## 9. Deep RE round 2 (added 2026-10-31 late)
 
 - Full Ghidra decompile of AirohaHidCoreLib.dll landed. **PROTOCOL-RACE.md** is the new
-  authoritative RACE doc; highlights: 119 RACE command IDs (re-work/strings/race_cmd_table.txt),
+  authoritative RACE doc; highlights: 119 RACE command IDs (reverse-engineering/strings/race_cmd_table.txt),
   relay envelope = ASCII brackets + resp type 0x5D + relay race ID 0x0D01,
   **NO encryption anywhere in the config channel** (plaintext; verified string+decompile).
 - Lighting 0x4C byte2 = BRIGHTNESS (40/50/60/70/75/80/100), not speed — fixed across
@@ -125,3 +125,7 @@ Working copy: `~/Documents/Projects/jbl-quantum-linux`.
 - Missing features (mic volume, chat-balance SET, voice guidance, wear detection,
   notification tone, busy light, factory reset, AA gain) now have RACE unlock paths
   documented — ALL stay fail-closed in the daemon until each is live-captured + verified.
+
+## 10. Repo layout (restructured 2026-10-31)
+
+`app/` = the application (CLI/daemon/GUI/installer/udev) · `docs/` = protocol docs, evidence, captures · `reverse-engineering/` = decompile dumps, string dumps, UI-ref frames, scripts (its `binaries/` is gitignored — JBL proprietary, local only).
