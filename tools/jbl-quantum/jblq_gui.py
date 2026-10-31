@@ -22,7 +22,7 @@ from PyQt6.QtGui import (QColor, QFont, QIcon, QPainter, QPen, QBrush, QPixmap,
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QLabel, QPushButton, QComboBox, QSlider, QVBoxLayout,
     QHBoxLayout, QGridLayout, QStackedWidget, QLineEdit, QRadioButton, QButtonGroup,
-    QSpinBox, QMessageBox, QInputDialog,
+    QSpinBox, QMessageBox, QInputDialog, QFrame,
 )
 
 APP_NAME = "JBL Quantum Engine (Linux)"
