@@ -29,6 +29,23 @@ EQ_PRESETS = ["Default", "Moody", "Chill", "BASS BOOST", "Treble Boost", "Vocal 
               "Casual Game", "FPS Game", "E-Sports Live", "Sports Game", "Racing Game",
               "Movie", "Music"]
 EQ_BANDS = ["63", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"]
+# approximate demo curves (dB per band) — exact QuantumENGINE values pending extraction;
+# community extraction: alessandromrc/jbl-quantum-4-linux
+EQ_CURVES = {
+    "Default":      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "Moody":        [3, 2, 0, -1, -2, -1, 0, 1, 2],
+    "Chill":        [2, 2, 1, 0, -1, -2, -2, -1, 0],
+    "BASS BOOST":   [8, 7, 5, 2, 0, 0, 0, 0, 0],
+    "Treble Boost": [0, 0, 0, 0, 1, 2, 4, 6, 7],
+    "Vocal Boost":  [-2, -1, 0, 2, 4, 5, 3, 1, 0],
+    "Casual Game":  [2, 1, 0, 0, 1, 2, 1, 0, 1],
+    "FPS Game":     [-1, -1, 0, 1, 2, 4, 5, 3, 1],
+    "E-Sports Live":[0, 0, 1, 2, 3, 4, 3, 2, 2],
+    "Sports Game":  [3, 2, 1, 0, 1, 2, 2, 1, 1],
+    "Racing Game":  [6, 5, 3, 1, 0, 1, 2, 2, 2],
+    "Movie":        [4, 3, 2, 1, 1, 2, 2, 2, 3],
+    "Music":        [2, 1, 0, -1, 0, 1, 2, 3, 3],
+}
 LIGHT_EFFECTS = ["Breathing", "Solid", "Wave", "Glitch", "Spin CW", "Spin CCW", "Rise"]
 LIGHT_SPEEDS = [("Slow", 0x28), ("Med-Low", 0x32), ("Medium", 0x3C), ("Med-High", 0x46),
                 ("Fast", 0x4B), ("Faster", 0x50), ("Fastest", 0x64)]
@@ -153,24 +170,69 @@ class QuantumUI(tk.Tk):
 
         c3 = self._card(f, "Equalizer",
                         "Host-side EQ — on the 810 dongle the device applies no EQ (proven). "
-                        "Linux wiring: PipeWire filter-chain (pending). Presets from the "
-                        "QuantumENGINE config set.")
+                        "Linux wiring: PipeWire filter-chain (pending). Curve style mirrors the "
+                        "QuantumENGINE EQ card; demo curves approximate the real presets.")
+        # purple curve canvas, like the QE EQ card
+        self.eq_canvas = tk.Canvas(c3, bg="#241f33", height=150, highlightthickness=0)
+        self.eq_canvas.pack(fill="x", pady=4)
         pr = ttk.Frame(c3, style="Panel.TFrame"); pr.pack(fill="x")
-        tk.Label(pr, text="Preset", bg=PANEL, fg=TXT).pack(side="left")
         self.eq_preset = tk.StringVar(value="Default")
         cb = ttk.Combobox(pr, textvariable=self.eq_preset, values=EQ_PRESETS,
                           state="readonly", width=14)
-        cb.pack(side="left", padx=8)
+        cb.pack(side="left", padx=4, pady=4)
         cb.bind("<<ComboboxSelected>>", lambda e: self._apply_preset())
+        ttk.Button(pr, text="MORE >", command=lambda: self._toggle_bands()).pack(side="left", padx=4)
         ttk.Button(pr, text="Flatten", command=self._flatten).pack(side="left", padx=4)
-        sliders = ttk.Frame(c3, style="Panel.TFrame"); sliders.pack(fill="x", pady=6)
+        self.bands_frame = ttk.Frame(c3, style="Panel.TFrame")
         for b in EQ_BANDS:
-            col = ttk.Frame(sliders, style="Panel.TFrame"); col.pack(side="left", padx=6)
+            col = ttk.Frame(self.bands_frame, style="Panel.TFrame"); col.pack(side="left", padx=6)
             sc = ttk.Scale(col, from_=12, to=-12, variable=self.eq[b], length=110,
-                           command=lambda *_: None)
+                           command=lambda *_: self._draw_eq())
             sc.pack()
             tk.Label(col, text=b, bg=PANEL, fg=DIM).pack()
+        # hidden until MORE
+        for v in self.eq.values():
+            v.trace_add("write", lambda *_: self._draw_eq())
+        self._draw_eq()
         return f
+
+    def _toggle_bands(self):
+        if self.bands_frame.winfo_ismapped():
+            self.bands_frame.pack_forget()
+        else:
+            self.bands_frame.pack(fill="x", pady=6)
+
+    def _draw_eq(self):
+        c = self.eq_canvas
+        c.delete("all")
+        w = c.winfo_width() or 640
+        h = 150
+        n = len(EQ_BANDS)
+        xs = [30 + i * (w - 60) / (n - 1) for i in range(n)]
+        ys = [h / 2 - self.eq[b].get() * 5 for b in EQ_BANDS]
+        # grid lines
+        for gy in (h / 2,):
+            c.create_line(20, gy, w - 20, gy, fill="#3a334f")
+        for x in xs:
+            c.create_line(x, 20, x, h - 25, fill="#2c2740")
+        # smooth curve through points (catmull-rom)
+        pts = []
+        for i in range(n - 1):
+            p0 = ys[i - 1] if i > 0 else ys[i]
+            p1, p2 = ys[i], ys[i + 1]
+            p3 = ys[i + 2] if i + 2 < n else ys[i + 1]
+            for t in range(12):
+                t /= 12
+                t2, t3 = t * t, t * t * t
+                y = 0.5 * ((2 * p1) + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2
+                           + (-p0 + 3 * p1 - 3 * p2 + p3) * t3)
+                pts.append((xs[i] + (xs[i + 1] - xs[i]) * t, y))
+        flat = [c for p in pts for c in p]
+        c.create_line(*flat, fill="#b57bff", width=3, smooth=True)
+        for x, y in zip(xs, ys):
+            c.create_oval(x - 3, y - 3, x + 3, y + 3, fill="#b57bff", outline="")
+        for x, b in zip(xs, EQ_BANDS):
+            c.create_text(x, h - 10, text=b, fill="#8a8f98", font=("", 8))
 
     def _tab_mic(self, nb):
         f = ttk.Frame(nb, style="TFrame")
@@ -298,11 +360,17 @@ class QuantumUI(tk.Tk):
         self.preview.config(bg="#%02x%02x%02x" % tuple(min(255, max(0, v.get())) for v in self.rgb))
 
     def _apply_preset(self):
+        curve = EQ_CURVES.get(self.eq_preset.get())
+        if curve:
+            for b, db in zip(EQ_BANDS, curve):
+                self.eq[b].set(float(db))
+        self._draw_eq()
         self.flash(f"EQ preset '{self.eq_preset.get()}' — host-side (PipeWire pending)")
 
     def _flatten(self):
         for v in self.eq.values():
             v.set(0.0)
+        self._draw_eq()
         self.flash("EQ flattened (host-side)")
 
     def _apply_colour(self):
