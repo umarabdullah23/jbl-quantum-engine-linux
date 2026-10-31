@@ -178,3 +178,10 @@ Endpoint format change (8ch→2ch) on first spatial enable = the emulator-breaki
 before enabling; all later toggles change nothing (two cycles poll-verified). Linux:
 no audio device is touched today; PipeWire future work carries the same format-stable
 rule in the GUI + handoff. Exe rebuilt, release/folder refreshed.
+
+### 2026-11-01 round 6 — honest DTS + instant switch feedback; QE's DSP = kernel driver
+
+QE's spatial runs in the HarmanAudioService kernel driver (no APOs on the system) — not
+reproducible without RE'ing the QE→driver channel. Fixed the silent DTS→Sonic pretend
+(exact-format read-back) and the dead-feeling 3–6s switch (instant feedback). Exe
+rebuilt, release/folder refreshed, endpoint restored to off.

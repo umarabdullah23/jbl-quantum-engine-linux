@@ -1487,10 +1487,13 @@ class MainWindow(QWidget):
 
         self.sp_note = cap_label(
             "spatial sound is HOST-SIDE processing on this PC (the dongle receives "
-            "nothing — capture-proven). The switch applies Windows' real spatial sound "
-            "(Windows Sonic; DTS where licensed) to the headset's Game endpoint — the "
-            "same mechanism the real app uses. Room size / head diameter are saved "
-            "locally for Quantum Spatial.", 9, DARKGREY)
+            "nothing — capture-proven). This switch applies Windows' real spatial "
+            "sound to the headset's Game endpoint: DTS mode uses DTS Headphone:X when "
+            "its licence is present, Quantum Spatial uses Windows Sonic. HONEST NOTE: "
+            "the real app's spatial DSP runs inside JBL's own kernel driver "
+            "(HarmanAudioService), so its exact sound can't be reproduced here — ours "
+            "is a different (clearly audible) spatializer. Toggles are endpoint-format "
+            "stable so running games keep the headset.", 9, DARKGREY)
         self.sp_note.setWordWrap(True)
         lv.addWidget(self.sp_note)
 
@@ -1780,7 +1783,8 @@ class MainWindow(QWidget):
                     self.flash(f"spatial sound → {mode or 'OFF'} applied ✓ "
                                f"(endpoint format kept stable for running games)", GREEN)
             else:
-                self.flash(f"spatial sound failed: {result.get('error')}", RED)
+                # honest failure — e.g. DTS requested but the OS kept Sonic
+                self.flash(f"spatial sound: {result.get('error')}", RED)
         elif name == "spatial_state":
             # boot sync: the toggle reflects the REAL OS spatial state
             self.spatial_on = bool(result.get("guid"))
@@ -1855,18 +1859,22 @@ class MainWindow(QWidget):
         fmt = (spatial_win.DTS_NAME if self.spatial_mode == 1
                else spatial_win.SONIC) if on else ""
         self._last_feature = "spatial sound"
+        # the OS round-trip takes seconds — acknowledge the click IMMEDIATELY or the
+        # switch reads as dead (owner: "spatial sound switch not work")
+        self.flash("applying spatial sound… (this takes a few seconds)", AMBER)
         self.worker.submit("spatial", fmt)
 
     def _spatial_mode_changed(self, i):
         self.spatial_mode = i
         self._spatial_apply_ui()
         if not self.spatial_on or self.demo:
-            name = "Quantum Spatial (via Windows Sonic)" if i == 0 else "DTS"
+            name = "Quantum Spatial (Windows Sonic)" if i == 0 else "DTS"
             self.flash(f"spatial mode → {name}" +
                        ("" if self.spatial_on else " — spatial sound is OFF"), AMBER)
             return
         fmt = spatial_win.DTS_NAME if i == 1 else spatial_win.SONIC
         self._last_feature = "spatial mode"
+        self.flash("applying spatial mode… (this takes a few seconds)", AMBER)
         self.worker.submit("spatial", fmt)
 
     def _spatial_apply_ui(self):

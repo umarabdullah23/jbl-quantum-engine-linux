@@ -153,22 +153,32 @@ def set_spatial(format_name: str) -> dict:
             if pinned and pinned.get("format") != PINNED_FORMAT:
                 return {"ok": False,
                         "error": f"could not pin endpoint format (still {pinned.get('format')!r})"}
-        want_guid_state = True
-    else:
-        want_guid_state = False
 
     r = run_svv("/SetSpatial", rec["item_id"], format_name)
     if r.returncode != 0:
         return {"ok": False, "error": f"SetSpatial rc={r.returncode}"}
 
-    # read-back — never claim a set we didn't verify
+    # read-back — never claim a set we didn't verify, and verify WHICH format took.
+    # (Owner bug 2026-11-01: setting DTS on a machine without the DTS licence returns
+    # rc=0 but leaves Sonic in place; a mere "guid non-empty" check reported success
+    # and DTS mode silently sounded identical to Sonic.)
+    pre_guid = get_spatial().get("guid", "")
     for _ in range(3):
         after = get_spatial()
         if not after.get("available"):
             return {"ok": False, "error": after.get("error", "endpoint lost")}
-        if bool(after.get("guid")) == want_guid_state:
-            return {"ok": True, "applied": True, "guid": after["guid"],
+        got = after.get("guid", "")
+        if format_name == "":
+            took = got == ""
+        elif format_name == SONIC:
+            took = got.upper() == SONIC_GUID
+        else:  # any other named format (e.g. DTS): must have CHANGED to it
+            took = bool(got) and got != pre_guid
+        if took:
+            return {"ok": True, "applied": True, "guid": got,
                     "mode": after["mode"], "format_pinned":
                         after.get("format") == PINNED_FORMAT}
         time.sleep(0.6)
-    return {"ok": False, "error": "read-back mismatch — the OS didn't apply the change"}
+    return {"ok": False,
+            "error": f"{format_name} not available on this PC — the OS kept "
+                     f"{after.get('mode') or 'the previous format'}"}

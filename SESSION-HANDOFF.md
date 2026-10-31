@@ -366,3 +366,30 @@ registry-polling (10 ms) through spatial toggles:
   format-stable; if PUBGM still reacts to the effect-chain switch itself (Sonic APO
   add/remove), that part is inherent to Windows Sonic — the true JBL-equivalent is an
   always-installed APO (DTS licence / RACE round territory).
+
+### 16f. Windows round 6 — "QS/DTS sound the same, switch not work": two real bugs + THE mechanism found
+
+Owner: the real app's Quantum Spatial sounds different from ours, and in ours QS/DTS
+sound identical; also "spatial sound switch not work".
+
+- **THE MECHANISM (corrects the round-4 APO assumption):** QuantumENGINE's spatial DSP
+  runs in the **HarmanAudioService KERNEL DRIVER** (verified RUNNING, service type
+  KERNEL_DRIVER) — an audio filter on the USB device stack, NOT a Windows APO. No DTS
+  APO and no JBL/Harman APO exist in AudioEngine\AudioProcessingObjects (searched).
+  That's why QE's spatial sounds different (their HRTF in the driver), why QE toggles
+  never touch the endpoint (emulator-safe), and why Windows-spatial-based modes can
+  never reproduce QE's exact sound. Reproducing it = RE'ing the QE→driver control
+  channel (RACE-round territory).
+- **Bug A (silent DTS):** SVV accepts /SetSpatial "DTS Headphone:X" with rc=0 even when
+  the DTS licence is absent — the OS simply keeps the current format. Our read-back
+  only checked "a guid is set", so DTS mode reported success while actually staying
+  Sonic → "both sound same". FIXED: read-back now verifies WHICH format took (Sonic →
+  exact GUID; other formats → guid must CHANGE). DTS on this machine now reports
+  honestly: "DTS Headphone:X not available on this PC" and the worker's Sonic fallback
+  carries an amber "DTS not licensed — applied Sonic" message.
+- **Bug B (dead-feeling switch):** the SVV round-trip takes 3–6 s (two async dumps) and
+  the status flash only appeared at completion — the click looked ignored. FIXED:
+  "applying spatial sound… (this takes a few seconds)" flashes immediately.
+- UI note updated to the honest text (JBL's DSP = kernel driver, not reproducible).
+- Verified live: DTS honest-failure, Sonic on/off with exact-GUID read-back, endpoint
+  restored to off. Exe rebuilt + selftest green; release + RELEASE-v1.2.0 refreshed.
