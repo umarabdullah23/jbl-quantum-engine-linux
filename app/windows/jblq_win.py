@@ -1002,6 +1002,7 @@ class MainWindow(QWidget):
         self.eq_all_presets = {**EQ_PRESETS, **self.custom_presets}
         self.card_refs: dict[str, QWidget] = {}
         self._volume_iface = None
+        self._last_feature: str | None = None
 
         self.worker = DeviceWorker()
         self.worker.got.connect(self._worker_got)
@@ -1718,6 +1719,7 @@ class MainWindow(QWidget):
 
     # ---------------- device actions ----------------
     def _send(self, feature, value, refresh_delay=0.4):
+        self._last_feature = feature
         if self.demo:
             self.flash(f"{feature} → {value}   (demo — nothing sent)", AMBER)
             return
@@ -1735,6 +1737,11 @@ class MainWindow(QWidget):
         elif name == "set":
             if not result.get("ok"):
                 self.flash(f"write failed: {result.get('error')}", RED)
+            else:
+                # every successful device write gets visible feedback — silence on a
+                # working switch reads as "this doesn't work" (owner report 2026-11-01)
+                self.flash(f"{self._last_feature} applied ✓" if self._last_feature
+                           else "applied ✓", GREEN)
         elif name == "restore":
             self.flash(f"restore: {result.get('restored') or result.get('error')}")
 
@@ -1840,8 +1847,9 @@ class MainWindow(QWidget):
         self._send("anc", 1 if i == 0 else 2, refresh_delay=1.8)
 
     def _sidetone_changed(self, val, _i):
-        self._send("sidetone", val)
-        self.mic_sidetone_lbl.setText(SIDETONE_STEPS[val].title())
+        # StopSlider.stops is the LABEL list — the device wants the level int (0..3)
+        self._send("sidetone", _i)
+        self.mic_sidetone_lbl.setText(SIDETONE_STEPS[_i].title())
 
     def _lights_toggle(self, on):
         self._send("lights", on)
@@ -1862,6 +1870,11 @@ class MainWindow(QWidget):
                 "element": 0 if zone == "LOGO" else 1, "slot": 0,
                 "rgb": self._hue_rgb(self.zone_hue[zone]), "mode": mode, "last": self.zone_param})
         self._save_profile_auto()
+
+    @staticmethod
+    def _hue_rgb(h):
+        c = QColor.fromHsvF(max(0.0, min(1.0, h)), 1, 1)
+        return [c.red(), c.green(), c.blue()]
 
     def _zone_colour(self, zone, hue):
         self.zone_hue[zone] = hue

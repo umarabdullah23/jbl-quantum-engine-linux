@@ -147,3 +147,12 @@ Headset moved to Windows. Windows-edition GUI shipped and verified:
   multi-size ico, jbl_quantum as explicit hiddenimport). Packaged exe boot verified.
 - Writes still limited to verified 0x45–0x75; host-side features saved locally and
   labelled; DFU ids unreachable; restore = first-write-wins undo registry.
+
+### 2026-11-01 round 2 — bug fixes + full verification (Windows)
+
+Owner report "switches don't work" → functional sweep found: missing `_hue_rgb` (all
+lighting-colour writes crashed), sidetone slider sent label strings, successful writes
+silent. All fixed. Live read-back round on the real headset: 13/13 PASS, device state
+restored. Spatial switch confirmed working-as-designed (host-side, local save, now with
+visible feedback); Windows Sonic COM wiring researched and deliberately not shipped.
+Exe rebuilt + boot verified.

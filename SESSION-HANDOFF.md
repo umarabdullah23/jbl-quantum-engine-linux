@@ -254,3 +254,30 @@ ui — see E:\quantum engine pics … complete this app" + "make exe app too".
   SET, voice guidance, wear detection, notification tone, factory reset, AA gain.
   Real DTS/Quantum Spatial output needs the licensed host APO — our app saves the mode
   locally and says so in the UI.
+
+### 16b. Windows round 2 — owner report "some things aren't working" → root-caused + all features verified (2026-11-01)
+
+Owner: "i think some things arent working, e.g quantum engine and dts switch — fix it, and
+see everything if works or not." Method: offscreen FUNCTIONAL TEST (synthesized mouse
+events on every control, device attached) + a full §13-style live read-back round.
+
+- **Bug 1 (big): `_hue_rgb` was never ported** from the Linux GUI — every lighting-COLOUR
+  write (preset pick, LOGO/RING hue slider) crashed with AttributeError → "write failed".
+  This is the real "doesn't work" behind the lighting card. Fixed.
+- **Bug 2: side-tone StopSlider sent the LABEL string** ("HIGH") to the engine instead of
+  the level int → refused (`invalid literal for int()`). StopSlider callbacks now always
+  use the index; labels are display-only. Fixed.
+- **Bug 3: successful writes were SILENT** — only failures flashed. A working switch read
+  as "nothing happened". Every successful device write now flashes "feature applied ✓"
+  (green) in the status bar. Standing rule: a control that works must SAY so.
+- Spatial Quantum-Spatial/DTS switch verified WORKING as designed: it is host-side
+  (dongle receives nothing — capture-proven fact), saves locally, and now gives visible
+  feedback. Real Windows-Sonic wiring was researched (EarTrumpet issue #212 route =
+  undocumented ISpatialAudioFormat COM) — deliberately NOT shipped blind.
+- **Live read-back round on the real dongle: 13/13 PASS** — ANC 0/1/2 (1.5–2 s settle;
+  a 1.6 s wait once raced the settle and read stale — wait ≥2 s or poll), sidetone 1/3/0,
+  lights off/on, colour frames accepted, light-zone 80%/5, segments=6 refused (hardware
+  safety), auto-off 30 min read-back. Device restored to session-start state afterwards
+  (anc on, sidetone off, lights off, auto-off 30 min). GOTCHA: restoring after tests
+  captures the TEST value as "original" — always restore from the session's FIRST probe.
+- Rebuilt exe (02:09) + boot verified.
