@@ -230,7 +230,8 @@ class QuantumHeadset:
         except Exception:
             return
         if current is not None:
-            self._originals[report_id] = current
+            # normalize: getters return ints for 1-byte reports, bytes for multi-byte
+            self._originals[report_id] = current if isinstance(current, bytes) else bytes([current])
 
     # ---- per-feature getters/setters ---------------------------------------
     def get_anc(self) -> int | None:

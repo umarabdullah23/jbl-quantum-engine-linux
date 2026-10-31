@@ -4,6 +4,7 @@ Device under study: **JBL Quantum 810 Wireless** (the headset physically owned b
 USB `VID 0x0ECB` (Harman/JBL) `PID 0x2069` — the **USB-C wireless dongle** enumeration.
 
 Evidence tags:
+- **[LIVE]** = verified on the real Quantum 810 by this tool (2026-11-01, all 0x45–0x75 simple reports + writes)
 - **[CAPTURE]** = our own parse of the public QuantumENGINE USBPcap captures (SWW13,
   HeadsetControl issue #357 attachment) — see `captures/CAPTURE-ANALYSIS.md`. First-hand.
 - **[QE]** = sidmax7/QuantumEngine `jbl-quantum/src/protocol.rs` (hardware-verified project,

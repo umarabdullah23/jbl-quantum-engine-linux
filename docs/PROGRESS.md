@@ -98,3 +98,29 @@ Next: decompile RACE framing + per-feature command IDs/ranges → PROTOCOL.md �
   0x4D tail byte ("SEG PARAM" 0-8).
 - Small missing features from the UI property dump now documented with unlock map
   (PROTOCOL-RACE.md §5) — all stay fail-closed until live-verified per-command.
+
+## 2026-11-01 — LIVE VERIFICATION ROUND 1: ALL PASS (real Quantum 810, dongle 0ecb:2069)
+
+Read-only probe — 8/8 getters verified live:
+ANC on · Sidetone off · Lights off · Auto-off 30 min · Battery 30% · Dial 16/16 ·
+Serial MM0168-JO0050195 · Firmware 0.3.2/0.3.2/0.0.0/0.3.2. Includes 0x75 GET=SET
+exception + unknown-id quirk handling (no false reads).
+
+Writes (each: set → settle → read-back → restore to original):
+- Sidetone 0x5D: off→mid→off ✓ (read-back exact)
+- ANC 0x46: on→talkthru→off→on ✓ (NOTE: needs ~1.5 s settle after SET before the
+  0x45 mirror read is trustworthy — 0.4 s raced the device)
+- Lights 0x4B: on↔off ✓
+- Zone config 0x4C: brightness 50% logo / 100% ring, segments 5 ✓ (visually confirmed)
+- Zone colour 0x4D: logo (255,51,0) Solid ✓
+- Auto-off 0x75: 30→120→30 min ✓ (read-back both)
+- Session undo/restore ✓ — headset left in the user's original state (ANC on, sidetone
+  off, lights off, auto-off 30).
+
+Bugs found + fixed live: dual hidapi binding support (hid.Device vs hid.device);
+daemon crashed on access-denied (now survives); snapshot() mixed int/bytes originals
+(now normalized). udev rule installed live (plugdev 0660 on the JBL hidraw0).
+
+VERDICT: all simple feature reports (0x45–0x75) verified on real hardware. The
+community protocol + our tool are proven. RACE-layer commands remain documented-only
+until their own capture round.

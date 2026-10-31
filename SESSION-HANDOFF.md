@@ -154,3 +154,13 @@ Working copy: `~/Documents/Projects/jbl-quantum-linux`.
   docs/PROGRESS.md, commit, push. Memory file
   (gameloop-optimizer project memories: jbl-quantum-engine-linux-project.md) mirrors the
   big state too.
+
+## 13. LIVE VERIFIED (2026-11-01)
+
+Dongle attached; udev rule installed (plugdev). **All simple reports 0x45–0x75 verified
+on the real headset — probe 8/8 + every setter with read-back + restore** (see
+docs/PROGRESS.md 2026-11-01 entry). ANC needs ~1.5 s settle after SET before mirror-read.
+Bugs fixed live: dual hidapi binding, daemon access-denied survival, snapshot int/bytes.
+Remaining: RACE-command unlock round (PROTOCOL-RACE.md §5) — needs QuantumENGINE running
+on the Windows side with USBPcap to capture per-command SET payloads, or send via our
+tool once payloads are known. PipeWire EQ wiring still open.
