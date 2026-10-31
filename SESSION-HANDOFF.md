@@ -138,3 +138,19 @@ Working copy: `~/Documents/Projects/jbl-quantum-linux`.
   ~/jbl-re/newui/): left icon rail with circular avatars, User Profile pill, rounded cards
   with purple preset pills, magenta EQ curve card, Audio/Voice Monitor mic card, hero
   headset with ambient rings. DEMO = rail button "D" + amber pill/banner.
+
+## 12. Session log (kept in sync — newest last)
+
+- 2026-10-31 (final): repo restructured (app/ · docs/ · reverse-engineering/); UI v1.1
+  shipped + running (official showcase videos = UI reference, frames in ~/jbl-re/newui/);
+  everything pushed through commit "v1.1 UI". APP_VERSION = 1.1.0.
+- Standing instruction from owner: **keep this file synced with the session after each
+  round** ("also keep syncing current chat md file"). Owner said live verification happens
+  LATER ("just push code, verify live later").
+- Where things stand at sync time: working tree clean on main; daemon + GUI v1.1 running
+  in demo mode (GUI via ZCode background task, DISPLAY=:0, venv python); dongle not yet
+  plugged into Linux.
+- Sync procedure for future rounds: append a dated line here + update §7 (pending) +
+  docs/PROGRESS.md, commit, push. Memory file
+  (gameloop-optimizer project memories: jbl-quantum-engine-linux-project.md) mirrors the
+  big state too.
