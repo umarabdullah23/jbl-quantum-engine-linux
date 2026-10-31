@@ -11,8 +11,10 @@ a = Analysis(
     ['jblq_win.py'],
     pathex=[HERE, APP_PARENT],          # so `from jbl_quantum import ...` resolves
     binaries=[],
-    datas=[],
+    datas=[(os.path.join(HERE, 'vendor', 'SoundVolumeView.exe'), 'vendor'),
+           (os.path.join(HERE, 'vendor', 'SoundVolumeView-LICENSE.txt'), 'vendor')],
     hiddenimports=['jbl_quantum',       # the shared engine must never be missed
+                   'spatial_win',       # real host-side spatial sound module
                    'pycaw', 'pycaw.pycaw',          # volume control (lazy imports in
                    'comtypes', 'comtypes.client'],  # _volume_popup — explicit, verified
                                                     # by `exe --selftest` pycaw_ok

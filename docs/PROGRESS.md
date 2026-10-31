@@ -164,3 +164,9 @@ was a no-op (sent off into off). Both lighting toggles now sync from device stat
 frames delayed 400 ms after master-on (MCU boot); hue drag auto-enables master. Exact
 owner flow reproduced live: first click now works (read-back lights=1), restored after.
 Exe rebuilt.
+
+### 2026-11-01 round 4 — spatial switch wired to REAL Windows spatial sound
+
+SoundVolumeView vendored; set+read-back verified on the real machine both directions;
+app switch now applies Windows Sonic / DTS (licence-dependent, honest fallback); boot
+syncs toggle from OS state; selftest extended; exe rebuilt + release/folder refreshed.

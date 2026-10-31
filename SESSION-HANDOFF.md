@@ -300,3 +300,34 @@ Owner: "LIGHTING if off work then after that works true, first time issue only."
   applied ✓ → restored lights=0. Exe rebuilt + boot verified.
 - RULE (add to every UI port): any widget showing device state must be initialised FROM
   the device's first state tick, never from a hardcoded default.
+
+### 16d. Windows round 4 — spatial switch now applies REAL spatial sound (owner: "why dts and quantum switch not work?")
+
+Owner's screenshot showed the old status text ("host-side… saved locally") — the switch
+worked but didn't DO anything audible. Root fix: the app now controls Windows' REAL
+spatial sound on the Quantum's Game render endpoint.
+
+- **Mechanism found empirically on this machine:** endpoint property-store writes are
+  complex multi-value blobs (registry diff captured; even changes the endpoint format
+  8ch→2ch) and are Windows-version-specific — hand-rolling = fragile. NirSoft
+  SoundVolumeView maintains the mechanism (updated for Win11 25H2) and its /SetSpatial +
+  /stext 'Spatial Guid' give a verified get/set loop. **Vendored unmodified** at
+  app/windows/vendor/ (200 KB freeware; NirSoft license permits distribution; LICENSE
+  note included). No admin needed; applies instantly.
+- **Verified live, both directions, with read-back:** set Sonic → Spatial Guid
+  {B53D940C-B846-4831-9F76-D102B9B725A0}; set "" → empty. Also verified from inside the
+  real app flow (mode click respects off-state; toggle-on applied Sonic; OS truth read
+  back after each step). Owner's original state (spatial off) restored after testing.
+- **New module app/windows/spatial_win.py** — endpoint discovery (Quantum Game render
+  preferred), get_spatial (read-back), set_spatial(format) with verify-or-fail, DTS
+  fallback: Quantum Spatial → Windows Sonic; DTS → tries "DTS Headphone:X" (only if the
+  DTS licence from QuantumENGINE is installed) and falls back to Sonic with an honest
+  amber message. Runs on the DeviceWorker thread (subprocess, never the UI).
+- Boot now READS the real OS spatial state and syncs the toggle from it (rule from 16c
+  applied to host-side state too). Demo mode never touches the OS.
+- **Honesty upgrade:** the old "saved locally" wording is gone — spatial now says what
+  was actually applied ("spatial sound → Windows Sonic For Headphones applied ✓").
+  Room size / head diameter remain local (they're Quantum Spatial APO parameters).
+- spec: vendor/ bundled as datas, spatial_win as hiddenimport; selftest extended
+  (spatial_tool_ok / spatial_endpoint / spatial_current). Exe rebuilt (03:09) +
+  selftest green + release asset and RELEASE-v1.2.0/ refreshed.

@@ -47,6 +47,7 @@ from jbl_quantum import (  # noqa: E402
     QuantumHeadset, JblError, DeviceNotFound, UnsupportedDevice,
     ANC_MODES, SIDETONE_LEVELS, LIGHT_BRIGHTNESS,
 )
+import spatial_win  # noqa: E402  (real host-side spatial sound — see spatial_win.py)
 
 APP_NAME = "JBL Quantum Engine"
 APP_VERSION = "1.2.0"
@@ -226,6 +227,23 @@ class DeviceWorker(QThread):
                     r = self._set_job(feature, value)(self)
                 elif name == "restore":
                     r = self._restore_job(self)
+                elif name == "spatial":
+                    fmt = payload
+                    if fmt == spatial_win.DTS_NAME:
+                        r = spatial_win.set_spatial(fmt)
+                        if r.get("ok"):
+                            r["mode"] = spatial_win.DTS_NAME
+                        else:
+                            # no DTS licence on this machine — Sonic is the real
+                            # fallback, reported honestly
+                            r2 = spatial_win.set_spatial(spatial_win.SONIC)
+                            r = {**r2, "fallback": True, "dts_error": r.get("error"),
+                                 "mode": spatial_win.SONIC}
+                    else:
+                        r = spatial_win.set_spatial(fmt)
+                        r["mode"] = fmt if fmt else "off"
+                elif name == "spatial_state":
+                    r = spatial_win.get_spatial()
                 else:
                     r = {"error": f"unknown job {name}"}
             except Exception as e:  # never let a job kill the thread
@@ -1020,6 +1038,9 @@ class MainWindow(QWidget):
             self.hero_battery.update()
             self.pc_batt.setText("🔋 80%")
             self.dial_dots.set_value(11)
+        else:
+            # sync the spatial toggle with the REAL Windows spatial state (read-only)
+            QTimer.singleShot(1500, lambda: self.worker.submit("spatial_state", None))
         if not self.demo and not SETTINGS.value("tour_done", False, type=bool):
             QTimer.singleShot(900, self._start_tour)
 
@@ -1442,9 +1463,9 @@ class MainWindow(QWidget):
                        Qt.AlignmentFlag.AlignRight, "v2.0")
         dts_card.paintEvent = paint_dts
         dv.addWidget(dts_card, 0, Qt.AlignmentFlag.AlignHCenter)
-        dv.addWidget(cap_label("DTS Headphone:X v2.0 licence required for real output — "
-                               "this app reproduces the control UI; mode is saved locally.",
-                               9, DARKGREY))
+        dv.addWidget(cap_label("DTS Headphone:X needs the DTS licence (installed by JBL "
+                               "QuantumENGINE). If this PC doesn't have it, the app "
+                               "applies Windows Sonic instead and says so.", 9, DARKGREY))
         lv.addWidget(self.sp_dts_box)
 
         self.sp_qs_box = QWidget()
@@ -1464,7 +1485,12 @@ class MainWindow(QWidget):
         lv.addWidget(self.sp_qs_box)
         lv.addStretch(1)
 
-        self.sp_note = cap_label(HOST_SIDE_NOTE, 9, DARKGREY)
+        self.sp_note = cap_label(
+            "spatial sound is HOST-SIDE processing on this PC (the dongle receives "
+            "nothing — capture-proven). The switch applies Windows' real spatial sound "
+            "(Windows Sonic; DTS where licensed) to the headset's Game endpoint — the "
+            "same mechanism the real app uses. Room size / head diameter are saved "
+            "locally for Quantum Spatial.", 9, DARKGREY)
         self.sp_note.setWordWrap(True)
         lv.addWidget(self.sp_note)
 
@@ -1744,8 +1770,22 @@ class MainWindow(QWidget):
                 # working switch reads as "this doesn't work" (owner report 2026-11-01)
                 self.flash(f"{self._last_feature} applied ✓" if self._last_feature
                            else "applied ✓", GREEN)
-        elif name == "restore":
-            self.flash(f"restore: {result.get('restored') or result.get('error')}")
+        elif name == "spatial":
+            if result.get("ok"):
+                mode = result.get("mode", "")
+                if result.get("fallback"):
+                    self.flash(f"DTS not licensed on this PC ({result.get('dts_error')}) — "
+                               f"applied Windows Sonic instead ✓", AMBER)
+                else:
+                    self.flash(f"spatial sound → {mode or 'OFF'} applied ✓", GREEN)
+            else:
+                self.flash(f"spatial sound failed: {result.get('error')}", RED)
+        elif name == "spatial_state":
+            # boot sync: the toggle reflects the REAL OS spatial state
+            self.spatial_on = bool(result.get("guid"))
+            self._spatial_apply_ui()
+            cur = result.get("mode") or "off"
+            self.flash(f"spatial sound is currently {cur} (Windows-side)")
 
     def _apply_state(self, st):
         present = bool(st.get("present"))
@@ -1807,15 +1847,26 @@ class MainWindow(QWidget):
     def _spatial_toggle(self, on):
         self.spatial_on = on
         self._spatial_apply_ui()
-        self.flash(f"spatial sound {'on' if on else 'off'} — {HOST_SIDE_NOTE}", AMBER)
-        self._save_profile_auto()
+        if self.demo:
+            self.flash(f"spatial sound {'on' if on else 'off'} (demo — nothing changed)",
+                       AMBER)
+            return
+        fmt = (spatial_win.DTS_NAME if self.spatial_mode == 1
+               else spatial_win.SONIC) if on else ""
+        self._last_feature = "spatial sound"
+        self.worker.submit("spatial", fmt)
 
     def _spatial_mode_changed(self, i):
         self.spatial_mode = i
         self._spatial_apply_ui()
-        self.flash(f"spatial mode → {'Quantum Spatial' if i == 0 else 'DTS'} — {HOST_SIDE_NOTE}",
-                   AMBER)
-        self._save_profile_auto()
+        if not self.spatial_on or self.demo:
+            name = "Quantum Spatial (via Windows Sonic)" if i == 0 else "DTS"
+            self.flash(f"spatial mode → {name}" +
+                       ("" if self.spatial_on else " — spatial sound is OFF"), AMBER)
+            return
+        fmt = spatial_win.DTS_NAME if i == 1 else spatial_win.SONIC
+        self._last_feature = "spatial mode"
+        self.worker.submit("spatial", fmt)
 
     def _spatial_apply_ui(self):
         for seg in (self.sp_seg, self.sp_seg2):
@@ -1834,7 +1885,12 @@ class MainWindow(QWidget):
         self.room_stops.set_index(1)
         self.head_stops.set_index(5)
         self._spatial_apply_ui()
-        self.flash("spatial settings reset (local defaults)")
+        if not self.demo and self.spatial_on:
+            self._last_feature = "spatial sound"
+            self.worker.submit("spatial",
+                               spatial_win.DTS_NAME if self.spatial_mode == 1
+                               else spatial_win.SONIC)
+        self.flash("spatial settings reset (defaults)")
 
     def _room_changed(self, val, _i):
         self.room_size = val
@@ -2101,6 +2157,15 @@ def main():
             hs.close()
         except Exception as e:
             report["device_present"] = False
+        try:
+            import spatial_win
+            st = spatial_win.get_spatial()
+            report["spatial_tool_ok"] = bool(st.get("available"))
+            report["spatial_endpoint"] = st.get("endpoint")
+            report["spatial_current"] = st.get("mode")
+        except Exception as e:
+            report["spatial_tool_ok"] = False
+            report["spatial_error"] = str(e)
         out = os.path.join(DATA_DIR, "selftest.json")
         save_json(out, report)
         return

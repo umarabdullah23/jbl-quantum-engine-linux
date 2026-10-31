@@ -1,0 +1,4 @@
+SoundVolumeView v2.52 by NirSoft — bundled unmodified.
+Freeware; NirSoft license permits free use and distribution.
+Used only for the /SetSpatial and /stext command-line features (spatial sound format get/set).
+Source: https://www.nirsoft.net/utils/sound_volume_view.html
