@@ -156,3 +156,11 @@ silent. All fixed. Live read-back round on the real headset: 13/13 PASS, device 
 restored. Spatial switch confirmed working-as-designed (host-side, local save, now with
 visible feedback); Windows Sonic COM wiring researched and deliberately not shipped.
 Exe rebuilt + boot verified.
+
+### 2026-11-01 round 3 — "lighting first time only" root-caused and fixed
+
+Dashboard lighting toggle started hardcoded ON while the device was off → first click
+was a no-op (sent off into off). Both lighting toggles now sync from device state; colour
+frames delayed 400 ms after master-on (MCU boot); hue drag auto-enables master. Exact
+owner flow reproduced live: first click now works (read-back lights=1), restored after.
+Exe rebuilt.

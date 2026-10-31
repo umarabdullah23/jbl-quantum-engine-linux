@@ -281,3 +281,22 @@ events on every control, device attached) + a full §13-style live read-back rou
   (anc on, sidetone off, lights off, auto-off 30 min). GOTCHA: restoring after tests
   captures the TEST value as "original" — always restore from the session's FIRST probe.
 - Rebuilt exe (02:09) + boot verified.
+
+### 16c. Windows round 3 — the REAL "lighting first time doesn't work" root cause (2026-11-01)
+
+Owner: "LIGHTING if off work then after that works true, first time issue only."
+- **Root cause 1:** the dashboard LIGHTING card toggle was created checked=ON always and
+  was NEVER synced with device state (`_apply_state` only synced the detail-page toggle).
+  With lights actually OFF at boot, the owner's FIRST click moved the widget to OFF and
+  sent set_lights(False) into an already-off device = visible no-op. The second click
+  sent ON and worked — exactly "first time issue only". Fix: both lighting toggles now
+  sync from device truth every state tick (`_lights_on_state` mirrors the device).
+- **Root cause 2 (belt+braces):** a 0x4D colour frame sent immediately after master-on
+  can be dropped by the lighting MCU (it boots with the master switch). `_light_preset`
+  now delays the colour frames ~400 ms when lights were off, and `_zone_colour` turns
+  the master ON first when it is off (choosing a colour = intent to light up).
+- Verified by reproducing the owner's exact flow against the real dongle: boot with
+  lights OFF → toggle syncs OFF → FIRST click → device read-back lights=1 → preset
+  applied ✓ → restored lights=0. Exe rebuilt + boot verified.
+- RULE (add to every UI port): any widget showing device state must be initialised FROM
+  the device's first state tick, never from a hardcoded default.

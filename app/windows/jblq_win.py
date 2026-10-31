@@ -1003,6 +1003,7 @@ class MainWindow(QWidget):
         self.card_refs: dict[str, QWidget] = {}
         self._volume_iface = None
         self._last_feature: str | None = None
+        self._lights_on_state = True  # device-truth for the lighting master (from _apply_state)
 
         self.worker = DeviceWorker()
         self.worker.got.connect(self._worker_got)
@@ -1351,6 +1352,7 @@ class MainWindow(QWidget):
 
         # LIGHTING card
         lt_card = Card("LIGHTING", toggle_cb=self._lights_toggle)
+        self.lt_card = lt_card
         self.light_pill = Pill("  SOUND IS SURVIVAL",
                                items=["SOUND IS SURVIVAL", "OFF"] + LIGHT_PRESETS,
                                on_pick=self._light_preset)
@@ -1776,8 +1778,12 @@ class MainWindow(QWidget):
             self._reflect_anc(anc)
         lights = st.get("lights")
         if lights is not None:
-            for t in (getattr(self, "lt_detail_toggle", None),):
-                if t is not None and t.checked != bool(lights):
+            # sync BOTH lighting toggles with device truth — the dashboard card used
+            # to start ON while the device was OFF, so the owner's first click sent
+            # "off" into an already-off device (= the "first time doesn't work" bug)
+            self._lights_on_state = bool(lights)
+            for t in (self.lt_card.toggle, self.lt_detail_toggle):
+                if t.checked != bool(lights):
                     t.set_checked(bool(lights))
         aom = st.get("auto_off_min")
         if aom is not None:
@@ -1863,12 +1869,23 @@ class MainWindow(QWidget):
         if name == "OFF":
             self._send("lights", False)
             return
+        was_on = self._lights_on_state
         self._send("lights", True)
         mode = LIGHT_MODE_BYTE[LIGHT_PRESETS.index(name)] if name in LIGHT_PRESETS else 1
-        for zone in ("LOGO", "RING"):
-            self._send("light_colour", {
-                "element": 0 if zone == "LOGO" else 1, "slot": 0,
-                "rgb": self._hue_rgb(self.zone_hue[zone]), "mode": mode, "last": self.zone_param})
+
+        def apply_colour():
+            for zone in ("LOGO", "RING"):
+                self._send("light_colour", {
+                    "element": 0 if zone == "LOGO" else 1, "slot": 0,
+                    "rgb": self._hue_rgb(self.zone_hue[zone]), "mode": mode,
+                    "last": self.zone_param})
+        if was_on:
+            apply_colour()
+        else:
+            # the lighting MCU boots with the master switch — an immediate colour
+            # frame after master-on can be dropped (owner's "first time only" report);
+            # give it a beat, then apply
+            QTimer.singleShot(400, apply_colour)
         self._save_profile_auto()
 
     @staticmethod
@@ -1878,6 +1895,10 @@ class MainWindow(QWidget):
 
     def _zone_colour(self, zone, hue):
         self.zone_hue[zone] = hue
+        if not self._lights_on_state:
+            # choosing a colour while the master is off = clear intent to light up;
+            # a colour frame with the master off can be dropped by the lighting MCU
+            self._send("lights", True)
         mode = LIGHT_MODE_BYTE[LIGHT_PRESETS.index(self.light_preset)] \
             if self.light_preset in LIGHT_PRESETS else 1
         payload = {"element": 0 if zone == "LOGO" else 1, "slot": 0,
