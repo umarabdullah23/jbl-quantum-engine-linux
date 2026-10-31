@@ -1,0 +1,6 @@
+# JBL Quantum wireless headsets — non-root access to the control HID interface.
+# Install: sudo cp 99-jbl-quantum.rules /etc/udev/rules.d/ && sudo udevadm control --reload
+# The vendor control interface carries the config feature reports; audio stays untouched.
+# Group "plugdev" + uaccess tag so the active seat's user gets access without manual chown.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0ecb", MODE="0660", GROUP="plugdev", TAG+="uaccess"
+KERNEL=="hidraw*", ATTRS{idVendor}=="0ecb", MODE="0660", GROUP="plugdev", TAG+="uaccess"

@@ -1,0 +1,285 @@
+# JBL Quantum 810 - HID Report Map
+
+All values below were confirmed on a **Quantum 810 dongle (`0ecb:2069`, HID
+interface 5)** by live GET_REPORT probing and by parsing the USB captures
+attached to [HeadsetControl issue #357](https://github.com/Sapd/HeadsetControl/issues/357).
+
+The vendor HID interface is USB interface **5** (the dongle also exposes
+standard USB-audio interfaces 0-4). Access it via hidraw (see
+`tools/find_hidraw.py`) - no pyusb claiming needed (claiming the interface
+*destroys the hidraw node* until the dongle is replugged).
+
+## Event reports (interrupt IN, pushed by the dongle)
+
+First byte of the packet is the report ID.
+
+| Report | Meaning | Payload |
+|--------|---------|---------|
+| `0x02` | ANC state | byte1: `00`=off, `01`=on, `02`=talk-through |
+| `0x03` | Power-on marker | `03 00` (headset powered on) |
+| `0x06` | Microphone | byte1: `00`=off (muted), `01`=on |
+| `0x07` | Lights | byte1: `00`=off, `01`=on |
+| `0x08` | Battery | byte1: percent 0..100 |
+| `0x09` | Power-on marker | `09 01` (headset powered on) |
+| `0x10` | Game/Chat mix | byte1: `00`=full chat ... `0x10`=full game (16 steps) |
+| `0x2f` | Mute toggle (810) | `02`=toggle, `00`=release; the actual mic state is carried by `0x06` |
+
+When the headset powers on, the dongle emits a full state burst:
+`02, 03, 06, 07, 08 (x4), 09, 10` - this is the best way to (re)sync all
+state at once.
+
+Battery (`0x08`) is also pushed periodically (~every 2 s while the headset
+is in use).
+
+> **Hardware note:** the mic arm overrides the mute button. With the arm
+> up (muted) the mute button does nothing - the state stays muted and no
+> event is emitted. This is intended headset behavior, not a monitoring
+> gap. Both mute sources (mic arm and mute button) feed the same
+> `0x06`/`0x67` state.
+>
+> Every mute-state change (arm or button) is bracketed by a `0x2f` toggle
+> marker: `2f 02` (toggle) ... `06 XX` (authoritative state) ... `2f 00`
+> (release). The trailing `2f 00` is **not** an "unmuted" state - it fires
+> after both mute and unmute, so treat `0x06`/`0x67` as the authority.
+
+## Feature reports (GET_REPORT - read-only)
+
+| Report | Meaning | Notes |
+|--------|---------|-------|
+| `0x49` | Battery percent | `[0x49, percent]`; answers anytime (810) |
+| `0x45` | **ANC state** | `[0x45, 0=off/1=on/2=tt]` - mirrors SET `0x46` / event `0x02` (verified live) |
+| `0x4a` | **Lights state** | `[0x4a, 0=off/1=on]` - mirrors SET `0x4b` / event `0x07` (verified live) |
+| `0x5c` | **Sidetone level** | `[0x5c, 0=off/1=low/2=mid/3=high]` - mirrors SET `0x5d` (verified live) |
+| `0x62` | **Game/chat mix** | `[0x62, 0..16]` - mirrors event `0x10` (verified live) |
+| `0x67` | **Mic state** | `[0x67, 1=on, 0=muted]` - mirrors event `0x06` (verified live) |
+| `0x61` | Part/serial number | ASCII string, e.g. `MM0169-EM0015659` |
+| `0x62`, `0x63`, `0x68` | More identity strings | variants of the same string |
+| `0x51` | EQ-like data | 12 small values `01 03 02 00 03 02 01 00 02 01 03 02` (undecoded) |
+| `0x5b` | Config data | structure like 0x51 (undecoded) |
+| `0x71` | `[0x71, 01, 02, 00...]` | undecoded |
+| `0x75` | **Auto power off timeout** | `[0x75, value]` = 5-min units: `0`=off, `6`=30 min, `12`=1 h, `24`=2 h (the `18`/`0x18` in an earlier capture = the 2 h default); byte2 `0x02` is an undecoded flag |
+| `0x07` (feature) | dynamic byte | byte1 fluctuates at runtime (0x0e, 0x07, 0x00 observed; undecoded) |
+| `0x47`, `0x4a` (lower bytes), `0x50` | static info | `00 00 05 5c 03 00 80 2c` (undecoded) |
+
+**Pattern:** for every SET command the read-back report is `SET id - 1`
+(`0x46`→`0x45` ANC, `0x4b`→`0x4a` lights, `0x5d`→`0x5c` sidetone). The one
+exception is **auto power off** (`0x75`): its GET and SET share the same
+report id (`0x75`).
+
+Note: on this device a GET_REPORT for an unknown report ID does not stall -
+the firmware answers with the nearest known lower report. The kernel may
+also leave stale tail bytes, so verify the echoed report ID before trusting
+a response.
+
+## Feature reports (SET_REPORT - CHANGES DEVICE STATE)
+
+Payload is 2 bytes: `[report_id, value]`.
+
+| Report | Command | Values |
+|--------|---------|--------|
+| `0x46` | ANC mode | `0`=off, `1`=on, `2`=talk-through |
+| `0x4b` | Lights | `0`=off, `1`=on |
+| `0x5d` | Sidetone | `0`=off, `1`=low, `2`=mid, `3`=high |
+| `0x75` | Auto power off | `0`=off, `6`=30 min, `12`=1 h, `24`=2 h (value = 5-min units) |
+
+The Windows "QuantumENGINE" software sends exactly these as class
+SET_REPORT(Feature) requests; on Linux the hidraw `HIDIOCSFEATURE` ioctl is
+equivalent. Each accepted command is acknowledged by the matching event
+report (`0x02` for ANC, `0x07` for lights). Auto power off (`0x75`) has **no
+event ACK** - its state is confirmed only via the `0x75` GET read-back.
+
+### Lighting colors/effects (RGB) - reports 0x4c/0x4d
+
+Decoded from the #357 captures and verified live on a Quantum 810
+(2026-09) - see the full "Lighting (RGB)" section below.
+
+## Lighting (RGB) - decoded and verified live
+
+QuantumENGINE's lighting model: per lighting **element** (0 = logo,
+1 = ring on the earcups) a mode (Breathing/Solid/Wave/Glitch) plays a
+sequence of color **segments** at a **speed** set by the tempo slider. The
+software pushes it over HID feature reports:
+
+| Report | Payload | Meaning |
+|--------|---------|---------|
+| `0x4c` | `[4c, element, speed, segments]` | table header; **speed** byte ∈ {`0x28`,`0x32`,`0x3c`,`0x46`,`0x4b`,`0x50`,`0x64`} (excl. `0x19`=2x); segments ∈ 1..5 (never more than 5) |
+| `0x4d` | `[4d, element, index, R, G, B, mode, last]` | one color segment; **RGB = bytes 3-5** (verified: `ff0000` renders red, `00ff00` green, `0000ff` blue); `mode` = mode selector (Wave=`0x02` Breathing=`0x00` Glitch=`0x03` Solid=`0x01`, all ∈ {`00`..`06`}); `index` ∈ 0..4; `last` = per-segment parameter (0..8), **not** `index*2` |
+| `0x4b` | `[4b, 0/1]` | lights off/on (commit; already known) |
+
+> **Safe value ranges** (from the QuantumENGINE USB captures in `pcaps/`,
+> including the newest "Switch between RGB Modes" firmware capture): segment
+> count **1..5 (never above 5)**, speed byte **`0x28`/`0x32`/`0x3c`/`0x46`/
+> `0x4b`/`0x50`/`0x64`** (excl. `0x19` = 2x), frame index **0..4**, last byte
+> **0..8** (a per-segment parameter, *not* `index*2`), and the mode (M) byte
+> **`0x00`..`0x06`**. Segment counts above 5 (the old 16/32-segment "reset")
+> wedge the lighting MCU into a strobe lockup - that is the only dangerous
+> field. The tray and `tools/jbl_rgb.py` hard-clamp every value to these
+> ranges.
+
+### ⚠️ Deadlock warning - do NOT exceed the safe ranges
+
+Writing a value **outside the ranges above can permanently deadlock the RGB
+lighting** and is **not recoverable by factory reset or a normal power-off**:
+
+- The lighting runs on a **separate MCU** that latches bad table values into
+  a tight loop (the "absurd strobe") and then **ignores all further writes** -
+  including from QuantumENGINE on Windows.
+- The trigger observed in this project was a **segment count above 5** (a
+  "clearing pass" of 16 or 32 segments). The extra frames pushed the `0x4d`
+  index to 0..15/31 and the last byte to `0x1e`/`0x3e`, far outside the
+  device's 0..4 / 0..8.
+- Once wedged, a soft reset (power button, dongle replug, factory reset) does
+  **not** clear it because none of those hard-cut power to the lighting MCU.
+  A firmware update may also fail to complete. Recovery requires a true cold
+  boot (full battery drain to zero, or physically disconnecting the battery)
+  or a wired reflash - see `docs/RGB_SAFE_RANGES.md`.
+
+**Rule for any implementation:** never emit a value that QuantumENGINE itself
+does not emit. The safe set above is the complete observed set; treat
+everything else as untested and potentially device-bricking.
+
+Verified behavior (live on a Quantum 810 via hidraw):
+
+- **Arming required**: the lighting SETs only take effect after the
+  QuantumENGINE connect-time GET round (`0x68, 0x67, 0x62, 0x5c, 0x75,
+  0x49, 0x51, 0x47, 0x4a, 0x45` in that order - from the QuantumENGINE
+  capture in `pcaps/`). Without it the dongle
+  still accepts and caches the SETs - the `0x4a` read-back even flips! -
+  but the headset ignores them (no LED change, no `07` event). Arming
+  persists for at least several minutes.
+- **Apply cycle**: the table takes effect on the lights OFF->ON transition.
+  Writes while the lights are on do not change the running effect; the
+  dongle applies the cached table at the next off->on cycle.
+- **ACKs**: `0x4b` toggles are ACKed by `0x07` events, but only on actual
+  state changes (a redundant `4b 01` while already on produces no event).
+- **Toggle vs table-write race** (live, 2026-09-17): a lighting write ends
+  with its own lights-on commit, which silently re-lights the headset even
+  when the user toggled the lights off during the write. The tray aborts an
+  in-flight write when the lights are toggled off (checks between reports,
+  never commits afterwards) so the toggle stays authoritative. Also seen
+  once after a wedged 16-segment table: a `4b 00` was accepted without a
+  `07` ACK and the `0x4a` read-back answered a 4-byte payload
+  (`4a 00 00 02`) instead of the usual 2-byte `[4a, state]` - replug /
+  power-cycle recovers the lighting controller.
+- **Element mapping**: element 0 = logo, element 1 = ring (verified live
+  with distinct colors per element).
+- **No read-back**: GET on `0x4c`/`0x4d`/`0x4e` answers with the nearest
+  known lower report (`0x61` serial, echo-ID mismatch) - the color table
+  cannot be read back. QuantumENGINE also only ever pushes it.
+- A solid color = 5 identical segments and renders as a breathing-style
+  pulse (a true steady "Solid" encoding is still open, see below).
+- **Color mixups diagnosed** (live, 2026-09-17): SETs fired back-to-back
+  can be dropped outright (the ring's writes, last in the burst, went
+  missing entirely) and partially delivered tables leave stale colors
+  cycling (the factory table's index-2 segment is `ff 00 cc` = the "red
+  residue" seen with white/blue; "yellow rendering white" is the new
+  yellow blended with a stale blue residue). Remedy used by the tray and
+  `tools/jbl_rgb.py`: pace every SET (`--delay`, tray `LIGHT_SET_DELAY`)
+  and clear the table before the final table (two passes: clearing frames
+  first, then the QuantumENGINE-shape table).
+- **Segment count = pulse tempo** (live, 2026-09-17): the `0x4c` segment
+  count sets how many segments share the tempo cycle - a 16-segment table
+  pulsed visibly "super fast" and later wedged the lighting MCU into a
+  strobe. The captures confirm QuantumENGINE only ever sends **1..5**
+  segments (2/5 in the older firmware, 1/3/5 in the newest), so every write
+  (clearing pass included) is now hard-clamped to `1..5` (tray
+  `LIGHT_MAX_SEGMENTS`, CLI `MAX_SEGMENTS`); the final table stays at the
+  stock 5.
+
+Open questions (not yet decoded):
+
+- **Resolved (newest capture)** - the `M` byte is the MODE selector
+  (`Wave`=`0x02`, `Breathing`=`0x00`, `Glitch`=`0x03`, `Solid`=`0x01`); the
+  `0x4c` tempo byte is the SPEED (`1x`=`0x4b`, `1.5x`=`0x32`, `2x`=`0x19` -
+  `0x19` is excluded as too fast/strobe). See
+  `docs/RGB_SAFE_RANGES.md`.
+- The minimal arming GET (the full round is used as the safe recipe).
+
+### Controlling the lighting from Linux
+
+Both implementations arm automatically (the GET round above), then write the
+per-element table **while the lights are on** (the dongle buffers it) and commit
+with a lights **off->on** flick back-to-back at the very end (the table applies
+on that transition; keeping the flick at the end minimizes the time the headset
+is dark). The lights-on commit is verified via the `0x4a` read-back and retried
+a few times - it is the last report in the burst and the one most likely to be
+dropped by the dongle/2.4 GHz link. Three guards fix the color mixups
+(diagnosed live, 2026-09-17):
+every SET_REPORT is paced (~10 ms - back-to-back writes were dropped, the
+ring's writes went missing entirely); a clearing pass overwrites the whole
+table (identical segments per element - stale colors from earlier writes
+otherwise keep cycling); and every value is hard-clamped to the safe ranges
+derived from the QuantumENGINE captures (segments 1..5, speed 0x28/0x32/
+0x3c/0x46/0x4b/0x50/0x64, M 0x00..0x06). The tray runs the whole sequence on
+a worker
+thread so the UI never blocks; it skips re-arming while fresh
+(`LIGHT_ARM_TTL`, 60 s) and coalesces rapid color clicks (newest color wins):
+
+- **Tray** (`--enable-controls`): menu -> Lighting -> "Solid color…" / color
+  presets / "Logo color…" / "Ring color…" / "Custom (segments)…", plus
+  **Speed** and **Mode** radio submenus (the decoded `0x4c` tempo / `0x4d`
+  mode selectors; "Solid" greys out Speed) and "Reset to factory". Applies
+  as a paced two-pass write (`LIGHT_RESET_SEGMENTS` + `LIGHT_SEGMENTS`,
+  `LIGHT_SET_DELAY`).
+- **CLI** `tools/jbl_rgb.py`:
+  - `--status` - read-only probe (state + `0x4c`/`0x4d`/`0x4e` GET attempts)
+  - `--solid RRGGBB [--element logo|ring|both]` - clearing pass plus one
+    color as `--segments` identical segments (breathing-style effect)
+  - `--default` - replay the factory teal table (`33 ff cc`, tempo `0x64`)
+  - `--reset-segments N` - clearing pass before the final table (default 5,
+    clamped to 1..5; 0 disables - wipes stale colors of earlier writes)
+  - `--segments N` - final table segments per element (default 5, clamped
+    to 1..5 - QuantumENGINE never sends more than 5)
+  - `--speed N` - override the `0x4c` tempo/speed byte (default `0x64`; clamped
+    to `0x28`/`0x32`/`0x3c`/`0x46`/`0x4b`/`0x50`/`0x64`; `0x19` = 2x is excluded)
+  - `--mode N` - override the `0x4d` mode (M) byte (default `0x02` logo / `0x05`
+    ring; `Wave`=`0x02` `Breathing`=`0x00` `Glitch`=`0x03` `Solid`=`0x01`;
+    clamped to `0x00`..`0x06`)
+  - `--delay SEC` - pause between SET reports (default 0.02; raise it if
+    writes are still dropped)
+  - `--lights on|off|keep` - lights state after the write (default `keep`)
+  - `--listen SEC` - seconds to listen for `0x07` ACK events after a SET
+  - `--raw "4c 00 64 05;4d 00 00 ff 00 00 02 00"` - send raw feature reports
+    (**NOT clamped** - bypasses every safety guard and can wedge the lighting
+    MCU; use only with values from the safe-ranges table above)
+
+## Mic mute also drives the USB Audio Class mute
+
+Besides the HID `0x06`/`0x2f` events, the host (QuantumENGINE / the OS audio
+stack) issues the standard **USB Audio Class** `SET_CUR` MUTE control on the
+audio interface in sync with the arm (confirmed in `pcaps/05 ... muting.pcapng`):
+
+- `bm=0x21 bReq=0x01` = `SET_CUR` (UAC), `wValue=0x0100` = MUTE selector,
+  `wIndex=0x0602` = Feature Unit `0x06` / interface `0x02`.
+- payload `00` = unmute (arm down), `01` = mute (arm up).
+
+This is a separate mechanism from the HID reports: `0x06`/`0x67` is the
+headset mic state, `0x2f` is the toggle/release marker, and the UAC `SET_CUR`
+mute actually gates the capture path.
+
+## What is NOT (yet) monitorable
+
+- **Charging state**: verified empirically - while the headset was charging
+  (battery climbing 65->70%), no event or feature report changed except the
+  battery value itself. The `0x08` battery packets carry no charging flag.
+  The dongle simply does not expose charging state over HID.
+- **Spatial sound / DTS**: seen in captures only as SET_REPORTs without an
+  event echo; not decoded.
+- **Head tracking**: only the newer Quantum 950 generation (event `0x86...`
+  protocol, IMU data `0x1a`); the 810 do not have head tracking.
+
+## Tools using this map
+
+- `tools/jbl_status.py` - status reader + controls CLI (`--json`, `--watch`,
+  `--set-anc`, `--set-lights`, `--set-sidetone`)
+- `tools/jbl_rgb.py` - RGB lighting CLI (`--status` read-only probe,
+  `--solid RRGGBB [--element logo|ring|both]`, `--logo RRGGBB` / `--ring RRGGBB`,
+  `--segments-colors C1,C2,...`, `--default` factory table,
+  `--raw` hex sequences, `--speed`/`--mode` tuning overrides,
+  `--lights on|off|keep`, `--listen SEC`; arms automatically before writes)
+- `tools/jbl_status_probe.py` - live protocol probe (`--monitor`, `--features`,
+  `--scan`, `--correlate`)
+- `jbl_quantum_810_tray.py` - tray shows ANC/mic/mix/lights/sidetone/serial
+  plus a battery drain estimate; menu controls behind `--enable-controls`
+  (ANC cycle, lights toggle, sidetone radio group) including a **Lighting**
+  submenu with a color picker and presets (breathing effect)

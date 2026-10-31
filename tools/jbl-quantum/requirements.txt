@@ -1,0 +1,1 @@
+hid  # hidapi python bindings; on Debian/Ubuntu: sudo apt install python3-hidapi (or pip install hid)

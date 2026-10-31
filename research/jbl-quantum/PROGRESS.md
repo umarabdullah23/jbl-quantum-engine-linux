@@ -1,0 +1,81 @@
+# JBL QuantumENGINE → Linux RE — PROGRESS LOG
+
+Task: RE JBL QuantumENGINE (Windows) protocol → native Linux replacement (hidapi), personal
+interoperability. No JBL binaries redistributed; no firmware flows; headset is only hardware.
+
+## 2026-10-31 — Phase 0 setup + target identification
+
+- **No Windows box/capture possible from this Linux env** → adapted: Phase A (USBPcap) is
+  deferred; static RE of QuantumENGINE binaries instead (they ARE available on the Windows
+  partition of this dual-boot machine, mounted READ-ONLY at
+  `/run/media/umar/56E2B9D1E2B9B599`).
+- **Headset identified from Windows registry hives (offline, read-only copy in ~/jbl-re/hives/):**
+  - **JBL Quantum 810 Wireless** — actual hardware on this machine.
+  - USB dongle: `VID_0ECB PID_2069` (JBL vendor ID is **0x0ECB**, NOT 0x0DC4 as the task
+    guessed). Interfaces: MI_00 "Game" audio (usbaudio + UpperFilters `HarmanAudioService`),
+    MI_02 "Chat" audio, MI_05 **"JBL Quantum USB Input Device" = control HID** (HidUsb,
+    boot subclass). RE target interface = MI_05.
+  - Bluetooth: MAC 68:D6:ED:4A:9F:AD, exposes **Airoha custom GATT service**
+    (UUID 00000000-0000-0000-0099-aabbccddeeff; BT VID 0x0094 = Airoha).
+- **Install found on Windows drive:** `C:\Program Files\JBL\QuantumENGINE`, FileVersion
+  2.8.6.0 — same version as the freshly downloaded installer
+  (`~/Downloads/JBL_QuantumENGINE_Installer_2.8.6_x64.exe`). Copy of device-logic DLLs in
+  `~/jbl-re/scratch/binaries/` (scratch only, never committed/redistributed).
+- **Binary survey:** UI layer `JBLQuantumControl.dll/.exe` = .NET (MAUI). Device layer =
+  **native x64 C++**: `AirohaHidCoreLib.dll` (2.3MB, PDB path
+  `C:\work\code\quantum\lib\3rdparty\airoha_hid_core_lib\...`), `AirohaPeqLibrary.dll`,
+  `HIDDevice.dll` (wraps **hidapi**: hid_enumerate/hid_open/hid_get_feature_report...),
+  `DeviceDiscovery.dll`, `USBDevice.dll`.
+- **Protocol family identified (FACT, from RTTI strings in AirohaHidCoreLib.dll):**
+  **Airoha RACE protocol** over HID (`RaceGetBattery`, `genRawRacePacket()`, relay resp
+  race ID 0x0D01, `RaceReadNv`/`RaceWriteNv` NVRAM commands, dongle types
+  AB1565/1568/1571D/1585/1588 ULL2/LEA). Recovered command/task class map:
+  battery (Get/Dual/Race), sidetone (Get/Set Level + State), game/chat mix
+  (Get/SetGameChatMixRatio, GameChatBalance), mic volume (Game + StandAlone), ANC
+  (On/Off/PassThruGain/Settings, ReadAncNv/SaveAncNv → NVRAM), advanced passthrough
+  (ambient aware), voice guidance, wear detection, notification tone
+  (Get/SetNotificationActivation + Map), busy light, PEQ parametric EQ
+  (Load/SavePeqUiData, RealTimeUpdatePeq, SavePeqCoef, SetPeqGroupIndex, ReclaimPeqNvKey),
+  agent/fw version, telemetry. Full string dumps in `~/jbl-re/scratch/airoha_strings*.txt`.
+- **Complete USB ID table extracted (FACT, from oem93.inf "QuantumAI.inf" on the Windows
+  drive, driver 07/02/2026 v2.0.0.010)** — every Quantum model's VID_0ECB PID + control
+  interface index (e.g. 810=2069 MI_05, 910=2088 MI_05, 610=205C MI_05, 800=1F47/203E
+  MI_05, 950=2127/2128 MI_05, ONE=1F48/203A MI_05, 300=1F52 MI_01/MI_03 …) → seed for
+  `tools/jbl-quantum` supported-device table.
+- Ghidra headless setup in progress (JDK25 + Ghidra 12.2 downloading) to decompile
+  `genRawRacePacket` + RACE command ID tables from AirohaHidCoreLib.dll.
+- Phase 0 existing-work check (HeadsetControl devices etc.) running as background agent.
+
+Next: decompile RACE framing + per-feature command IDs/ranges → PROTOCOL.md → Python CLI/daemon.
+
+## 2026-10-31 — Phase 0 complete + protocol validated + Linux tool built
+
+- **Phase 0 verdict (PHASE0.md):** HeadsetControl = ZERO JBL support (verified vs master,
+  0 files/commits; only stale unmerged issue #357 fork). The working open implementations
+  are sidmax7/QuantumEngine (Rust, all-features hardware-verified) and
+  taron-sys/JBL-Quantum-810-Linux-Tray-Tool (auto-off 0x75 + RGB safety ranges).
+  → per the task rule, no re-RE; we validate + package.
+- **Captures (research/jbl-quantum/captures/):** 23 action-labeled USBPcap pcapng files
+  (public SWW13/HeadsetControl #357 attachment) + our own USBPcap parser
+  (usbpcap_parse.py) + CAPTURE-ANALYSIS.md. **Our independent parse confirms**: SET_REPORT
+  FEATURE on interface 5, 2-byte `[id, value]`: ANC 0x46 (0/1/2), sidetone 0x5D (0–3),
+  lights 0x4B, light config 0x4C (`4c 00 32 05`), light colour 0x4D frames, and interrupt
+  events on ep 0x83 (02 ANC, 03 BT, 06 mic, 07 lights, 08 battery `085f`=95, 09 link,
+  10 dial 0–16). **Negative result proven**: spatial-sound-*/EQ captures contain zero HID
+  writes → QuantumSURROUND/EQ are host-side DSP (Windows spatial sound), not device
+  reports. QuantumENGINE also re-writes light state at boot (`4c 00 64 05`).
+- **PROTOCOL.md written** — per-feature table with evidence tags (CAPTURE/QE/TT/RTTI/INF),
+  persistence + undo columns, GET=SET−1 read-back rule + 0x75 exception, unknown-id quirk,
+  model coverage seed from oem93.inf (30 PIDs, control interface per model).
+- **tools/jbl-quantum built:** `jbl_quantum.py` (library: discovery via hidapi, verified
+  report ids only, DFU ids structurally forbidden, first-write-wins undo registry,
+  segments hard-clamped 1–5), `jblq` CLI (probe/battery/dial/info/sidetone/anc/lights/
+  autooff/restore/listen), `jblq_daemon.py` (hotplug-aware, unix-socket JSON), udev rule
+  (0ecb hidraw 0660+uaccess), README with feature matrix vs QuantumENGINE.
+  Compiles clean; graceful failure verified (absent device → explicit error, exit 2;
+  unsupported → exit 3). hidapi built from source into ~/jbl-re/lib for testing
+  (no passwordless sudo for apt).
+- **PENDING live verification:** the dongle is not plugged into the Linux side right now.
+  When plugged: `jblq probe` (read-only) first, then one setter at a time with read-back.
+  (USBPcap Phase-A on Windows not needed — captures + protocol already public.)
+

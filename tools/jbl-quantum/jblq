@@ -1,0 +1,236 @@
+#!/usr/bin/env python3
+"""jblq — CLI for JBL Quantum wireless headsets on Linux (native, hidapi/hidraw).
+
+Examples:
+  jblq probe                      # read-only state dump (safe, no writes)
+  jblq battery                    # battery percent
+  jblq sidetone off|low|mid|high  # 4-step mic monitoring
+  jblq anc off|on|talkthru
+  jblq lights on|off
+  jblq autooff 0|30|60|120        # minutes (0 = off); 5-min steps on device
+  jblq dial                       # game/chat dial position 0..16
+  jblq info                       # serial + firmware + product
+  jblq listen                     # live pushed events (dial, battery, mic, ANC)
+
+Every setter snapshots the current value first; `jblq restore` puts back the
+originals captured by the last set of writes in this session's undo file.
+Unsupported/absent devices are refused explicitly — no speculative reports.
+"""
+import json
+import sys
+import time
+
+from jbl_quantum import (
+    ANC_MODES,
+    SIDETONE_LEVELS,
+    DeviceNotFound,
+    JblError,
+    QuantumHeadset,
+    UnsupportedDevice,
+)
+
+UNDO_FILE = "/tmp/jblq-undo.json"  # path-scoped originals; /tmp is fine, non-secret
+
+
+def _open():
+    try:
+        return QuantumHeadset.find()
+    except DeviceNotFound as e:
+        print(f"error: {e}", file=sys.stderr)
+        raise SystemExit(2)
+    except UnsupportedDevice as e:
+        print(f"error: unsupported device — {e}", file=sys.stderr)
+        raise SystemExit(3)
+
+
+def _save_undo(hs: QuantumHeadset):
+    try:
+        snap = hs.snapshot()
+        data = {"path": str(hs.path), "product_id": hs.product_id}
+        for rid, orig in hs._originals.items():
+            data[f"0x{rid:02x}"] = orig.hex()
+        with open(UNDO_FILE, "w") as f:
+            json.dump(data, f)
+    except Exception:
+        pass
+
+
+def cmd_probe(args):
+    with _open() as hs:
+        print(hs.snapshot().summary())
+
+
+def cmd_battery(args):
+    with _open() as hs:
+        b = hs.get_battery()
+        if b is None:
+            print("battery: not reported (headset off?)")
+            return
+        print(f"battery: {b}%")
+
+
+def cmd_dial(args):
+    with _open() as hs:
+        v = hs.get_dial()
+        print(f"dial: {v}/16 ({'all game' if v == 16 else 'all chat' if v == 0 else 'mix'})"
+              if v is not None else "dial: not reported")
+
+
+def cmd_info(args):
+    with _open() as hs:
+        print(hs.snapshot().summary())
+
+
+def cmd_sidetone(args):
+    if not args:
+        with _open() as hs:
+            v = hs.get_sidetone()
+            print(f"sidetone: {SIDETONE_LEVELS.get(v, v)}" if v is not None else "sidetone: not reported")
+        return
+    level = args[0]
+    rev = {v: k for k, v in SIDETONE_LEVELS.items()}
+    if level not in rev:
+        raise SystemExit(f"error: sidetone must be one of: {'|'.join(rev)}")
+    with _open() as hs:
+        hs.set_sidetone(rev[level])
+        _save_undo(hs)
+        v = hs.get_sidetone()
+        print(f"sidetone -> {SIDETONE_LEVELS.get(v, v)} (read-back)")
+
+
+def cmd_anc(args):
+    if not args:
+        with _open() as hs:
+            v = hs.get_anc()
+            print(f"anc: {ANC_MODES.get(v, v)}" if v is not None else "anc: not reported")
+        return
+    mode = args[0]
+    rev = {v: k for k, v in ANC_MODES.items()}
+    if mode not in rev:
+        raise SystemExit(f"error: anc must be one of: {'|'.join(rev)}")
+    with _open() as hs:
+        hs.set_anc(rev[mode])
+        _save_undo(hs)
+        v = hs.get_anc()
+        print(f"anc -> {ANC_MODES.get(v, v)} (read-back)")
+
+
+def cmd_lights(args):
+    if not args:
+        with _open() as hs:
+            v = hs.get_lights()
+            print(f"lights: {'on' if v else 'off'}" if v is not None else "lights: not reported")
+        return
+    if args[0] not in ("on", "off"):
+        raise SystemExit("error: lights must be on|off")
+    with _open() as hs:
+        hs.set_lights(args[0] == "on")
+        _save_undo(hs)
+        v = hs.get_lights()
+        print(f"lights -> {'on' if v else 'off'} (read-back)")
+
+
+def cmd_autooff(args):
+    if not args:
+        with _open() as hs:
+            v = hs.get_auto_off()
+            if not v:
+                print("autooff: not reported")
+            else:
+                m = v[1] * 5
+                print(f"autooff: {'off' if m == 0 else f'{m} min'}")
+        return
+    try:
+        minutes = int(args[0])
+    except ValueError:
+        raise SystemExit("error: autooff takes minutes (0|30|60|120)")
+    if minutes % 5:
+        raise SystemExit("error: autooff works in 5-minute steps")
+    with _open() as hs:
+        hs.set_auto_off(minutes // 5)
+        _save_undo(hs)
+        v = hs.get_auto_off()
+        m = v[1] * 5 if v else -1
+        print(f"autooff -> {'off' if m == 0 else f'{m} min'} (read-back)")
+
+
+def cmd_restore(args):
+    import os
+    if not os.path.exists(UNDO_FILE):
+        raise SystemExit("error: no undo record (run a setter first)")
+    with open(UNDO_FILE) as f:
+        data = json.load(f)
+    with _open() as hs:
+        if hs.product_id != data.get("product_id"):
+            raise SystemExit("error: undo record is for a different model")
+        for rid_hex, payload_hex in data.items():
+            if not rid_hex.startswith("0x"):
+                continue
+            hs._originals[int(rid_hex, 16)] = bytes.fromhex(payload_hex)
+        for k, v in hs.restore_originals().items():
+            print(f"restore {k}: {v}")
+
+
+def cmd_listen(args):
+    from jbl_quantum import EVENT_IDS
+    with _open() as hs:
+        ev = hs  # reuse handle; reads are non-blocking on separate streams below
+        from jbl_quantum import EventStream
+        stream = EventStream(hs)
+        print("listening for device events (Ctrl-C to stop)…")
+        try:
+            while True:
+                e = stream.read_event()
+                if e:
+                    name, value = e
+                    desc = f"{value}%"
+                    if name == "anc":
+                        desc = ANC_MODES.get(value, hex(value))
+                    elif name == "mic":
+                        desc = "active" if value else "muted/up"
+                    elif name == "lights":
+                        desc = "on" if value else "off"
+                    elif name == "dial":
+                        desc = f"{value}/16"
+                    elif name == "link-burst":
+                        desc = "wireless link up"
+                    print(time.strftime("%H:%M:%S "), name, desc, flush=True)
+                time.sleep(0.05)
+        except KeyboardInterrupt:
+            pass
+        finally:
+            stream.close()
+
+
+COMMANDS = {
+    "probe": (cmd_probe, "read-only full state dump"),
+    "battery": (cmd_battery, "battery percent"),
+    "dial": (cmd_dial, "game/chat dial position"),
+    "info": (cmd_info, "serial/firmware/state"),
+    "sidetone": (cmd_sidetone, "off|low|mid|high (mic monitoring)"),
+    "anc": (cmd_anc, "off|on|talkthru"),
+    "lights": (cmd_lights, "on|off"),
+    "autooff": (cmd_autooff, "minutes: 0|30|60|120"),
+    "restore": (cmd_restore, "restore originals captured before writes"),
+    "listen": (cmd_listen, "live pushed events"),
+}
+
+
+def main():
+    if not sys.argv[1:]:
+        print(__doc__)
+        print("\ncommands:")
+        for name, (_, desc) in COMMANDS.items():
+            print(f"  {name:<10} {desc}")
+        return
+    cmd = sys.argv[1]
+    if cmd not in COMMANDS:
+        raise SystemExit(f"error: unknown command '{cmd}' (see --help)")
+    try:
+        COMMANDS[cmd][0](sys.argv[2:])
+    except JblError as e:
+        raise SystemExit(f"error: {e}")
+
+
+if __name__ == "__main__":
+    main()
