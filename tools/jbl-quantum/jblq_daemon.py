@@ -79,6 +79,8 @@ class HeadsetMonitor:
                 "lights": snap.lights,
                 "auto_off_min": snap.auto_off[1] * 5 if snap.auto_off else None,
                 "serial": snap.serial,
+                "mic": self.hs.get_mic_active(),
+                    "mic": hs.get_mic_active(),
                 "firmware": snap.firmware,
             }
             self.hs = hs
@@ -133,6 +135,8 @@ class HeadsetMonitor:
                     "lights": snap.lights,
                     "auto_off_min": snap.auto_off[1] * 5 if snap.auto_off else None,
                     "serial": snap.serial,
+                "mic": self.hs.get_mic_active(),
+                    "mic": hs.get_mic_active(),
                     "firmware": snap.firmware,
                 })
                 return {"ok": True}
