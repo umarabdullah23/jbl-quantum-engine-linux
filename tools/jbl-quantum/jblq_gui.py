@@ -49,7 +49,7 @@ EQ_PRESETS = {
     "WARZONE":       [5, 2, 2, 4, 5, 1, 2, 5, 9, 10],
 }
 LIGHT_PRESETS = ["BREATH", "SOLID", "WAVE", "GLITCH", "SPIN CW", "SPIN CCW", "RISE", "OFF"]
-SPEED_BYTES = [0x28, 0x32, 0x3C, 0x46, 0x4B, 0x50, 0x64]
+LIGHT_BRIGHTNESS = [40, 50, 60, 70, 75, 80, 100]  # 0x4C byte2 allowed values
 
 
 def daemon_request(req, timeout=2.0):
@@ -539,7 +539,7 @@ class QuantumUI(QWidget):
             col.set_hue = lambda h_, c=col: c.set_hue(h_)
             col.hue = self.zone_hue[zone]
             rh.addWidget(col, 2)
-            rh.addWidget(self._cap("SPEED"))
+            rh.addWidget(self._cap("BRIGHTNESS"))
             sp = QSlider(Qt.Orientation.Horizontal); sp.setRange(1, 7)
             sp.setValue(self.zone_speed[zone]); sp.setFixedWidth(80)
             sp.setStyleSheet(
@@ -547,16 +547,16 @@ class QuantumUI(QWidget):
                 "QSlider::handle:horizontal { background: #f2f2f2; width: 8px; margin: -5px 0; }")
             sp.valueChanged.connect(lambda val, z=zone: self._zone_speed(z, val))
             rh.addWidget(sp)
-            rh.addWidget(self._cap("TEMPO"))
-            tempo = QSpinBox(); tempo.setRange(1, 10); tempo.setValue(5); tempo.setFixedWidth(46)
+            rh.addWidget(self._cap("SEG PARAM"))
+            tempo = QSpinBox(); tempo.setRange(0, 8); tempo.setValue(0); tempo.setFixedWidth(46)
             tempo.setStyleSheet(
                 f"QSpinBox {{ background: {BG}; border: 1px solid {WHITE}; color: {WHITE}; }}")
             rh.addWidget(tempo)
             self.zone_rows[zone] = row
             v.addWidget(row)
-        note = QLabel("Zones: JBL logo + ear-cup ring (L/R mirrored in hardware). Colour + speed "
-                      "are device-verified (0x4C/0x4D); segment count safety-clamped 1–5 — "
-                      "higher wedges the lighting MCU. Presets map to the 7 verified effects.")
+        note = QLabel("Zones: JBL logo + ear-cup ring (L/R mirrored in hardware). Colour (0x4D) and "
+                      "brightness (0x4C byte2: 40–100%, device-allowed values) are device-verified; "
+                      "segment count safety-clamped 1–5 — higher wedges the lighting MCU.")
         note.setWordWrap(True)
         note.setStyleSheet(f"color: {DARKGREY}; font-size: 9px;")
         v.addWidget(note)
@@ -832,10 +832,11 @@ class QuantumUI(QWidget):
             self.set_dev("light_colour", {**payload, "element": 0 if other == "LOGO" else 1})
 
     def _zone_speed(self, zone, val):
+        """Slider 1-7 maps to the device's allowed brightness values 40..100."""
         self.zone_speed[zone] = val
         self.set_dev("light_zone", {
             "element": 0 if zone == "LOGO" else 1,
-            "speed": SPEED_BYTES[max(0, min(6, val - 1))], "segments": 5})
+            "brightness": LIGHT_BRIGHTNESS[max(0, min(6, val - 1))], "segments": 5})
 
     @staticmethod
     def _hue_rgb(h):

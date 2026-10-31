@@ -69,7 +69,8 @@ R_ANC_MIRROR = 0x45     # GET
 R_BATTERY = 0x49        # GET: 0-100
 R_LIGHTS = 0x4B         # SET: 0=off 1=on
 R_LIGHTS_MIRROR = 0x4A
-R_LIGHT_CONFIG = 0x4C   # SET [id, element, speed, segments]; segments 1..5 HARD LIMIT
+R_LIGHT_CONFIG = 0x4C   # SET [id, element, brightness, segments]; brightness in
+                        # {40,50,60,70,75,80,100}; segments 1..5 HARD LIMIT
 R_LIGHT_COLOUR = 0x4D   # SET [id, element, slot, r, g, b, mode, last(0..8)]
 R_FIRMWARE = 0x51       # GET: 4x 3-byte major.minor.patch
 R_HOST_NAME = 0x5B      # GET: len byte, 1 unknown, ascii
@@ -84,7 +85,9 @@ R_AUTO_OFF = 0x75       # SET and GET (same id), 5-minute units, byte2=0x02 unde
 
 FORBIDDEN_REPORTS = {0xF0, 0xF1, 0xF4, 0xF5, 0xF6, 0x9A}  # suspected firmware/DFU
 
-LIGHT_SPEEDS = {0x28, 0x32, 0x3C, 0x46, 0x4B, 0x50, 0x64}  # allowed tempo bytes [TT]
+LIGHT_BRIGHTNESS = {0x28: 40, 0x32: 50, 0x3C: 60, 0x46: 70, 0x4B: 75,
+                    0x50: 80, 0x64: 100}  # byte2 = brightness % (QE boot writes
+                    # 0x64=100; sidmax7 labels this byte per-zone brightness)
 
 ANC_MODES = {0: "off", 1: "on", 2: "talkthru"}
 SIDETONE_LEVELS = {0: "off", 1: "low", 2: "mid", 3: "high"}
@@ -254,15 +257,17 @@ class QuantumHeadset:
         self._capture_original(R_LIGHTS_MIRROR, self.get_lights)
         self._set_feature(bytes([R_LIGHTS, 1 if on else 0]))
 
-    def set_light_zone(self, element: int, speed: int, segments: int) -> None:
+    def set_light_zone(self, element: int, brightness: int, segments: int) -> None:
+        """brightness: percent 40/50/60/70/75/80/100 (device-allowed values)."""
         if element not in (0, 1):
             raise ValueError("element must be 0 (logo) or 1 (ring)")
-        if speed not in LIGHT_SPEEDS:
-            raise ValueError(f"speed must be one of {sorted(hex(s) for s in LIGHT_SPEEDS)}")
+        allowed = {v for v in LIGHT_BRIGHTNESS.values()}
+        if brightness not in allowed:
+            raise ValueError(f"brightness must be one of {sorted(allowed)}")
         if not 1 <= segments <= 5:  # HARD SAFETY: >5 wedges the lighting MCU [TT]
             raise ValueError("segments must be 1..5 (hardware safety limit)")
         self._capture_original(R_LIGHTS_MIRROR, self.get_lights)
-        self._set_feature(bytes([R_LIGHT_CONFIG, element, speed, segments]))
+        self._set_feature(bytes([R_LIGHT_CONFIG, element, brightness, segments]))
 
     def set_light_colour(self, element: int, slot: int, rgb: tuple[int, int, int],
                          mode: int = 1, last: int = 0) -> None:

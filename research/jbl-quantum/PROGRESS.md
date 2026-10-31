@@ -79,3 +79,22 @@ Next: decompile RACE framing + per-feature command IDs/ranges → PROTOCOL.md �
   When plugged: `jblq probe` (read-only) first, then one setter at a time with read-back.
   (USBPcap Phase-A on Windows not needed — captures + protocol already public.)
 
+
+## 2026-10-31 — Deep RE round 2 (RACE layer decompiled)
+
+- Ghidra 12.2 full-binary decompile of AirohaHidCoreLib.dll (dumps in repo re-work/).
+- **Complete RACE command-ID table recovered: 119 commands** (re-work/strings/race_cmd_table.txt,
+  PROTOCOL-RACE.md §3) — includes the missing-feature unlock paths: game/chat balance SET
+  (0x35/0x36), voice guidance (0x5E/0x5F), wear detection (0x52/0x53), notification tone
+  (0x59/0x5A), busy light (0x54/0x55), factory reset (0x1F), AA passthrough (0x24/0x25),
+  adaptive ANC/EQ, on-device EQ (0x04-0x06).
+- **Relay envelope decoded [DECOMP]**: dongle wraps RACE in ASCII-bracket envelope;
+  resp type 0x5D, relay race ID 0x0D01 (parser enforces both + length).
+- **Encryption: NONE.** Full string sweep + decompile: no AES/CRC/HMAC/cipher in any
+  device binary — config channel is plaintext (feature reports + envelope framing).
+  Nothing to "remove"; firmware signing untouched by design.
+- **Lighting correction**: 0x4C byte2 = BRIGHTNESS % (40/50/60/70/75/80/100), not "speed"
+  (sidmax7 comment + QE boot write 0x64=100). GUI/daemon/library renamed; effect speed =
+  0x4D tail byte ("SEG PARAM" 0-8).
+- Small missing features from the UI property dump now documented with unlock map
+  (PROTOCOL-RACE.md §5) — all stay fail-closed until live-verified per-command.

@@ -169,7 +169,7 @@ class HeadsetMonitor:
                     self.hs.set_auto_off(minutes // 5)
                     return {"ok": True}
                 if feature == "light_zone":
-                    self.hs.set_light_zone(int(value["element"]), int(value["speed"]),
+                    self.hs.set_light_zone(int(value["element"]), int(value["brightness"]),
                                            int(value["segments"]))
                     return {"ok": True}
                 if feature == "light_colour":
