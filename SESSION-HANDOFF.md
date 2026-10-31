@@ -393,3 +393,23 @@ sound identical; also "spatial sound switch not work".
 - UI note updated to the honest text (JBL's DSP = kernel driver, not reproducible).
 - Verified live: DTS honest-failure, Sonic on/off with exact-GUID read-back, endpoint
   restored to off. Exe rebuilt + selftest green; release + RELEASE-v1.2.0 refreshed.
+
+### 16g. Windows round 7 — REAL JBL spatial found: the full control-channel map (docs/PROTOCOL-QEIPC.md)
+
+Owner: "dts is working via official driver, and jbl surround too — u see, or reverse
+engineer whatever." Recon round 1 COMPLETE — the path to REAL DTS + REAL Quantum
+Spatial in our app is mapped (see docs/PROTOCOL-QEIPC.md):
+
+- QE's spatial DSP = SpatialAPO.dll ("JBL 3D effect & Equalizer") permanently installed
+  as a kernel APO on the Game endpoint (INF oem7.inf), backed by HarmanFilter.sys
+  (kernel driver) + the REAL DTS Headphone:X v2 stack (dtsapo64.dll + dts-eagle.lic)
+  + HX3D. QE controls it via QuantumServer.exe (TCP 127.0.0.1:14025, framed protocol)
+  → shared memory → the APO. Endpoint never touched → PUBGM-safe by construction.
+- Decoded from managed metadata: HXSpatialMode (0=bypass 1=static 2=dynamic 3=DTS),
+  HIDV3 mode byte (0x80 enable | 0x7F mode), the property classes with
+  Get/Set/Notify/Subscribe msg-ID fields, DSP commands (setSpkDspMode, setSpkUserEQ…).
+- Next: decompile QECommon/QEIPC (ILSpy; ilspycmd on this box needs .NET 6 — use a
+  net7/net8-matching version), passive listen on 14025 while the owner toggles QE,
+  then mirror the Set request. Same read-first-then-send ladder as the HID round.
+- Bonus: same channel gives REAL host-side EQ (SupportEqualizerProp + setSpkUserEQ +
+  EqConfig-Q810.xml real curves) — replaces the "EQ host-side local-only" limit.

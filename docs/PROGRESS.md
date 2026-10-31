@@ -185,3 +185,8 @@ QE's spatial runs in the HarmanAudioService kernel driver (no APOs on the system
 reproducible without RE'ing the QE→driver channel. Fixed the silent DTS→Sonic pretend
 (exact-format read-back) and the dead-feeling 3–6s switch (instant feedback). Exe
 rebuilt, release/folder refreshed, endpoint restored to off.
+
+### 2026-11-01 round 7 — QE control-channel recon (PROTOCOL-QEIPC.md)
+
+Found the complete architecture (kernel APO + DTS licence + TCP 14025 + enums decoded);
+protocol RE scoped and documented. Implementation next round.
