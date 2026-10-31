@@ -129,3 +129,12 @@ Working copy: `~/Documents/Projects/jbl-quantum-linux`.
 ## 10. Repo layout (restructured 2026-10-31)
 
 `app/` = the application (CLI/daemon/GUI/installer/udev) · `docs/` = protocol docs, evidence, captures · `reverse-engineering/` = decompile dumps, string dumps, UI-ref frames, scripts (its `binaries/` is gitignored — JBL proprietary, local only).
+
+## 11. UI v1.1 (current QuantumENGINE design)
+
+- Old v1 GUI (2.x black layout from YouTube videos) kept as app/jblq_gui_v1_legacy.py.
+- v1.1 = app/jblq_gui.py: rebuilt to the CURRENT app design, studied frame-by-frame from
+  the official JBL showcase videos (downloaded from jbl.com/quantum-engine media, saved in
+  ~/jbl-re/newui/): left icon rail with circular avatars, User Profile pill, rounded cards
+  with purple preset pills, magenta EQ curve card, Audio/Voice Monitor mic card, hero
+  headset with ambient rings. DEMO = rail button "D" + amber pill/banner.
