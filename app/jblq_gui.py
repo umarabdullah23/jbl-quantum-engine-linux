@@ -315,16 +315,21 @@ class BatteryChip(QWidget):
     def __init__(self):
         super().__init__()
         self.percent = None
-        self.setFixedSize(74, 24)
+        self.charging = False
+        self.setFixedSize(120, 24)
 
     def paintEvent(self, _):
         p = QPainter(self)
         p.setRenderHint(QPainter.RenderHint.Antialiasing)
         p.setFont(QFont("DejaVu Sans", 9))
         p.setPen(QPen(QColor(WHITE), 1))
-        p.drawText(0, 0, 46, 24, Qt.AlignmentFlag.AlignVCenter,
-                   "—" if self.percent is None else f"{self.percent}%")
-        bx, by, bw, bh = 46, 6, 20, 12
+        if self.charging:
+            p.drawText(0, 0, 70, 24, Qt.AlignmentFlag.AlignVCenter,
+                       "⚡ charging*")
+        else:
+            p.drawText(0, 0, 46, 24, Qt.AlignmentFlag.AlignVCenter,
+                       "—" if self.percent is None else f"{self.percent}%")
+        bx, by, bw, bh = (74, 6, 20, 12) if self.charging else (46, 6, 20, 12)
         p.setPen(QPen(QColor(WHITE), 1.2))
         p.drawRoundedRect(QRectF(bx, by, bw, bh), 3, 3)
         p.drawRect(QRectF(bx + bw, by + 3.5, 2.5, 5))
@@ -781,6 +786,7 @@ class QuantumUI(QWidget):
         self.demo_banner.setVisible(self.demo)
         self.h_title.setText(st.get("product", "JBL Quantum"))
         self.battery.percent = st.get("battery")
+        self.battery.charging = bool(st.get("charging"))
         self.battery.update()
         self.dial_dots.value = st.get("dial") or 0
         self.dial_dots.update()

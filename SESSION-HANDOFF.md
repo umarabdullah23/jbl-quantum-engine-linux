@@ -164,3 +164,17 @@ Bugs fixed live: dual hidapi binding, daemon access-denied survival, snapshot in
 Remaining: RACE-command unlock round (PROTOCOL-RACE.md §5) — needs QuantumENGINE running
 on the Windows side with USBPcap to capture per-command SET payloads, or send via our
 tool once payloads are known. PipeWire EQ wiring still open.
+
+## 14. Live session fixes (2026-11-01, round 2)
+
+- Daemon REWRITTEN cleanly: state reads are lock-free (atomic dict swap — a wedged
+  monitor can never block clients), snapshot() outside locks, EventStream no longer
+  re-opens the control hidraw, handler timeout 5 s, catch-all answers. Root cause of the
+  "daemon unreachable: Resource temporarily unavailable" the owner saw: earlier sed patches
+  had left a NameError in the refresh path (`hs.get_mic_active()`) which killed handler
+  threads → all future connects answered nothing.
+- Charging: dongle does NOT report charging (fact — 0x49 byte2 is always 0x00, verified
+  over multiple samples). Implemented INFERENCE: battery trend rising → "⚡ charging*"
+  (sticky until a decrease or 100%), labelled inferred in the GUI.
+- Dongle re-enumerates when the headset sleeps/wakes (device address changes) — callers
+  must re-enumerate; the daemon handles it via its 2 s retry loop.

@@ -396,8 +396,8 @@ class EventStream:
         seen: set[str] = set()
         for info in hid.enumerate(VENDOR_ID, headset.product_id):
             p = info["path"]
-            if p in seen:
-                continue
+            if p in seen or p == headset.path:
+                continue  # one handle per interface; control device already open
             seen.add(p)
             try:
                 if hasattr(hid, "Device"):
