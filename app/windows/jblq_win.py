@@ -1777,7 +1777,8 @@ class MainWindow(QWidget):
                     self.flash(f"DTS not licensed on this PC ({result.get('dts_error')}) — "
                                f"applied Windows Sonic instead ✓", AMBER)
                 else:
-                    self.flash(f"spatial sound → {mode or 'OFF'} applied ✓", GREEN)
+                    self.flash(f"spatial sound → {mode or 'OFF'} applied ✓ "
+                               f"(endpoint format kept stable for running games)", GREEN)
             else:
                 self.flash(f"spatial sound failed: {result.get('error')}", RED)
         elif name == "spatial_state":

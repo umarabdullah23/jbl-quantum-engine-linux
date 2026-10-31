@@ -590,7 +590,12 @@ class QuantumUI(QWidget):
                                  on_pick=lambda n: self.flash(
                                      "spatial is host-side — the real app never sends it to the dongle (proven); PipeWire pending"))
         sc.v.addWidget(self.spatial_pill)
-        note = QLabel("host-side even in the real app — Linux wiring via PipeWire filter-chain pending")
+        note = QLabel("host-side even in the real app — Linux wiring via PipeWire "
+                      "filter-chain pending. RULE (learned on Windows, 2026-11-01): the "
+                      "implementation must attach the filter-chain to the EXISTING default "
+                      "sink without changing its format or device — reformatting/recreating "
+                      "the sink makes emulators (PUBGM/GameLoop) treat the headset as "
+                      "disconnected and they never recover.")
         note.setWordWrap(True)
         note.setStyleSheet(f"color: {DARKGREY}; font-size: 9px;")
         sc.v.addWidget(note)

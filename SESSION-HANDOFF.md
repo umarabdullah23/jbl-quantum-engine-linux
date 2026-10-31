@@ -331,3 +331,38 @@ spatial sound on the Quantum's Game render endpoint.
 - spec: vendor/ bundled as datas, spatial_win as hiddenimport; selftest extended
   (spatial_tool_ok / spatial_endpoint / spatial_current). Exe rebuilt (03:09) +
   selftest green + release asset and RELEASE-v1.2.0/ refreshed.
+
+### 16e. Windows round 5 — the GameLoop "disconnect then connect" root cause + fix (both OSes)
+
+Owner: toggling spatial made PUBGM (GameLoop emulator) see the headset "disconnect then
+connect" and the game never recovers; the real QE doesn't do that. Root-caused by
+registry-polling (10 ms) through spatial toggles:
+
+- **The emulator-breaking event is the ENDPOINT FORMAT CHANGE.** The Quantum Game
+  endpoint ships 8ch/48kHz; enabling Windows Sonic rewrites it to 2ch/48kHz
+  ({f19f064d} blob feff0800→feff0200, ~100 ms). The emulator treats that as the
+  headset changing/unplugging. DeviceState NEVER leaves Active(1) and SVV does no
+  disable/enable cycle — it's purely the reformat. The real QE avoids it because JBL's
+  audio filter (HarmanAudioService APO) is always installed and processes in-place.
+- **THE FIX (verified): pin the endpoint default format to 2ch/16-bit/48kHz ONCE
+  before the first enable** (SVV /SetDefaultFormat, verified both directions). Every
+  subsequent spatial toggle then changes ZERO format and zero state — two full
+  enable/disable cycles poll-verified with no registry events. Disabling deliberately
+  does NOT restore 8ch (that would reintroduce the break). Trade-off: Windows
+  downmixes 7.1→stereo before the endpoint — inaudible on a stereo headset.
+- spatial_win.py rewritten: only ACTIVE endpoint records (after dongle re-enumeration
+  STALE duplicates with identical friendly names exist — this also silently broke
+  name-based targeting!), Item-ID targeting, BOM-aware SVV dump parsing (SVV writes
+  UTF-16 sometimes + asynchronously — poll the file), graceful "headset audio not
+  active" error, format pin before enable, verify-by-read-back kept.
+- **LINUX parity (owner: "make sure it's fixed for linux too"):** the Linux app today
+  changes NO audio device (spatial/EQ are local-only, volume is pactl) — nothing can
+  break an emulator. The PipeWire filter-chain implementation (§7 pending) now carries
+  a standing rule in the GUI + here: attach to the EXISTING default sink, never change
+  the sink format or recreate it — same emulator failure mode applies on Linux if the
+  sink is reconfigured.
+- Exe rebuilt + selftest green; release asset + RELEASE-v1.2.0 refreshed.
+- **Owner in-game test still needed:** with the format pinned, toggles are
+  format-stable; if PUBGM still reacts to the effect-chain switch itself (Sonic APO
+  add/remove), that part is inherent to Windows Sonic — the true JBL-equivalent is an
+  always-installed APO (DTS licence / RACE round territory).

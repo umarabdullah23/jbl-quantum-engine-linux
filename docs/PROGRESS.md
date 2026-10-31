@@ -170,3 +170,11 @@ Exe rebuilt.
 SoundVolumeView vendored; set+read-back verified on the real machine both directions;
 app switch now applies Windows Sonic / DTS (licence-dependent, honest fallback); boot
 syncs toggle from OS state; selftest extended; exe rebuilt + release/folder refreshed.
+
+### 2026-11-01 round 5 — GameLoop disconnect root cause + format-pin fix (both OSes)
+
+Endpoint format change (8ch→2ch) on first spatial enable = the emulator-breaking event
+(poll-verified; DeviceState never flickers). Fix: pin endpoint format 2ch/48k once
+before enabling; all later toggles change nothing (two cycles poll-verified). Linux:
+no audio device is touched today; PipeWire future work carries the same format-stable
+rule in the GUI + handoff. Exe rebuilt, release/folder refreshed.
