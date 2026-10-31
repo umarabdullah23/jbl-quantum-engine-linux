@@ -124,3 +124,9 @@ daemon crashed on access-denied (now survives); snapshot() mixed int/bytes origi
 VERDICT: all simple feature reports (0x45–0x75) verified on real hardware. The
 community protocol + our tool are proven. RACE-layer commands remain documented-only
 until their own capture round.
+
+## 2026-11-01 — Handoff to Windows phase
+
+Owner moving headset+dongle to Windows for the RACE unlock capture round (USBPcap +
+QuantumENGINE). Full procedure in SESSION-HANDOFF.md §15. Linux daemon/GUI left running —
+they re-detect the dongle automatically when it returns.

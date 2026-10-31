@@ -178,3 +178,32 @@ tool once payloads are known. PipeWire EQ wiring still open.
   (sticky until a decrease or 100%), labelled inferred in the GUI.
 - Dongle re-enumerates when the headset sleeps/wakes (device address changes) — callers
   must re-enumerate; the daemon handles it via its 2 s retry loop.
+
+## 15. Owner switching to WINDOWS (2026-11-01) — next phase there
+
+Owner is taking the headset/dongle to Windows. Linux side state at handoff:
+- All simple reports 0x45–0x75 LIVE-VERIFIED (docs/PROGRESS.md 2026-11-01 entries).
+- Daemon v2 (lock-free rewrite) + GUI v1.1 running; dongle unplug → app shows
+  "no headset detected" (expected, it re-detects on replug).
+- Battery/charging: 0x49 has NO charging flag byte (always 0x00 — verified); GUI shows
+  "⚡ charging*" from battery-trend inference.
+
+### Windows-phase plan (RACE unlock round — the missing features)
+1. Install USBPcap + Wireshark on Windows (read-only capture).
+2. With QuantumENGINE 2.8.6 running, capture SEPARATELY, one action per file, device idle
+   before/after: game/chat balance SET (dial drag), mic volume change, voice guidance
+   on/off, wear detection on/off, notification tone on/off, busy light (if exposed),
+   AA/passthrough gain, factory reset (LAST, destructive), PEQ edit (BT mode if used).
+   Name each file by action.
+3. Copy the pcapngs into docs/captures/ (public-machine captures, no secrets).
+4. Decode with docs/captures/usbpcap_parse.py (SET_REPORT on interface 5) — RACE packets
+   sit inside the relay envelope (ASCII brackets, resp type 0x5D, relay race ID 0x0D01 —
+   see docs/PROTOCOL-RACE.md §2). Extract per-feature RACE cmd IDs + payload bytes.
+5. Cross-check cmd IDs against reverse-engineering/strings/race_cmd_table.txt (119 cmds).
+6. Implement in app/jbl_quantum.py ONE command at a time: capture-fact payload → send →
+   read-back verify → only then add to daemon `set` surface (fail-closed until proven).
+7. Windows also needs the dual-host note: dongle links to whichever host it is plugged
+   into; QuantumENGINE on Windows will reconnect automatically.
+
+Remember: no firmware/DFU flows; one write at a time; stop on re-enumeration/glitch and
+record DO-NOT-SEND. Push every round; keep this file synced (standing instruction).
