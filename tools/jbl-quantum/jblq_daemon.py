@@ -118,6 +118,24 @@ class HeadsetMonitor:
         if cmd == "state":
             with self.lock:
                 return dict(self.state)
+        if cmd == "refresh":
+            if self.hs is None:
+                return {"ok": False, "error": "no headset present"}
+            with self.lock:
+                snap = self.hs.snapshot()
+                self.state.update({
+                    "present": True,
+                    "product": self.hs.product,
+                    "battery": snap.battery,
+                    "dial": snap.dial,
+                    "anc": ANC_MODES.get(snap.anc, snap.anc),
+                    "sidetone": SIDETONE_LEVELS.get(snap.sidetone, snap.sidetone),
+                    "lights": snap.lights,
+                    "auto_off_min": snap.auto_off[1] * 5 if snap.auto_off else None,
+                    "serial": snap.serial,
+                    "firmware": snap.firmware,
+                })
+                return {"ok": True}
         if cmd == "set":
             if self.hs is None:
                 return {"ok": False, "error": "no headset present"}
@@ -138,6 +156,23 @@ class HeadsetMonitor:
                     return {"ok": True}
                 if feature == "lights":
                     self.hs.set_lights(bool(value))
+                    return {"ok": True}
+                if feature == "auto_off":
+                    try:
+                        minutes = int(value)
+                    except (TypeError, ValueError):
+                        return {"ok": False, "error": "auto_off: minutes"}
+                    self.hs.set_auto_off(minutes // 5)
+                    return {"ok": True}
+                if feature == "light_zone":
+                    self.hs.set_light_zone(int(value["element"]), int(value["speed"]),
+                                           int(value["segments"]))
+                    return {"ok": True}
+                if feature == "light_colour":
+                    self.hs.set_light_colour(
+                        int(value["element"]), int(value["slot"]),
+                        tuple(int(c) for c in value["rgb"]),
+                        int(value.get("mode", 1)), int(value.get("last", 0)))
                     return {"ok": True}
                 return {"ok": False, "error": f"unknown feature '{feature}'"}
             except Exception as e:
