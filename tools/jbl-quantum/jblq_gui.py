@@ -32,12 +32,25 @@ def daemon_request(req: dict, timeout: float = 2.0) -> dict:
 
 
 class App(tk.Tk):
-    def __init__(self):
+    def __init__(self, demo: bool = False):
         super().__init__()
         self.title("JBL Quantum Engine — Linux")
         self.geometry("420x520")
         self.configure(bg="#111318")
         self.resizable(False, False)
+        self.demo = demo
+        self.demo_state = {
+            "present": True,
+            "product": "JBL Quantum 810 Wireless",
+            "battery": 87,
+            "dial": 11,
+            "anc": "on",
+            "sidetone": "low",
+            "lights": True,
+            "auto_off_min": 60,
+            "serial": "DEMO0810WRLSS00",
+            "firmware": "1.2.7 / 0.9.4 / 2.1.0 / 1.0.3",
+        }
 
         style = ttk.Style(self)
         style.theme_use("clam")
@@ -90,10 +103,24 @@ class App(tk.Tk):
             style="Dim.TLabel", wraplength=380)
         self.dongle_hint.pack(pady=(6, 10))
 
+        self.demo_var = tk.BooleanVar(value=demo)
+        self.demo_btn = ttk.Checkbutton(
+            self, text="Demo UI (no headset needed)",
+            variable=self.demo_var, command=self._toggle_demo)
+        self.demo_btn.pack(pady=(0, 10))
+
+        self._refresh()
+
+    def _toggle_demo(self):
+        self.demo = self.demo_var.get()
         self._refresh()
 
     def _refresh(self):
         st = daemon_request({"cmd": "state"})
+        if self.demo and not st.get("present"):
+            self._render(st, demo=True)
+            self.after(2000, self._refresh)
+            return
         if not st.get("present"):
             self.status.config(text="daemon: running  ·  headset: not detected")
             self.state_lbl.config(text="No headset detected.\n\nPlug in the Quantum 810 wireless dongle.\n"
@@ -112,19 +139,46 @@ class App(tk.Tk):
                 f"serial     : {st.get('serial', '—')}",
                 f"firmware   : {st.get('firmware', '—')}",
             ]
-            self.state_lbl.config(text="\n".join(lines))
-            self.dongle_hint.pack_forget()
-            # reflect state into radio buttons without firing commands
-            if st.get("anc") in ("off", "on", "talkthru"):
-                self.anc.set(st["anc"])
-            if st.get("sidetone") in ("off", "low", "mid", "high"):
-                self.st.set(st["sidetone"])
-            self.lt.set("on" if st.get("lights") else "off")
+            self._render(st, demo=False)
         self.after(2000, self._refresh)
+
+    def _render(self, st, demo: bool):
+        if demo:
+            self.status.config(text="daemon: running  ·  headset: NOT DETECTED  ·  showing DEMO data")
+            st = dict(self.demo_state)
+        else:
+            self.status.config(text="daemon: running  ·  headset: connected")
+        lines = [
+            f"product    : {st.get('product', '?')}",
+            f"battery    : {st.get('battery', '—')}%",
+            f"dial       : {st.get('dial', '—')}/16",
+            f"ANC        : {st.get('anc', '—')}",
+            f"sidetone   : {st.get('sidetone', '—')}",
+            f"lights     : {'on' if st.get('lights') else 'off'}",
+            f"auto-off   : {st.get('auto_off_min', '—')} min",
+            f"serial     : {st.get('serial', '—')}",
+            f"firmware   : {st.get('firmware', '—')}",
+        ]
+        self.state_lbl.config(text="\n".join(lines))
+        self.dongle_hint.pack_forget()
+        # reflect state into radio buttons without firing commands
+        if st.get("anc") in ("off", "on", "talkthru"):
+            self.anc.set(st["anc"])
+        if st.get("sidetone") in ("off", "low", "mid", "high"):
+            self.st.set(st["sidetone"])
+        self.lt.set("on" if st.get("lights") else "off")
 
     def set(self, feature, value):
         if feature == "lights":
             value = (value is True or value == "on")
+        if self.demo and not daemon_request({"cmd": "state"}).get("present"):
+            # demo mode: update local demo state only, never touch the daemon
+            self.demo_state[{"lights": "lights"}.get(feature, feature)] = \
+                value if feature != "lights" else bool(value)
+            self.msg.config(text=f"{feature} → {value}  (demo — nothing sent to hardware)",
+                            foreground="#e6b450")
+            self.after(100, self._refresh)
+            return
         resp = daemon_request({"cmd": "set", "feature": feature, "value": value})
         if resp.get("ok"):
             self.msg.config(text=f"{feature} → {value}", foreground="#7bd88f")
@@ -134,4 +188,4 @@ class App(tk.Tk):
 
 
 if __name__ == "__main__":
-    App().mainloop()
+    App(demo="--demo" in sys.argv).mainloop()
