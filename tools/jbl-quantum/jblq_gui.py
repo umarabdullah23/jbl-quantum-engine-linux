@@ -117,8 +117,7 @@ class QuantumUI(tk.Tk):
         self.h_demo = ttk.Checkbutton(head, text="Demo UI (no headset needed)",
                                       command=self._toggle_demo)
         self.h_demo.pack(side="right", padx=8)
-        self.h_demo.state = None
-        self.demo_var = tk.BooleanVar(value=demo)
+        self.demo_var = tk.BooleanVar(value=self.demo)
         self.h_demo.configure(variable=self.demo_var)
         self.h_state = tk.Label(head, text="", bg=PANEL, fg=DIM, font=("", 9))
         self.h_state.pack(side="right", padx=8)
