@@ -1,4 +1,4 @@
-# jbl-quantum-linux
+# jbl-quantum-engine-linux
 
 Native Linux control for **JBL Quantum wireless headsets** (primary: **Quantum 810
 Wireless**, USB `0ecb:2069` dongle) — pure Python + hidapi/hidraw. No Wine, no VM, no
