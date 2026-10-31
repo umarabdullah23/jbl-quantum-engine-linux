@@ -2076,6 +2076,35 @@ def QWidgetAction_preview(widget):
 
 
 def main():
+    if "--selftest" in sys.argv:
+        # frozen-artifact check (exe is windowed — write a report, no console output).
+        # Verifies the OPTIONAL deps actually got bundled, before an owner hit the
+        # "needs the optional pycaw dependency" fallback in the wild again.
+        report = {"version": APP_VERSION, "frozen": getattr(sys, "frozen", False)}
+        try:
+            import hid  # noqa: F401
+            report["hid_ok"] = True
+        except Exception as e:
+            report["hid_ok"] = False
+            report["hid_error"] = str(e)
+        try:
+            from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume  # noqa: F401
+            from comtypes import CLSCTX_ALL  # noqa: F401
+            report["pycaw_ok"] = True
+        except Exception as e:
+            report["pycaw_ok"] = False
+            report["pycaw_error"] = str(e)
+        try:
+            hs = QuantumHeadset.find()
+            report["device_present"] = True
+            report["device_product"] = hs.product
+            hs.close()
+        except Exception as e:
+            report["device_present"] = False
+        out = os.path.join(DATA_DIR, "selftest.json")
+        save_json(out, report)
+        return
+
     demo = "--demo" in sys.argv
     app = QApplication(sys.argv)
     app.setStyle("Fusion")

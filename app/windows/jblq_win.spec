@@ -12,7 +12,10 @@ a = Analysis(
     pathex=[HERE, APP_PARENT],          # so `from jbl_quantum import ...` resolves
     binaries=[],
     datas=[],
-    hiddenimports=['jbl_quantum'],      # explicit — the shared engine must never be missed
+    hiddenimports=['jbl_quantum',       # the shared engine must never be missed
+                   'pycaw', 'pycaw.pycaw',          # volume control (lazy imports in
+                   'comtypes', 'comtypes.client'],  # _volume_popup — explicit, verified
+                                                    # by `exe --selftest` pycaw_ok
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
