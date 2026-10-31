@@ -6,3 +6,4 @@ app/windows/build/
 app/windows/launch.log
 app/windows/_verify/
 app/windows/build.log
+RELEASE-v*/
