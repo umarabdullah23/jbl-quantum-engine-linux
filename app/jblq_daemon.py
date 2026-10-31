@@ -66,6 +66,9 @@ class HeadsetMonitor:
             hs = QuantumHeadset.find()
         except (DeviceNotFound, UnsupportedDevice):
             return False
+        except Exception as e:
+            print(f"daemon: connect failed: {e}", flush=True)
+            return False
         print(f"daemon: found {hs.product}", flush=True)
         with self.lock:
             snap = hs.snapshot()  # read-only state harvest at connect

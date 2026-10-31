@@ -164,8 +164,12 @@ class QuantumHeadset:
         self.path = path
         self.product = product
         self.product_id = product_id
-        self._h = hid.device()
-        self._h.open_path(path.encode() if isinstance(path, str) else path)
+        pb = path.encode() if isinstance(path, str) else path
+        if hasattr(hid, "Device"):  # hidapi >= 0.14 (hid.Device)
+            self._h = hid.Device(path=pb)
+        else:  # legacy cython-hidapi
+            self._h = hid.device()
+            self._h.open_path(pb)
         # undo registry: first value seen for each report id wins
         self._originals: dict[int, bytes] = {}
 
@@ -384,7 +388,7 @@ class EventStream:
     def __init__(self, headset: QuantumHeadset):
         import hid
 
-        self._streams: list[hid.device] = []
+        self._streams = []
         # Open EVERY hidraw interface of this headset (hid.enumerate only returns
         # HID interfaces, so audio isochronous interfaces never appear here).
         # Events (battery, dial, ANC…) arrive on whichever interface pushes them.
@@ -395,9 +399,13 @@ class EventStream:
                 continue
             seen.add(p)
             try:
-                h = hid.device()
-                h.open_path(p)
-                h.set_nonblocking(True)
+                if hasattr(hid, "Device"):
+                    h = hid.Device(path=p)
+                    h.nonblocking = True
+                else:
+                    h = hid.device()
+                    h.open_path(p)
+                    h.set_nonblocking(True)
                 self._streams.append(h)
             except OSError:
                 continue
