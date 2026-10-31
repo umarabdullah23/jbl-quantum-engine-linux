@@ -14,6 +14,13 @@ QuantumENGINE's device protocol that the community has verified, with full evide
   - [`docs/captures/`](docs/captures/) — 23 action-labeled USBPcap captures
     (public, HeadsetControl issue #357) + our parser + analysis
 
+## Downloads (v1.2.0)
+
+- 🪟 **Windows:** [JBLQuantumEngine-windows-x64.exe](https://github.com/umarabdullah23/jbl-quantum-engine-linux/releases/latest/download/JBLQuantumEngine-windows-x64.exe) — one file, no install
+- 🐧 **Linux:** [jbl-quantum-engine-linux-v1.2.0.zip](https://github.com/umarabdullah23/jbl-quantum-engine-linux/releases/latest/download/jbl-quantum-engine-linux-v1.2.0.zip) — full source + installer + protocol docs
+
+All releases: <https://github.com/umarabdullah23/jbl-quantum-engine-linux/releases>
+
 ## Quick start
 
 ```bash
