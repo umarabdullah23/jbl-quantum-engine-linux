@@ -1,0 +1,1841 @@
+!This program cannot be run in DOS mode.
+Richo
+.text
+`.rdata
+@.data
+.pdata
+@.fptable
+.rsrc
+@.reloc
+L$ SUVWH
+8_^][
+L$ SUVWH
+8_^][
+WATAUAVAWH
+0A_A^A]A\_
+ATAVAWH
+A_A^A\
+H;X s
+H;X s
+t$ WATAUAVAWH
+D$ E3
+A_A^A]A\_
+H;X s
+H9=/7
+t$Pu#A
+H9=!5
+@USATAUAVAWH
+A_A^A]A\[]
+@SUVWH
+H_^][
+L$ UVWATAVAWH
+A_A^A\_^]
+|$ AVH
+H9X s	E3
+)D$ L
+|$ AVH
+VWAVH
+0A^_^
+u4H;P
+I9*u+A
+t$ WH
+\$@u/H
+C0t>H
+K SWH
+@UVAVH
+0A^^]
+0A^^]
+0A^^]
+t$IcF
+0A^^]
+l$ VWAVH
+ATAUAVAWH
+XA_A^A]A\
+XA_A^A]A\
+L$hH3
+t$Hfff
+VWAVH
+u9;Q |4I;
+@A^_^
+@USVWATAUAVAWH
+D$XE3
+GL$XL
+)D$0L
+A_A^A]A\_^[]
+t$ E3
+l$ VWAUAVAWH
+u*H;X
+L$hH3
+A_A^A]_^
+UVATH
+`A\^]
+|$@E3
+`A\^]
+|$ AVH
+upfff
+t$`t:H
+UVWATAUAVAWH
+u-I;]
+D$0I;E t3H
+L$pH3
+A_A^A]A\_^]
+l$ VWAVH
+uH;Y |CH;
+D$0H;
+t$8H;
+t$ UWATAVAWH
+\$HH;^ 
+D$0E3
+uH;y |CH;
+D$0H;
+t$8H;
+A_A^A\_]
+|$0fff
+D$0D9H }
+)D$ H
+l$ VWATAVAWH
+ A_A^A\_^
+WAVAWH
+0A_A^_
+UVWATAUAVAWH
+)D$ L
+PA_A^A]A\_^]
+|$ AVH
+|$ AVH
+@SUATAUAVH
+0A^A]A\][
+@SWAVH
+ A^_[
+SUWATAUAVAWH
+0A_A^A]A\_][
+UVWATAUAVAWH
+l$@fH
+PA_A^A]A\_^]
+UVWATAUAVAWH
+0A_A^A]A\_^]
+@SVWH
+D$(E3
+@SUVWATAUAVAWH
+A_A^A]A\_^][
+t=fA+
+WATAUAVAWH
+A_A^A]A\_
+@USVWATAUAVAWH
+|$@fA
+|$@fA
+L$hI+
+D$HI;
+L$8E3
+t$0fD
+L$(E3
+A_A^A]A\_^[]
+UVWATAUAVAWH
+D$@fD
+l$PE3
+L$`I+
+A_A^A]A\_^]
+WAVAWH
+0A_A^_
+UVWATAUAVAWH
+aXI9t$
+A_A^A]A\_^]
+t$ E3
+t$ E3
+t$ E3
+t$ E3
+t$ E3
+l$`H;
+\$XI;
+\$ UVWATAUAVAWH
+t$dfD
+A_A^A]A\_^]
+D$hH+
+D$hH+D$`H
+T$pH+
+T$pH+
+|$ AVH
+VWAVH
+t$ WATAUAVAWH
+D$0H;
+L$pH3
+A_A^A]A\_
+@USVWATAUAVAWH
+A_A^A]A\_^[]
+\$ E3
+\$ E3
+t$ WATAUAVAWH
+D$8H;
+G|$pL;
+A_A^A]A\_
+\$0H;
+H9D$0
+GL$pL
+t$ E3
+UVWATAUAVAWH
+D$hH;
+GT$hM
+A_A^A]A\_^]
+|$ E3
+|$ E3
+t$ WATAUAVAWH
+	L;D$`t
+D$@H;
+A_A^A]A\_
+D$ E3
+p WATAUAVAWH
+	L;D$ht
+D$PH;
+L$xH3
+A_A^A]A\_
+l$ E3
+UVWATAUAVAWH
+A_A^A]A\_^]
+D$0I;
+|$ E3
+|$ E3
+|$ UATAUAVAWH
+<8.uSH
+D$8H;D$@t
+D$8H;D$@t
+L$0H+
+|$8H;
+T$@H+
+A_A^A]A\]
+|$8H;
+|$8H;
+|$8H;
+|$8H;
+|$8H;
+T$@H+
+d$ E3
+d$ E3
+d$ E3
+d$ E3
+x ATAVAWH
+A_A^A\
+upHcC H
+VWATAUAVH
+D$@E3
+t$HH;
+A^A]A\_^
+|$@H+
+@SUWH
+SUVWATAUAVAWH
+(A_A^A]A\_^][
+@SAVAWH
+ A_A^[
+WATAUAVAWH
+l$ E3
+)D$ L
+A_A^A]A\_
+\$ VAVAWH
+0A_A^^
+0A_A^^
+VWAUAVAWH
+0A_A^A]_^
+t$ WATAUAVAWH
+A_A^A]A\_
+l$ E3
+@SUATAUAVH
+0A^A]A\][
+l$ AVH
+VWATAVAWH
+0A_A^A\_^
+UVWATAUAVAWH
+H9x }
+H;{ }
+H9x }
+I;x }fH
+UUUUUUU
+)D$@L
+pA_A^A]A\_^]
+|$ AVH
+H9x }
+H;{ }
+WAVAWH
+A_A^_
+{ ATAVAWH
+H9H }
+@A_A^A\
+WATAUAVAWH
+D9{$u(H
+L9{0u
+L9{0u/H
+A_A^A]A\_
+SUVWATAUAVH
+|$8E3
+@A^A]A\_^][
+UVWATAUAVAWH
+d$8fD
+|$0fD
+A_A^A]A\_^]
+@UVWH
+\$@fD
+VWAVH
+D$@fD
+L$pH3
+|$ AVH
+H9X s
+u5H;Y r/H;
+H9X s	A
+D$lE8H
+I;X snH
+)D$PL
+H9X s
+u!H;Z r
+UVWATAUAVAWH
+HcK0H
+H;_@H
+A_A^A]A\_^]
+L$ SUVWH
+8_^][
+@SVWH
+GD$`H
+UWAVH
+)t$pH
+L$`H3
+(t$pH
+UVWATAUAVAWH
+00000000
+E@H9}XH
+M@H9}XH
+E@H9}XH
+D$@HcH
+D$@HcH
+D$@HcH
+D$@HcH
+L$@HcQ
+L$@HcQ
+L$@HcQ
+L$@LcA
+L$@LcA
+L$@LcA
+D$@HcH
+D$@HcH
+D$@HcH
+L$@HcQ
+A_A^A]A\_^]
+\$ E3
+VWAVH
+ A^_^
+|$0E3
+l$XH;F t
+\$ UVWATAUAVAWH
+tsIcE
+A_A^A]A\_^]
+t$ E3
+t$ E3
+t$ E3
+t$ E3
+|$ ATAVAWH
+@A_A^A\
+l$ VWATAVAWH
+GT$8A
+A_A^A\_^
+@SUVWAVH
+ A^_^][
+@VWATAUAVH
+0A^A]A\_^
+WAVAWH
+A_A^_
+|$ AVH
+I9Khs
+H9Shs
+t$ WAVAWH
+0A_A^_
+d$Pt,H
+SVWATAUAVAWH
+(D$@f
+A_A^A]A\_^[
+WAVAWH
+t$HL+
+ A_A^_
+WAVAWH
+t$HL+
+ A_A^_
+@SVWH
+@USVWATAVAWH
+A_A^A\_^[]
+@USVWATAVAWH
+A_A^A\_^[]
+@SVWH
+D$P%I
+@SVWH
+D$P%I
+@SVWH
+D$P%I
+@SVWH
+D$P%I
+USVWATAUAVAWH
+)D$0H
+(D$0A
+C@H90t$H
+A_A^A]A\_^[]
+t$ E3
+VWAUAVAWH
+ A_A^A]_^
+WAVAWH
+i@t^H
+0A_A^_
+VWAVH
+@SUVAUH
+8A]^][
+UVWATAUAVAWH
+D|$0H
+(D$03
+)D$0M
+C@H98t$H
+)D$0H
+(D$03
+)D$0M
+(D$0H
+)D$0M+
+(D$0H
+)D$0H
+(D$0H
+A_A^A]A\_^]
+@SUVWAVH
+ A^_^][
+UVWATAUAVAWH
+C@H98t$H
+A_A^A]A\_^]
+UWAVH
+@USVWAVH
+A^_^[]
+VWAUAVAWH
+0A_A^A]_^
+@SVWATH
+|$0H;
+8A\_^[
+VWAVH
+D9H }
+u D;I |
+@A^_^
+D$0D9H }
+UUUUUUU
+)D$ H
+@SWAVH
+)t$@H;
+ot$ M
+(t$@H
+L$0H3
+`A^_[
+l$ VWAVH
+@A^_^
+@UAVAWH
+A_A^]
+\$ WH
+@SVWH
+|$ AVH
+VWAVH
+@A^_^
+t$ WH
+x AVH
+8T$(ua
+t$ WATAUAVAWH
+~ND;t;
+T$PE3
+ A_A^A]A\_
+WATAUAVAWH
+A_A^A]A\_
+x ATAVAWH
+(t$ H
+(t$ A
+A_A^A\
+HcE_H
+HcE_L
+HcEgH
+H;XXs
+H;xXu5
+t7HcP
+t$ WH
+WATAUAVAWH
+A_A^A]A\_
+L$@;|
+tRLcY
+|$(A^
+AUAVAWH
+u4I9}(
+9I9}(tgH
+tbIc^
+0A_A^A]
+AUAVAWH
+u4I9}(
+9I9}(tgH
+tbIc^
+0A_A^A]
+UVWATAUAVAWH
+`A_A^A]A\_^]
+UVWATAUAVAWH
+`A_A^A]A\_^]
+@USVWATAUAVAWH
+G0HcX
+L$pHcX
+D$pHc
+A_A^A]A\_^[]
+@USVWATAUAVAWH
+t,IcO
+G0HcX
+D$h;D$x
+K$D;e
+A_A^A]A\_^[]
+UVWATAUAVAWH
+\$xfI
+A_A^A]A\_^]
+@USVWATAUAVAWH
+L$x;E
+D$`fI
+D$xA;
+L$`;M
+A_A^A]A\_^[]
+WAVAWH
+t7Hc^
+ A_A^_
+x ATAVAWH
+t;Hc^
+ A_A^A\
+WAVAWH
+ t^D9
+G0Hch
+A_A^_
+x ATAVAWH
+9h@u(D93t#D9
+t,HcW
+9l$Pu	
+D93ui
+C0Lcp
+A_A^A\
+tEHcR
+@SVWATAUAVAWH
+D$8L9
+D$0HcH
+pA_A^A]A\_^[
+@SVWATAUAVAWH
+D$@L9
+A_A^A]A\_^[
+< u\A
+A9	upA
+B(I9A(u
+A9	u;A
+SVWATAUAVAWH
+|$ Hc^
+0A_A^A]A\_^[
+SVWATAUAVAWH
+t>HcS
+|$8L;
+L;|$X
+(D$0f
+A_A^A]A\_^[
+UVWATAUAVAWH
+F0Hcx
+|$hHcX
+ A_A^A]A\_^]
+9)~P3
+UVWATAUAVAWH
+99~CE
+ A_A^A]A\_^]
+wwH9Q
+D$ I;R
+D$ I9P
+WATAUAVAWH
+ A_A^A]A\_
+D$PH=
+UVWATAUAVAWH
+L$xE3
+HcS H
+ A_A^A]A\_^]
+UVWATAUAVAW
+D$0H;
+D$@H+
+A_A^A]A\_^]
+D$0@8{
+UWAVH
+L$ WH
+L$ VWAVH
+\$8I;
+`A^_^
+L$ WH
+x AVH
+u$D8r(t
+D81u`L9r
+uPD8r(t
+vWD8s(t
+8|{A8t
+xYHcC
+x AVH
+L$ WH
+t$ WATAUAVAWH
+D$(E3
+0A_A^A]A\_
+D$(H!L$ E3
+;D$hsL
+@USVWATAVAWH
+D$(E3
+d$IfD
+D$@H;
+D$@H;
+A_A^A\_^[]
+D$@H;
+WATAUAVAWH
+<	w	@
+0A_A^A]A\_
+x AVH
+S(HcS0
+x AVH
+S(HcS0
+x AVH
+S(HcS0
+E+A@I
+E+A@I
+D$@H;F
+x AVH
+L$(E3
+t$ E3
+sL@8w(u
+x AVH
+L$(E3
+t$ E3
+sL@8w(u
+A9<Fu
+<htl<jt\<lt4<tt$<wt
+,X< w
+UWATAVAWH
+uVL!}
+D;{Hu
+D;{Hu
+A_A^A\_]
+A9,A$
+,I<%w
+HcC H
+x AVH
+@USVWATAVAWH
+D$(E3
+d$IfD
+D$@H;
+D$@H;
+D$@H;
+X D8e
+A_A^A\_^[]
+D$(E3
+X @8u
+L$ WH
+x ATAVAWH
+ @8~8t
+@8~0t
+dybE3
+@8~0tH
+@8~0t
+ A_A^A\
+@USVWH
+D$(E3
+@8u't
+X @8u/t
+u+fff
+L$ H3
+t$ WH
+(t$0H
+(t$0H
+(t$0H
+(t$0H
+(t$0H
+L$ WH
+t$ UWAUAVAWH
+A_A^A]_]
+s WATAUAVAWH
+H9\$P
+L$v8\$vt*8Y
+d$XfA
+T$v8\$vt?8Z
+A_A^A]A\_
+SUVWATAVAWH
+A_A^A\_^][
+@8j(t
+f9)u4H9j
+u%@8j(t
+@8k(t
+t%fff
+98t H
+L$ WH
+u3HcH<H
+x ATAVAWH
+< t;<	t7
+ A_A^A\
+UVWAVAWH
+D$ E3
+0A_A^_^]
+x AVH
+L$ WH
+L$ WH
+WAVAWH
+ A_A^_
+WAVAWH
+ A_A^_
+UVWATAUAVAWH
+L$(E3
+D8i(u
+L$0f;
+f;\$4
+L$8f;
+f;\$<
+L$@f;
+f;\$D
+L$Hf;
+f;\$L
+L$Pf;
+f;\$T
+L$Xf;
+f;\$\
+L$`f;
+rsf;\$d
+L$hf;
+r_f;\$l
+L$pf;
+rKf;\$t
+L$xf;
+r7f;\$|
+D$0f;
+f;\$4r
+D$8f;
+f;\$<r
+D$@f;
+f;\$Dr
+D$Hf;
+f;\$L
+D$Pf;
+f;\$T
+D$Xf;
+f;\$\
+D$`f;
+rvf;\$d
+D$hf;
+rbf;\$l
+D$pf;
+rNf;\$t
+D$xf;
+r:f;\$|
+A_A^A]A\_^]
+x AVH
+VATAUAVAWH
+0A_A^A]A\^
+L$ WH
+L$ WH
+L$ WH
+L$ WH
+L$ WH
+L$ WH
+L$ SH
+\$ WH
+l$ E3
+WAVAWH
+fD9;u
+;.u1L
+fE98t'
+0A_A^_
+|$ E3
+@USVWATAUAVAWH
+A_A^A]A\_^[]
+9Cu,fD9y
+fD9,xu
+t$XfD9+t#
+D$8fD
+t$0E3
+l$ E3
+l$ E3
+H SUVWH
+H_^][
+WATAUAVAWH
+0A_A^A]A\_
+d$ E3
+\$ UVWATAUAVAWH
+fD9,Au
+D$@fD
+A_A^A]A\_^]
+D$@H+
+l$ E3
+\$ UVWATAUAVAWH
+fD9,pu
+|$`CI
+f9t$bu
+A_A^A]A\_^]
+H9D$HtTH
+t$ E3
+UVWATAUAVAWH
+fE9,Fu
+A_A^A]A\_^]
+VWAVH
+0A^_^
+|$ AVH
+x AVH
+fD9t$b
+x AVH
+L$ WH
+UVWATAUAVAWH
+A8z(u
+fB9<I}1L
+A_A^A]A\_^]
+\$@H;
+\$@H;
+L$0H+
+VWATAVAW
+L$PI;
+D$PL+
+A_A^A\_^
+VATAUAVAWH
+0A_A^A]A\^
+@USVWATAUAVAWH
+H!D$ E
+hA_A^A]A\_^[]
+L$ WH
+L$ WH
+t$ WATAUAVAWH
+ A_A^A]A\_
+tqfA;
+t7fA;
+D$0H9D$8
+t$ WATAUAVAWH
+L$(E3
+D8[(u
+gfffffffH
+A_A^A]A\_
+{ AVH
+|$@-D
+{ AUAVAWH
+0A_A^A]
+t$xt*3
+80tWD
+gfffA
+D$DE3
+|$@-D
+WAVAWH
+ A_A^_
+s AWH
+|$DE3
+|$@-D
+x ATAVAWH
+ A_A^A\
+L$ VWAVH
+@A^_^
+9\$hu
+|$(E3
+x AVH
+E8q(u
+fD94H}aD
+@SUVWATAVAWH
+L$0H3
+@A_A^A\_^][
+t$ WATAUAVAWH
+0A_A^A]A\_
+WATAVH
+\$ E3
+|$xL;
+0A^A\_
+VWAVH
+t$ E3
+E8q(u
+E81t"A
+fD94Q}
+D84:u
+@A^_^
+WATAVH
+|$xL;
+\$ E3
+0A^A\_
+@USVWATAUAVAWH
+E8a(u
+fD9 t
+xA_A^A]A\_^[]
+@UAVAWH
+e0A_A^]
+@SUVWATAVAWH
+A_A^A\_^][
+|$ E3
+@UATAUAVAWH
+e0A_A^A]A\]
+@UATAUAVAWH
+Hc}`I
+A_A^A]A\]
+L$ WH
+t$ WATAUAVAWH
+D!|$xA
+A_A^A]A\_
+D$(H;
+x AVH
+u$D8r(t
+fD91u_L9r
+uPD8r(t
+vVD8s(t
+UVWATAUAVAWH
+EH*?H
+PA_A^A]A\_^]
+WATAUAVAWH
+@8<)u
+0A_A^A]A\_
+H9>u+A
+]L+6H
+|$ E3
+@USVWATAUAVH
+,/<-w
+D8t$ht
+I+4$H
+D8t$ht
+A^A]A\_^[]
+8D$@t
+L$ WH
+UWAVH
+\$0H;
+L$0H;
+l$ VWATAVAWH
+L$&8\$&t,8Y
+L$8H3
+A_A^A\_^
+x AVH
+t$8H+
+UATAUAVAWH
+A_A^A]A\]
+WATAUAVAWH
+A_A^A]A\_
+UATAUAVAWH
+A_A^A]A\]
+t$8H+
+fB9<Hu
+|$ E3
+f9<Ju
+fB9<@u
+fB9<Bu
+|$ AVH
+fF9tM
+urD9s
+t)LcC
+fF9tM
+fF9tM
+fD9t}
+fD94Ju
+fD94Au
+fD91u H
+fD9t}
+fD91u
+fD9t}
+t$ E3
+fB94Ou
+t$ E3
+t}f91txH
+L$8H3
+x ATAVAWH
+ A_A^A\
+WATAUAVAWH
+fE9(t
+fD9(tPH
+fD9(t
+fD9(t
+fD9/u
+fG9,Lu
+0A_A^A]A\_
+l$ E3
+t$ WH
+fB9<Hu
+fB9<@u
+fB9<Bu
+VWAVH
+u`D9v
+t5LcF
+fD94Au
+fD94iu
+u4D9v
+tSf91tNH
+tZ;|$0tM
+WAVAWH
+ A_A^_
+@USVWATAVAWH
+fD9 t
+tzfD9 ttH
+fD9 t
+fD9 t
+tQfD9 tK
+fD9$Hu
+@A_A^A\_^[]
+@SUAVH
+@A^][
+@A^][
+@A^][
+WAVAWH
+ A_A^_
+D$pE3
+D$(E3
+USVWATAVAWH
++t$03
+A_A^A\_^[]
+\$ %?
+UVWATAUAVAWH
+D$ L+
+L$8H3
+@A_A^A]A\_^]
+u+fff
+ATAUAVAWH
+L$ |+L;
+L$ I;
+L$ L;
+A_A^A]A\
+L$ H3
+L$ H3
+WAVAWH
+D8|$`t
+ A_A^_
+L$49K
+ot$ H
+ffffff
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+fffffff
+ot$ H
+ot$ H
+|$ AVH
+@USVAVH
+A^^[]
+(t$PH
+LcA<E3
+HcQ<H
+x AVH
+x AVH
+t'fE9
+SUVWATAUAVAWH
+D$pHcK
+(A_A^A]A\_^][
+WATAUAVAWH
+ A_A^A]A\_
+t$XHcE
+SUVWATAUAVAWH
+H9D$(uVM
+L$0;l$ 
+HA_A^A]A\_^][
+WATAUAVAWH
+A_A^A]A\_
+fffff
+fffffff
+fffffff
+fffffff
+ffffff
+fffff
+vKfffff
+@SUWH
+@SUWH
+bad allocation
+success
+address family not supported
+address in use
+address not available
+already connected
+argument list too long
+argument out of domain
+bad address
+bad file descriptor
+bad message
+broken pipe
+connection aborted
+connection already in progress
+connection refused
+connection reset
+cross device link
+destination address required
+device or resource busy
+directory not empty
+executable format error
+file exists
+file too large
+filename too long
+function not supported
+host unreachable
+identifier removed
+illegal byte sequence
+inappropriate io control operation
+interrupted
+invalid argument
+invalid seek
+io error
+is a directory
+message size
+network down
+network reset
+network unreachable
+no buffer space
+no child process
+no link
+no lock available
+no message available
+no message
+no protocol option
+no space on device
+no stream resources
+no such device or address
+no such device
+no such file or directory
+no such process
+not a directory
+not a socket
+not a stream
+not connected
+not enough memory
+not supported
+operation canceled
+operation in progress
+operation not permitted
+operation not supported
+operation would block
+owner dead
+permission denied
+protocol error
+protocol not supported
+read only file system
+resource deadlock would occur
+resource unavailable try again
+result out of range
+state not recoverable
+stream timeout
+text file busy
+timed out
+too many files open in system
+too many files open
+too many links
+too many symbolic link levels
+value too large
+wrong protocol type
+unknown error
+0123456789abcdefghijklmnopqrstuvwxyz
+					
+0123456789abcdefghijklmnopqrstuvwxyz
+bad exception
+__based(
+__cdecl
+__stdcall
+__thiscall
+__fastcall
+__vectorcall
+__preserve_none
+__clrcall
+__eabi
+__swift_1
+__swift_2
+__swift_3
+__ptr64
+__restrict
+__unaligned
+restrict(
+ delete
+operator
+`vftable'
+`vbtable'
+`vcall'
+`typeof'
+`local static guard'
+`string'
+`vbase destructor'
+`vector deleting destructor'
+`default constructor closure'
+`scalar deleting destructor'
+`vector constructor iterator'
+`vector destructor iterator'
+`vector vbase constructor iterator'
+`virtual displacement map'
+`eh vector constructor iterator'
+`eh vector destructor iterator'
+`eh vector vbase constructor iterator'
+`copy constructor closure'
+`udt returning'
+`RTTI
+`local vftable'
+`local vftable constructor closure'
+ new[]
+ delete[]
+`omni callsig'
+`placement delete closure'
+`placement delete[] closure'
+`managed vector constructor iterator'
+`managed vector destructor iterator'
+`eh vector copy constructor iterator'
+`eh vector vbase copy constructor iterator'
+`dynamic initializer for '
+`dynamic atexit destructor for '
+`vector copy constructor iterator'
+`vector vbase copy constructor iterator'
+`managed vector copy constructor iterator'
+`local static thread guard'
+operator "" 
+operator co_await
+operator<=>
+ Type Descriptor'
+ Base Class Descriptor at (
+ Base Class Array'
+ Class Hierarchy Descriptor'
+ Complete Object Locator'
+`anonymous namespace'
+FlsAlloc
+FlsFree
+FlsGetValue
+FlsSetValue
+InitializeCriticalSectionEx
+(null)
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+[aOni*{
+eLK(w
+~ $s%r
+@b;zO]
+iu+-,
+obwQ4
+v2!L.2
+^<V7w
+CorExitProcess
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+Sunday
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+January
+February
+March
+April
+August
+September
+October
+November
+December
+MM/dd/yy
+dddd, MMMM dd, yyyy
+HH:mm:ss
+AreFileApisANSI
+CompareStringEx
+EnumSystemLocalesEx
+FlsGetValue2
+GetDateFormatEx
+GetLocaleInfoEx
+GetTimeFormatEx
+GetUserDefaultLocaleName
+IsValidLocaleName
+LCMapStringEx
+LCIDToLocaleName
+LocaleNameToLCID
+AppPolicyGetProcessTerminationMethod
+NAN(SNAN)
+nan(snan)
+NAN(IND)
+nan(ind)
+e+000
+log10
+atan2
+floor
+ldexp
+_cabs
+_hypot
+frexp
+_logb
+_nextafter
+1#INF
+1#QNAN
+1#SNAN
+1#IND
+UUUUUU
+UUUUUU
+TUUUU
+=imb;D
+1<.	/>:
+/>58d%
+!>6'Y
+>jtm}S
+)>6{1n
+r	Vr.>T
++f)>0'
+Lj[;>
+3>fvw
+;H9>&X
+*StO9>T
+n03>Pu
+K~Je#>!
++M<7>
+c(>\,
+bp(=>?g
+BC?>6t9^	c:>
+BF>^G
+K&>.yC
+ 'L>[
+.xJ>Hf
+y\PD>!
+|b=})>
+c [1>H'
+uzKs@>
+3>N;kU
+	kE>fvw
+A>pP&
+V6E>`"(5
+0iN>/
++h->|
+@>%>b
+?:kP<
+?UUUUUU
+?f`Y4
+?QY^&
+?7zQ6$
+Unknown exception
+bad array new length
+string too long
+HM_Debug.cpp internal assertion failed!
+C:\work\quantum\code\quantum\lib\universal\c++\HM_Debug.cpp
+InternalAssertion
+map/set too long
+Allocate pointer failed!(%d)
+MemoryDetector
+Memory out!
+Double free pointer: %p
+%s memory leak detected! %d
+As Block %p
+Block %p(%d): %s
+[INFO]
+[WARNING]
+[ERROR]
+[FATAL]
+vsnprintf failed! 
+[%04d-%02d-%02d %02d:%02d:%02d.%03d][%05d][%05d][%s:%d]%s
+[%04d-%02d-%02d %02d:%02d:%02d.%03d]:[%05d][%05d]%s[%s][%s:%d]%s
+[%04d-%02d-%02d %02d:%02d:%02d.%03d]:[%05d][%05d]%s[%s:%d]%s
+Software: %s
+Assertion failed: %s
+Callstack output is not supported in Windows!
+HM_Utils
+Verification failed:%s
+C:\work\quantum\code\quantum\lib\universal\c++\HM_Utils.c
+pFrom
+pThread
+pThread->hMsgQueueEvent
+pThread->Routine
+pThread->hThread
+s_ThreadObjectTLS != TLS_OUT_OF_INDEXES
+<Thread Create Failed>
+routine
+hThread
+hThread->hThread
+WaitForSingleObject( hThread->hThread, 0xFFFFFFFF ) == ((((DWORD )0x00000000L) ) + 0 )
+GetExitCodeThread( hThread->hThread, &threadResult )
+hThread->bMsgQueue
+hThread->pMsgQueueTail
+hThread->pMsgQueueTail == HM_NULL
+<Event Create Failed>
+hEvent
+C:\work\quantum\code\quantum\src\02_osal\src\devicediscovery\DeviceInfoHelper.h
+pInfo
+pValue
+1,4,0,13
+Device discovery module already initialized by other caller, %s
+HMInitialize failed, %s
+QE_DISCOVERY
+HMDebugInitialize failed, %s
+HMSocketInit failed, %s
+C:\work\quantum\code\quantum\src\02_osal\src\devicediscovery\DeviceDiscovery.cpp
+DeviceDiscoveryManager allocation failed, %s
+DeviceDiscoveryManager initialization failed, %s
+Device discovery module initialized successfully, %s
+Uninitializing device discovery module
+QEDDUninitDeviceDiscovery exit
+Launching device of type: 0x%08X, %s
+Destroying device with UUID: %s
+Registering discovery service for types: 0x%08X
+Unregistering discovery service for types: 0x%08X
+Query device for types: 0x%08X
+Getting discovered device list for types: 0x%08X
+Getting device info for UUID: %s
+Announcing device with UUID: %s
+Freeing device info: %s
+Freeing device info list
+Getting extra info value for key: %s
+Setting extra info key: %s to value: %s
+Reinitializing wrapper for type: 0x%08X
+"DEVICE_DISCOVERY_MANAGER"
+DeviceDiscoveryManager is already initialized.
+DeviceDiscoveryManager initialized successfully.
+DeviceDiscoveryManager is not initialized.
+No wrapper available for device type: 0x%08X
+Failed to create device instance for type: 0x%08X
+Device created successfully with UUID: %s, type: 0x%08X
+DestroyDevice called with NULL deviceUUID
+Registered callback for device type: 0x%08X
+Failed to register discovery service for device type: 0x%08X
+Unregistered callback for device type: 0x%08X
+Unregistering discovery service for types: 0x%08X (current: 0x%08X, requested: 0x%08X)
+Failed to unregister discovery service for device type: 0x%08X
+No discovery services to unregister (current: 0x%08X, requested: 0x%08X)
+C:\work\quantum\code\quantum\src\02_osal\src\devicediscovery\DeviceDiscoveryManager.cpp
+Failed to allocate memory for QEDD_DeviceInfoList
+Failed to allocate memory for device info array with count: %u
+Failed to clone device info for device: %s
+Failed to clone device info for launched device: %s
+Failed to clone device info for discovered device: %s
+Device not found in launched or discovered device maps: %s
+Device not found in map: %s
+pDevice
+Failed to start discovery service for device type: 0x%08X
+Unregistering discovery service for device type: 0x%08X
+OnDeviceDiscovered called with NULL device
+Device discovered: UUID=%s, Type=0x%08X
+OnDeviceLost called with NULL device
+Device lost: UUID=%s, Type=0x%08X
+vector too long
+local.
+_services._dns-sd._udp.local.
+!serviceType.empty()
+C:\work\quantum\code\quantum\src\02_osal\src\devicediscovery\mdns\MdnsLib.h
+!hostname.empty()
+!key.empty()
+SetTXTRecord Fail: key = %s, value = %s
+"MDNS_WRAPPER"
+C:\work\quantum\code\quantum\src\02_osal\src\devicediscovery\mdns\MdnsLib.cpp
+pContext
+m_ServiceType.empty()
+m_pOnDiscoveryCallback == HM_NULL
+m_pCallbackContext == HM_NULL
+!m_hDiscoveryEvent
+!m_hDiscoveryExitEvent
+m_hDiscovererEvent create event failed.
+m_hDiscovererExitEvent create event failed.
+MDNS create listener only
+Failed to create mDNS multicast socket
+Failed to create mDNS discover thread
+MdnsLib initialized successfully, %p
+Invalid recordName format
+MDNS create recordName %s, service type %s
+MdnsLib uninitialize begin, %p
+MdnsLib uninitialize discovery thread begin!
+m_hDiscoveryEvent
+MdnsLib uninitialized discovery thread finished!
+MdnsLib uninitialize multicast socket begin!
+MdnsLib uninitialized multicast socket finished!
+MdnsLib uninitialized
+Invalid property name
+Removed property %s
+Property %s not found, nothing to remove
+m_hMulticastSocket != HM_INVALID_SOCKET
+SendAnnouncements Failed to add records to additional: %s
+SendAnnouncements mdns_announce_multicast failed (-1), Error=%d(%s)
+SendAnnouncements mdns_announce_multicast ok (%d), additional.size=(%d)
+pName
+pName->length < HM_COUNT_OF( recordName )
+m_pOnDiscoveryCallback
+Discovery callback called for device=>: %s, IP: %s: %d
+Discovery callback called for device<=: %s, IP: %s: %d
+recordName
+sock != HM_INVALID_SOCKET
+nameBuffer
+name.str
+pData
+TTL=0
+Failed to create new MdnsDeviceInfo
+Failed to add new device to m_MdnsDeviceInfos
+GetAnnouncements Added new device for PTR record: %s
+hostname
+Record name empty
+PTR value has insufficient labels: %zu (need at least 4)
+Invalid domain: %s (must not start with underscore)
+Invalid transport protocol: %s (must start with underscore)
+Invalid application protocol: %s (must start with underscore)
+Invalid instance name part: %s (must not start with underscore)
+AddQueryName: Query name '%s' already exists
+AddQueryName: Failed to allocate memory for query name
+AddQueryName: Added query '%s' to query list
+DeleteQueryName: Removed query '%s' from query list
+DeleteQueryName: Query name '%s' not found in query list
+pDiscovery
+MdnsLib DiscoverThread exited
+SendDiscovery query list empty!
+SendDiscovery add membership success!
+invalid string position
+	_services
+_dns-sd
+local
+	_services
+_dns-sd
+local
+	_services
+_dns-sd
+local
+	_services
+_dns-sd
+local
+	_services
+_dns-sd
+local
+C:\work\quantum\code\quantum\src\02_osal\src\devicediscovery\mdns\MdnsManager.cpp
+Failed to new mDNS socket!
+Failed to create work thread!
+Failed to create mDNS socket!
+Destroy mDNS(%p)
+Remove callback for mDNS(%p)
+HMSendMessage MT_REBUILD_SOCKET fail! %p
+Rebuild socket fail, try next!
+!m_hWorkThread
+Create WorkThread quit event fail! %p
+Create WorkThread fail! %p
+HMSendMessage MT_QUIT fail. %p
+WorkThreadFunc start: %p
+WorkThreadFunc exit: %p
+m_hSocket == HM_INVALID_SOCKET
+C:\work\quantum\code\quantum\src\02_osal\src\devicediscovery\mdns\MdnsSocket.cpp
+Create mDNS socket %s!
+Failed to create mDNS multicast socket, Error=%d(%s)
+Failed to create mDNS receive thread!
+m_RecvCallbacks.find( pLib ) == m_RecvCallbacks.end()
+m_hSocket != HM_INVALID_SOCKET
+Waiting for mDNS receive thread to exit(%p)...
+MDNS receive thread exited...
+pMdnsSocket
+MdnsLib ReceiveThread started
+mdns_socket_listen -1 return, thread exiting, Error=%d(%s)
+MdnsLib ReceiveThread exited
+pThis
+it->second.Callback
+bad cast
+iostream
+bad locale name
+false
+ios_base::badbit set
+ios_base::failbit set
+ios_base::eofbit set
+0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+pDest
+mDNS wrapper is already initialized.
+mDNS wrapper initialized successfully.
+mDNS wrapper is not initialized.
+CreateLaunchedDevice called with NULL basic info.
+C:\work\quantum\code\quantum\src\02_osal\src\devicediscovery\mdns\MdnsWrapper.cpp
+Failed to create mDNS launched device.
+Failed to initialize mDNS launched device.
+DestroyLaunchedDevice called with NULL device.
+mDNS discovery service is already started.
+Failed to initialize mDNS discovery service.
+mDNS discovery service stopped.
+m_pMdnsLib == HM_NULL
+Failed to create MdnsLib
+Invalid IP address: %s
+Failed to initialize MdnsLib
+Failed to clone extra info
+Failed to set property: key = %s, value = %s
+SendAnnouncement called before MdnsLib is initialized.
+Initialize called with NULL basic info.
+Initialize called with NULL observer.
+mDNS discovery service is already initialized.
+AddParameter called before MdnsLib is initialized.
+RemoveParameter called before MdnsLib is initialized.
+Failed to create MdnsDiscoveredDevice
+pThis->m_pObserver
+iostream stream error
+C:\work\quantum\code\quantum\src\02_osal\src\devicediscovery\WrapperFactory.cpp
+Unsupported device type requested: 0x%08X
+Initialized wrapper for device type: 0x%08X
+Failed to initialize wrapper for device type: 0x%08X
+Access violation - no RTTI data!
+Bad dynamic_cast!
+C:\work\quantum\code\quantum\bin\x64-FRelease\DeviceDiscovery.pdb
+.text$di
+.text$mn
+.text$mn$00
+.text$mn$21
+.text$x
+.text$yd
+.idata$5
+.00cfg
+.CRT$XCA
+.CRT$XCC
+.CRT$XCL
+.CRT$XCU
+.CRT$XCZ
+.CRT$XIA
+.CRT$XIC
+.CRT$XIZ
+.CRT$XPA
+.CRT$XPX
+.CRT$XPXA
+.CRT$XPZ
+.CRT$XTA
+.CRT$XTZ
+.rdata
+.rdata$00
+.rdata$r
+.rdata$voltmd
+.rdata$zzzdbg
+.rtc$IAA
+.rtc$IZZ
+.rtc$TAA
+.rtc$TZZ
+.xdata
+.xdata$x
+.edata
+.idata$2
+.idata$3
+.idata$4
+.idata$6
+.data
+.data$r
+.data$rs
+.pdata
+.fptable
+.rsrc$01
+.rsrc$02
+DeviceDiscovery.dll
+?QEDDAnnounceDevice@@YAHPEBD@Z
+?QEDDDestroyDevice@@YAHPEBD@Z
+?QEDDFreeDeviceInfo@@YAXPEAUQEDD_DeviceInfo@@@Z
+?QEDDFreeDeviceInfoList@@YAXPEAUQEDD_DeviceInfoList@@@Z
+?QEDDGetDeviceInfo@@YAPEAUQEDD_DeviceInfo@@PEBD@Z
+?QEDDGetDiscoveredDeviceList@@YAPEAUQEDD_DeviceInfoList@@I@Z
+?QEDDGetExtraInfoValue@@YAPEBDPEBUQEDD_EXTRA_INFO@@PEBD@Z
+?QEDDInitDeviceDiscovery@@YAHPEBXP6AX0W4_HMTraceType@@PEBD@Z@Z
+?QEDDLaunchDevice@@YAPEBDW4QEDD_DeviceType@@PEBTQEDD_BASIC_INFO@@PEBUQEDD_EXTRA_INFO@@@Z
+?QEDDQueryDevice@@YAHI@Z
+?QEDDRegisterDiscoveryService@@YAHPEBTQEDD_BASIC_INFO@@PEBXIP6AX1PEADH@Z1@Z
+?QEDDReinitializeWrapper@@YAHW4QEDD_DeviceType@@@Z
+?QEDDSetExtraInfo@@YAHPEAUQEDD_EXTRA_INFO@@PEBD1@Z
+?QEDDUninitDeviceDiscovery@@YAXXZ
+?QEDDUnregisterDiscoveryService@@YAHIP6AXPEBXPEADH@Z@Z
+inet_ntop
+inet_pton
+WS2_32.dll
+TlsSetValue
+OutputDebugStringA
+InitializeCriticalSection
+GetCurrentThreadId
+CopyFileA
+TlsAlloc
+GetLocalTime
+DeleteCriticalSection
+GetCurrentProcessId
+TlsGetValue
+TlsFree
+HeapFree
+EnterCriticalSection
+LeaveCriticalSection
+WaitForSingleObject
+ResumeThread
+CreateEventW
+GetExitCodeThread
+SetEvent
+CloseHandle
+CreateThread
+ResetEvent
+HeapAlloc
+GetProcessHeap
+QueryPerformanceCounter
+KERNEL32.dll
+WideCharToMultiByte
+InitializeCriticalSectionEx
+EncodePointer
+DecodePointer
+MultiByteToWideChar
+LCMapStringEx
+GetStringTypeW
+GetCPInfo
+RtlCaptureContext
+RtlLookupFunctionEntry
+RtlVirtualUnwind
+UnhandledExceptionFilter
+SetUnhandledExceptionFilter
+GetCurrentProcess
+TerminateProcess
+IsProcessorFeaturePresent
+IsDebuggerPresent
+GetStartupInfoW
+GetModuleHandleW
+GetSystemTimeAsFileTime
+InitializeSListHead
+RtlUnwindEx
+RtlPcToFileHeader
+RaiseException
+InterlockedFlushSList
+GetLastError
+SetLastError
+InitializeCriticalSectionAndSpinCount
+FreeLibrary
+GetProcAddress
+LoadLibraryExW
+ReadFile
+CreateFileW
+GetFileType
+SetEndOfFile
+ExitProcess
+GetModuleHandleExW
+GetModuleFileNameW
+SetFilePointerEx
+GetConsoleMode
+GetStdHandle
+FlushFileBuffers
+WriteFile
+GetConsoleOutputCP
+FlsAlloc
+FlsGetValue
+FlsSetValue
+FlsFree
+VirtualProtect
+LCMapStringW
+GetLocaleInfoW
+IsValidLocale
+GetUserDefaultLCID
+EnumSystemLocalesW
+SetStdHandle
+GetFileSizeEx
+HeapReAlloc
+FindClose
+FindFirstFileExW
+FindNextFileW
+IsValidCodePage
+GetACP
+GetOEMCP
+GetCommandLineA
+GetCommandLineW
+GetEnvironmentStringsW
+FreeEnvironmentStringsW
+HeapSize
+WriteConsoleW
+                          
+abcdefghijklmnopqrstuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                          
+abcdefghijklmnopqrstuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+.?AVlogic_error@std@@
+.?AVlength_error@std@@
+.?AVout_of_range@std@@
+.?AVbad_exception@std@@
+.?AVbad_alloc@std@@
+.?AVexception@std@@
+.?AVbad_array_new_length@std@@
+.?AVfailure@ios_base@std@@
+.?AVruntime_error@std@@
+.?AVILaunchedDevice@@
+.?AVsystem_error@std@@
+.?AVIDiscoveryService@@
+.?AVbad_cast@std@@
+.?AVMdnsDiscoveryService@@
+.?AV_System_error@std@@
+.?AVMdnsLaunchedDevice@@
+.?AV__non_rtti_object@std@@
+.?AVbad_typeid@std@@
+.?AV_Locimp@locale@std@@
+.?AVtype_info@@
+.?AVDeviceDiscoveryManager@@
+.?AVIDeviceObserver@@
+.?AVIWrapper@@
+.?AV?$basic_stringbuf@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@
+.?AVios_base@std@@
+.?AVerror_category@std@@
+.?AV?$ctype@D@std@@
+.?AV_Facet_base@std@@
+.?AU_Crt_new_delete@std@@
+.?AV?$_Iosb@H@std@@
+.?AV_Iostream_error_category2@std@@
+.?AV?$numpunct@D@std@@
+.?AV?$basic_streambuf@DU?$char_traits@D@std@@@std@@
+.?AV?$basic_ostringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@
+.?AVMdnsWrapper@@
+.?AUctype_base@std@@
+.?AV?$basic_ios@DU?$char_traits@D@std@@@std@@
+.?AVfacet@locale@std@@
+.?AV?$basic_ostream@DU?$char_traits@D@std@@@std@@
+.?AV?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@
+.?AVWrapperFactory@@
+DigiCert Inc1
+www.digicert.com1!0
+DigiCert Trusted Root G40
+210429000000Z
+360428235959Z0i1
+DigiCert, Inc.1A0?
+8DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA10
+>Mp$d
+6*f(_
+[K]taM?
+J>@G_
+SA|X=G
+k0i0$
+http://ocsp.digicert.com0A
+5http://cacerts.digicert.com/DigiCertTrustedRootG4.crt0C
+<0:08
+2http://crl3.digicert.com/DigiCertTrustedRootG4.crl0
+jj@0HK4
+DigiCert, Inc.1A0?
+8DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA10
+260326000000Z
+270601235959Z0
+Delaware1
+Private Organization1
+8862551
+Connecticut1
+Stamford1604
+-HARMAN INTERNATIONAL INDUSTRIES, INCORPORATED1604
+-HARMAN INTERNATIONAL INDUSTRIES, INCORPORATED0
+~KH~u|Z
+Z1~6^
+Bo} s
+60402
+http://www.digicert.com/CPS0
+Mhttp://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl0S
+Mhttp://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl0
+http://ocsp.digicert.com0\
+Phttp://cacerts.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crt0	
+0}0i1
+DigiCert, Inc.1A0?
+8DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1
+`c8UZ
+su6G=
+20260615064434Z
+DigiCert, Inc.1A0?
+8DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA10
+250604000000Z
+360903235959Z0c1
+DigiCert, Inc.1;09
+2DigiCert SHA256 RSA4096 Timestamp Responder 2025 10
+p%w+q4
+http://ocsp.digicert.com0]
+Qhttp://cacerts.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crt0_
+X0V0T
+Nhttp://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl0 
+r&fR{a|
+DigiCert Inc1
+www.digicert.com1!0
+DigiCert Trusted Root G40
+250507000000Z
+380114235959Z0i1
+DigiCert, Inc.1A0?
+8DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA10
+"9<x:
+k0i0$
+http://ocsp.digicert.com0A
+5http://cacerts.digicert.com/DigiCertTrustedRootG4.crt0C
+<0:08
+2http://crl3.digicert.com/DigiCertTrustedRootG4.crl0 
+:U|r*C
+o84s[
+a:m1&
+DigiCert Inc1
+www.digicert.com1$0"
+DigiCert Assured ID Root CA0
+220801000000Z
+311109235959Z0b1
+DigiCert Inc1
+www.digicert.com1!0
+DigiCert Trusted Root G40
+]J<0"0i3
+v=Y]Bv
+|Lu?c
+m0k0$
+http://ocsp.digicert.com0C
+7http://cacerts.digicert.com/DigiCertAssuredIDRootCA.crt0E
+>0<0:
+4http://crl3.digicert.com/DigiCertAssuredIDRootCA.crl0
+5FjiT
+~qj#k"
+0}0i1
+DigiCert, Inc.1A0?
+8DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1
+260615064434Z0+
+/1(0&0$0"
+f?>yN
+;HBPh

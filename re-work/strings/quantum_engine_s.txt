@@ -1,0 +1,1772 @@
+!This program cannot be run in DOS mode.
+.text
+`.rdata
+@.data
+.pdata
+@.rsrc
+@.reloc
+L$ SVWH
+SUVWATAUAVAWH
+{@D9S8~0E3
+D;S8|
+HA_A^A]A\_^][
+VWATAUAVH
+(t$ L
+0A^A]A\_^
+|$ AVH
+ Lc	3
+99~0H
+(t$0H
+SVWAVH
+(|$ 3
+(t$0L
+HA^_^[
+|$ AVH
+zcua3
+L$0Ic
+(l$PD
+(d$`D
+(\$pD
+UAUAVH
+)T$pD
+)\$`D
+)d$PD
+)l$@D
+)t$0fD
+(|$ D
+(t$0D
+(l$@D
+(d$PD
+(\$`D
+(T$pD
+A^A]]
+@SUWAUAVH
+(t$ L
+0A^A]_][
+99~xH
+UVAWH
+(t$`L
+pA_^]
+AVAWH
+)|$PE
+)L$0fD
+d$ D;
+(L$0D
+(t$`L
+|$ AVH
+(t$`H
+\$PH+
+)t$0H
+(t$0H
+l$ WH
+t$8Mc
+\$ WH
+ucHcA
+t$hIc
+(t$@L
+|$ AVH
+t$ WH
+L$@H3
+L$@H3
+D$(E3
+L$@H3
+WATAUH
+L$H9.
+D;d$0
+A]A\_
+(|$0H
+WAVAWH
+ A_A^_
+<@F9D
+<@F9D
+)l$@D
+)t$0D
+)|$ D
+(t$0D
+(l$@D
+(\$`H
+)l$ D
+(\$@H
+(L$`v
+(D$pH
+|$ AVH
+WAVAWH
+ A_A^_
+WAVAWH
+ A_A^_
+t$ AVH
+)t$03
+(t$0H
+x AVH
+(t$`H
+(L$0L
+SUVAVAWH
+PA_A^^][
+UVWATAUAVAWH
+0A_A^A]A\_^]
+(t$pL
+(|$`E
+)D$@D
+)L$0D
+(t$PD
+(D$@D
+(L$0D
+)|$PD
+)D$@D
+)L$0E
+(T$ f
+)L$0D
+)T$ E
+(t$`A
+\$ WH
+BA99u	
+Authu
+entiu
+cAMDt
+AMDiuW
+sbetuO
+ter!uG3
+WAVAWH
+)t$pL
+)|$`H
+)D$P3
+(t$pL
+(|$`I
+A_A^_
+d$ UAVAWH
+A_A^]
+X UVWATAUAVAWH
+~,fff
+A_A^A]A\_^]
+\$ H;
+UWATAVAWH
+A_A^A\_]
+l$ VWATAVAWH
+L$pH3
+A_A^A\_^
+X UVWATAUAVAWH
+|$(H9E
+t$@E3
+D$XL;
+|$PM;
+t$@I;
+L$HH;}
+A_A^A]A\_^]
+USVATI
+A\^[]
+A\^[]
+UVWATAUAVAWH
+A_A^A]A\_^]
+@UVWATAUAVAWH
+A_A^A]A\_^]
+s UWAWI
+L;w0t H
+\$ H;
+@USVATH
+T$@M;
+T$@M;
+T$@M;
+A\^[]
+@UVWATAUAVAWH
+A_A^A]A\_^]
+@UWATAVAWH
+A_A^A\_]
+@SVWATAUAVAWH
+HcD$ H
+HcD$$H
+HcD$(H
+0A_A^A]A\_^[
+0A_A^A]A\_^[
+L$@H=
+D$ H+
+|$xI+
+d$(fD
+L;T$X
+|$8L;
+|$8L;
+|$8L;
+|$8L;
+L;T$H
+t$0L;
+L;T$H
+L$hL;
+WATAUAVAWH
+D$8H;t$@
+D$@M+
+d$pL;
+\$(I;
+H;t$x
+l$8H;t$x
+H;t$0
+d$0L+
+A_A^A]A\_
+USVWAVAWI
+L$@I+
+L$@Ic
+LcT$pM
+} H;u
+A_A^_^[]
+@UVWATAUAVAWH
+A_A^A]A\_^]
+@UVWATAUAVAWH
+A_A^A]A\_^]
+VWAVH
+UVWATAUAVAWH
+0A_A^A]A\_^]
+@SWAVH
+@A^_[
+UVWATAUAVAWH
+(\$`f
+(L$@fD
+)L$@fA
+X\$@D
+p\$ Df
+pL$0DfA
+p\$@DfE
+pT$`Df
+pL$PDfD
+)d$@D
+)\$`D
+pL$pDfA
+(|$@fD
+(l$`f
+)l$`A
+)|$@f
+(T$`fD
+(d$@fE
+)L$`f
+(L$`f
+)L$`f
+(\$@f
+)\$@fD
+YY0fD
+YaPfD
+YipfD
+YY0fD
+YaPfD
+\$(H;
+)|$@L
+)D$`E
+XT$`f
+pX Df
+pH0DE
+pX@Df
+pHPDfD
+pX`DfD
+pHpDf
+)D$`D
+(|$@L
+\$XfE
+A_A^A]A\_^]
+|$ AVL
+|$(A^
+@SVWATAVH
+l$@M;
+A^A\_^[
+X UVWATAUAVAWH
+t$@E3
+|$PL;
+|$PL;
+D$HL;L$ L
+A_A^A]A\_^]
+@UVWATAUAVAWH
+A_A^A]A\_^]
+@USVWATAVAWH
+A_A^A\_^[]
+@SUVWAVH
+@A^_^][
+@SVWATAUAVAWH
+HcD$ H
+HcD$$H
+HcD$(H
+0A_A^A]A\_^[
+0A_A^A]A\_^[
+UVAVAWI
+D$0I;
+A_A^^]
+VAVAWH
+ A_A^^
+x UATAUAVAWH
+t$0M;
+A_A^A]A\]
+@UVWAVAWH
+A_A^_^]
+@UVWATAUAVAWH
+A_A^A]A\_^]
+VWAVH
+VWAVH
+@UVWATAUAVAWH
+A_A^A]A\_^]
+)|$PD
+)L$0D
+)T$ E
+(D$@A
+@WAVH
+)|$pD
+)D$`D
+)L$PD
+(d$ D
+(\$0D
+(T$@D
+(L$PD
+(|$pL
+|$ ATAVAWH
+ A_A^A\
+WAVAWH
+ Hc)M
+}%fff
+ A_A^_
+|$0Hc
+@USWH
+L$0Lc
+|$ ATAVAWH
+L$0H3
+@A_A^A\
+|$ UATAUAVAWH
+A_A^A]A\]
+L$(H3
+L$ SVATH
+)|$PH
+(t$`L
+(D$@H
+|$ ATAVAWH
+ A_A^A\
+|$ AVH
+)t$0f
+(t$0H
+WATAUAVAWH
+ A_A^A]A\_
+@VAVAWH
+A_A^^
+)t$pH+
+D$@H+
+D$(M+
+|$0Mc
+(t$pL
+A_A^^
+nALE3
+A\333?
+D9IHuV
+(\$@D
+u"D9IHu
+u:D9IHu
+)t$ A
+)|$pD
+)D$`D
+)L$PD
+)T$@D
+(|$pv
+(d$ v
+(\$0v
+(T$@v
+(L$Pv
+z;u9A
+UWAUH
+@A]_]
+l$ 9Y
+Yd$ A
+UWAVH
+)d$0D
+(l$ D
+(d$0D
+(\$@D
+(T$PD
+(L$`D
+|$ AVH
+WATAUAVAWH
+ A_A^A]A\_
+SUVWH
+H_^][
+H_^][
+D$ IcF
+H_^][
+H_^][
+WATAUAVAWH
+ A_A^A]A\_
+@VAWH
+\$@D9>
+@VAWH
+)|$`D
+)D$PD
+(T$0D
+(L$@D
+(t$pH
+9;v=f
+ti9;vA
+\$ UVWAVAWH
+)D$@f
+)L$Pf
+)D$`f
+)L$pf
+C\333?
+A_A^_^]
+VWAVH
+)t$`I
+(t$`L
+D+d$0xYD
+VWAVH
+ A^_^
+)t$PH
+)D$0E
+A9VLv8
+A;VLr
+d$pD;
+t[fff
+)|$@O
+(|$@H
+A9VLvAf
+GA;VLr
+(t$PH
+9}LvO
+(|$@D
+(t$PI
+l$pA;
+D9ELv+
+D;ELr
+@SAVH
+(t$0H
+l$pt&H
+L$(H3
+@VAVH
+L$(H3
+L$(H3
+L$(H3
+L$(H3
+x ATAVAWH
+(t$@L
+(|$0I
+A_A^A\
+)L$pI
+)T$`D
+)\$PD
+)d$@Lc
+)l$0I
+)t$ D
+(t$ D
+(l$0D
+(d$@D
+(\$PD
+(T$`D
+(L$pD
+SUVWAUAVAWH
+)t$pA
+)|$`Ic
+)D$PD
+)L$@H
+(L$@D
+(t$pL
+A_A^A]_^][
+UWAVAWH
+L$8Mct$
+A_A^_]
+A_A^_]
+A_A^_]
+)t$pH
+)|$`H
+)D$PD
+(L$@D
+(t$pH
+A_A^_]
+A_A^_]
+)|$@f
+)t$PI
+(L$ D
+t<Lc	
+L$ SUVH
+)|$PD
+)D$@D
+(t$`D
+(L$0H
+)|$`D
+)D$PD
+)L$@D
+(t$pL
+(L$@H
+)|$PD
+(L$0D
+(t$`H
+|$ AVH
+VWAVH
+@A^_^
+\$ WH
+@SVWH
+t$ WH
+8T$(ua
+t$ WATAUAVAWH
+~ND;t;
+T$PE3
+ A_A^A]A\_
+WATAUAVAWH
+A_A^A]A\_
+x ATAVAWH
+(t$ H
+(t$ A
+A_A^A\
+HcE_H
+HcE_L
+HcEgH
+H;XXs
+H;xXu5
+t7HcP
+WATAUAVAWH
+A_A^A]A\_
+L$@;|
+tRLcY
+|$(A^
+AUAVAWH
+u4I9}(
+9I9}(tgH
+tbIc^
+0A_A^A]
+AUAVAWH
+u4I9}(
+9I9}(tgH
+tbIc^
+0A_A^A]
+UVWATAUAVAWH
+`A_A^A]A\_^]
+UVWATAUAVAWH
+`A_A^A]A\_^]
+@USVWATAUAVAWH
+G0HcX
+L$pHcX
+D$pHc
+A_A^A]A\_^[]
+@USVWATAUAVAWH
+t,IcO
+G0HcX
+D$h;D$x
+K$D;e
+A_A^A]A\_^[]
+UVWATAUAVAWH
+\$xfI
+A_A^A]A\_^]
+@USVWATAUAVAWH
+L$x;E
+D$`fI
+D$xA;
+L$`;M
+A_A^A]A\_^[]
+WAVAWH
+t7Hc^
+ A_A^_
+x ATAVAWH
+t;Hc^
+ A_A^A\
+WAVAWH
+ t^D9
+G0Hch
+A_A^_
+x ATAVAWH
+9h@u(D93t#D9
+t,HcW
+9l$Pu	
+D93ui
+C0Lcp
+A_A^A\
+tEHcR
+@SVWATAUAVAWH
+D$8L9
+D$0HcH
+pA_A^A]A\_^[
+@SVWATAUAVAWH
+D$@L9
+A_A^A]A\_^[
+< u\A
+A9	upA
+B(I9A(u
+A9	u;A
+SVWATAUAVAWH
+|$ Hc^
+0A_A^A]A\_^[
+SVWATAUAVAWH
+t>HcS
+|$8L;
+L;|$X
+(D$0f
+A_A^A]A\_^[
+UVWATAUAVAWH
+F0Hcx
+|$hHcX
+ A_A^A]A\_^]
+9)~P3
+UVWATAUAVAWH
+99~CE
+ A_A^A]A\_^]
+wwH9Q
+D$ I;R
+D$ I9P
+WATAUAVAWH
+ A_A^A]A\_
+t$ WH
+x AVH
+L$ WH
+WATAUAVAWH
+<	w	@
+0A_A^A]A\_
+x AVH
+S(HcS0
+x AVH
+S(HcS0
+x AVH
+S(HcS0
+E+A@I
+E+A@I
+x UAVAWH
+A_A^]
+\$8t	H
+D$@H;F
+x AVH
+kL@8o(u
+D$(E3
+A9<Fu
+<htl<jt\<lt4<tt$<wt
+,X< w
+UWATAVAWH
+A_A^A\_]
+t$ WH
+A9,A$
+,I<%w
+HcC H
+WAVAWH
+^,tzI
+~,*u9
+ A_A^_
+@USWH
+D$(E3
+L$ UVWATAUAVAWH
+0A_A^A]A\_^]
+tvLc{
+T$ D){
+T$ Lc
+p AWH
+98t H
+L$ WH
+u3HcH<H
+WATAUAVAWH
+< t=<	t9
+ A_A^A]A\_
+UVWAVAWH
+D$ E3
+0A_A^_^]
+x AVH
+L$ WH
+L$ WH
+WAVAWH
+ A_A^_
+WAVAWH
+ A_A^_
+p0R^G'
+D$0@8{
+UWAVH
+p*W4H
+p*W4H
+WATAUAVAWH
+ A_A^A]A\_
+p0R^G'
+L$ WH
+L$ VWAVH
+\$8I;
+`A^_^
+x AVH
+fD9t$b
+x AVH
+fA9	t	I
+t$ WATAUAVAWH
+L$(E3
+D8[(u
+gfffffffH
+A_A^A]A\_
+{ AVH
+|$@-D
+{ AUAVAWH
+0A_A^A]
+t$xt*3
+80tWD
+gfffA
+D$DE3
+|$@-D
+WAVAWH
+ A_A^_
+s AWH
+|$DE3
+|$@-D
+x ATAVAWH
+ A_A^A\
+L$ VWAVH
+@A^_^
+9\$hu
+|$(E3
+x AVH
+E8q(u
+fD94H}aD
+L$ WH
+L$ WH
+L$ WH
+L$ WH
+L$ WH
+	D$0H
+L$ WH
+t$ WH
+\$ UVWATAUAVAWH
+fD9*u
+s2fE9)I
+fE9)fA
+D$pfA;
+0fD9l$pu
+fD9l$pt
+0A_A^A]A\_^]
+l$ VWATAVAWH
+8Ht;I
+0A_A^A\_^
+AUAVAWH
+ A_A^A]
+UVWATAUAVAWH
+8HtyB
+@8t$HtzL
+fA90u
+`A_A^A]A\_^]
+x AVH
+u$D8r(t
+D81uUL9r
+uED8r(t
+vAD8s(t
+x AVH
+u$D8r(t
+fD91uTL9r
+uED8r(t
+v@D8s(t
+UVWATAUAVAWH
+EH*?H
+PA_A^A]A\_^]
+WATAUAVAWH
+@8<)u
+0A_A^A]A\_
+H9>u+A
+]L+6H
+|$ E3
+@USVWATAUAVH
+,/<-w
+t$`L#
+D8t$ht
+I+4$H
+D8t$ht
+A^A]A\_^[]
+@8j(t
+f9)u4H9j
+u%@8j(t
+@8k(t
+8D$@t
+L$ WH
+UWAVH
+\$0H;
+L$0H;
+l$ VWATAVAWH
+L$&8\$&t,8Y
+L$8H3
+A_A^A\_^
+x AVH
+t$8H+
+p;Y>u
+p;Y>u
+L$ WH
+t$ WATAUAVAWH
+D!|$xA
+A_A^A]A\_
+D$(H;
+WAVAWH
+ A_A^_
+L$ WH
+UVWATAUAVAWH
+A8z(u
+fB9<I}1L
+A_A^A]A\_^]
+\$@H;
+\$@H;
+D$@H+
+VWATAVAW
+D$PI;
+D$PH+
+A_A^A\_^
+VATAUAVAWH
+0A_A^A]A\^
+@USVWATAUAVAWH
+@8{(u
+H!D$ H
+xA_A^A]A\_^[]
+x AVH
+ATAVAWH
+t$(I;
+0A_A^A\
+D$pE3
+D$(E3
+SUVWATAVAWH
+A_A^A\_^][
+@USVWATAVAWH
+L$hH#
+svDE3
++L$HA
+A_A^A\_^[]
+WATAUAVAWH
+0A_A^A]A\_
+D$0H9D$8
+@UATAUAVAWH
+e0A_A^A]A\]
+s WAVAWH
+9D$Pu	A
+T$PD+
+0A_A^_
+\$ E3
+VWAVH
+u~9t$Xt
+0A^_^
+UATAUAVAWH
+A_A^A]A\]
+VATAUAVAWH
+0A_A^A]A\^
+ATAUAVH
+L$ fff
+L$ |+L;
+L$ I;
+L$ L;
+A^A]A\
+L$@H3
+@UATAUAVAWH
+Hc}`I
+A_A^A]A\]
+L$49K
+ot$ H
+ffffff
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+fffffff
+ot$ H
+ot$ H
+@SUVWATAVAWH
+L$0H3
+@A_A^A\_^][
+x ATAVAWH
+ @8~8t
+@8~0t
+iygE3
+@8~0tM
+@8~0t
+ A_A^A\
+ATAVAWH
+ A_A^A\
+USVWAVH
+A^_^[]
+USVWAVH
+A^_^[]
+(t$PH
+t$ WH
+LcA<E3
+HcQ<H
+x AVH
+x AVH
+x AVH
+(t$ H
+(t$ H
+fffffff
+ffffff
+fffff
+fffffff
+ot$ H
+ot$ H
+fffff
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+fffffff
+ot$ H
+ot$ H
+)t$PH#
+(t$PH
+(t$PH
+D$2t)
+D$PL;
+D$0H#
+YD$@f
+VD$Pf
+fffff
+YD$@f
+YD$@f
+fffff
+fffffff
+fffffff
+D$PH;
+T$PH3
+L$0fH
+VT$PD
+fffffff
+L$0fI
+fffffff
+L$0fI
+L$0fI
+ffffff
+L$0fI
+D$0H#
+L$@uU
+fffffff
+fffff
+fffffff
+fffffff
+D$`L;
+D$PH;
+T$PH3
+VT$PD
+fffffff
+ffffff
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+ffffff
+ot$ H
+ot$ H
+fffff
+ot$ H
+ot$ H
+ffffff
+ot$ H
+o|$0f
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+ot$ H
+fffff
+fffffff
+fffffff
+fffffff
+D$0fH
+|(tFM
+.ffffff
+QD$`H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+o|$0f
+ot$ H
+fffffff
+^8U)zj
+o|$0f
+ot$ H
+ot$ H
+0ffffff
+ot$ H
+fffff
+ot$ H
+fffff
+ot$0H
+ot$0H
+ot$0H
+ot$0H
+fffffff
+|#tAM
+fffff
+|#tAM
+|#tAM
+|#tAM
+(t$PH
+(t$`H
+(t$`H
+(t$`H
+(t$`H
+ffffff
+@ffffff
+fffffff
+ffffff
+fffff
+vKfffff
+fffff
+fffffff
+fffffff
+@SUWH
+@SUWH
+bad exception
+__based(
+__cdecl
+__stdcall
+__thiscall
+__fastcall
+__vectorcall
+__preserve_none
+__clrcall
+__eabi
+__swift_1
+__swift_2
+__swift_3
+__ptr64
+__restrict
+__unaligned
+restrict(
+ delete
+operator
+`vftable'
+`vbtable'
+`vcall'
+`typeof'
+`local static guard'
+`string'
+`vbase destructor'
+`vector deleting destructor'
+`default constructor closure'
+`scalar deleting destructor'
+`vector constructor iterator'
+`vector destructor iterator'
+`vector vbase constructor iterator'
+`virtual displacement map'
+`eh vector constructor iterator'
+`eh vector destructor iterator'
+`eh vector vbase constructor iterator'
+`copy constructor closure'
+`udt returning'
+`RTTI
+`local vftable'
+`local vftable constructor closure'
+ new[]
+ delete[]
+`omni callsig'
+`placement delete closure'
+`placement delete[] closure'
+`managed vector constructor iterator'
+`managed vector destructor iterator'
+`eh vector copy constructor iterator'
+`eh vector vbase copy constructor iterator'
+`dynamic initializer for '
+`dynamic atexit destructor for '
+`vector copy constructor iterator'
+`vector vbase copy constructor iterator'
+`managed vector copy constructor iterator'
+`local static thread guard'
+operator "" 
+operator co_await
+operator<=>
+ Type Descriptor'
+ Base Class Descriptor at (
+ Base Class Array'
+ Class Hierarchy Descriptor'
+ Complete Object Locator'
+`anonymous namespace'
+FlsAlloc
+FlsFree
+FlsGetValue
+FlsSetValue
+InitializeCriticalSectionEx
+(null)
+CorExitProcess
+AreFileApisANSI
+LCMapStringEx
+LocaleNameToLCID
+AppPolicyGetProcessTerminationMethod
+NAN(SNAN)
+nan(snan)
+NAN(IND)
+nan(ind)
+e+000
+Sunday
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+January
+February
+March
+April
+August
+September
+October
+November
+December
+MM/dd/yy
+dddd, MMMM dd, yyyy
+HH:mm:ss
+UTF-8
+UTF-16LEUNICODE
+ !"#$%&'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~
+[aOni*{
+eLK(w
+~ $s%r
+@b;zO]
+iu+-,
+obwQ4
+v2!L.2
+^<V7w
+1#INF
+1#QNAN
+1#SNAN
+1#IND
+UUUUUU
+UUUUUU
+TUUUU
+=imb;D
+1<.	/>:
+/>58d%
+!>6'Y
+>jtm}S
+)>6{1n
+r	Vr.>T
++f)>0'
+Lj[;>
+3>fvw
+;H9>&X
+*StO9>T
+n03>Pu
+K~Je#>!
++M<7>
+c(>\,
+bp(=>?g
+BC?>6t9^	c:>
+BF>^G
+K&>.yC
+ 'L>[
+.xJ>Hf
+y\PD>!
+|b=})>
+c [1>H'
+uzKs@>
+3>N;kU
+	kE>fvw
+A>pP&
+V6E>`"(5
+0iN>/
++h->|
+@>%>b
+?:kP<
+?UUUUUU
+?f`Y4
+?QY^&
+?7zQ6$
+log10
+HMDSP_ERR: number of input channels passed by SW is %d while DSP needs %d
+HMDSP_ERR: number of output channels passed by SW is %d while DSP needs %d
+DSP version: v%04d
+input format not supported !
+DSP working mode: %d(0:Normal, 1:HWTEST, 2:bypass)!
+DSP AUDIO FORMAT:
+FLOAT
+Input: %d Hz, %d bits %s (FW sets format type=%d)
+Output: %d Hz, %d bits %s (FW sets format type=%d)
+Internal: %d Hz
+num input chan: %d, num output chan: %d, EqMode: %d
+?t+{=
+p~?v8
+=#C~?s
+>tt}?
+/>(;|?
+y?f|f>Nny?
+	q?:q
+>0ho?*D
+	j?	Z
+ei?A6
+^e?u3
+>Z<c?y
+>!F`?-
+?S-]?
+?SHX?
+?&pW?k
+3R?*h
+?=MQ?9
+B?V6'?p
+0?Bh9?
+2?#:7?
+3?l 6?
+5?l 6?
+3?#:7?
+1?Bh9?
+A?V6'?)
+?=MQ?*h
+?&pW?
+?SHX?
+?S-]?
+>!F`?
+>Z<c?
+ei?	Z
+>0ho?
+l>Nny?f|f>
+@5>(;|?
+>tt}?
+=#C~?v8
+?t+{=
+#C~?v8
+Nny?f|f
+ei?	Z
+=MQ?*h
+A?V6'
+3?l 6
+2?#:7
+0?Bh9
+V6'?p
+f|f>Nny
+/>(;|
+/>(;|?
+	q?*D
+kg?u3
+?SHX?
+?=MQ?
+E?V6'?p
+0?Bh9?
+5?Bh9?
+A?V6'?
+?=MQ?*h
+?SHX?
+G>(;|?
+=MQ?*h
+A?V6'
+0?Bh9
+V6'?p
+/>(;|
+?t+{=mN
+">(;|?
+>Z<c?
+>!F`?
+>S-]?
+?SHX?
+?=MQ?*h
+A?V6'?g
+;.?Bh9?
+0?#:7?
+2?#:7?
+0?Bh9?
+??V6'?p
+zO?*h
+?=MQ?
+?SHX?
+?S-]?']
+>!F`?
+>Z<c?u3
+kg?A6
+/>(;|?
+?t+{=
+	j?A6
+!F`?']
+S-]?=
+SHX?k
+C?V6'
+5?#:7
+2?Bh9
+n;>(;|
+/>(;|
+V6'?p
+0?Bh9
+2?#:7
+A?V6'
+=MQ?*h
+?t+{=
+/>(;|?
+	j?A6
+>Z<c?
+>!F`?']
+?S-]?=
+?SHX?k
+?=MQ?
+C?V6'?p
+0?Bh9?
+2?#:7?
+5?#:7?
+2?Bh9?
+A?V6'?
+?=MQ?*h
+?SHX?
+?S-]?
+>!F`?
+>Z<c?
+n;>(;|?
+?t+{=
+=MQ?*h
+A?V6'
+2?#:7
+0?Bh9
+V6'?p
+/>(;|
+>(;|?
+?SHX?
+?=MQ?*h
+A?V6'?
++?Bh9?
+0?Bh9?J
+=?V6'?p
+?=MQ?
+?SHX?=
+/>(;|?
+	q?*D
+kg?u3
+E?V6'
+5?Bh9
+G>(;|
+/>(;|
+V6'?p
+0?Bh9
+A?V6'
+=MQ?*h
+2:;OwI;
+2</{=<K
+*=8b1=W
+h~=k#
+!>{o&>
+5>l,:>JT?>
+P$? k&?
+H?`zJ?
+TL?6)N?D
+]?X!_?E
+`?u1b?
+g?]Li?
+k?)(m?;_n?
+w?pnx?
+z?iS{?
+{?iS{?Q
+7y?pnx?
+o?;_n?)(m?
+j?]Li?j
+c?u1b?E
+`?X!_?
+O?6)N?
+TL?`zJ?
+(? k&?
+D>JT?>l,:>:
+<+>{o&>
+8=8b1=
+H</{=<
+Y;OwI;
+D=J	I={;M=
+Z={l^=1
+t=]wy=
+?>n$A>
+V>)=Y>
+`>\Zb>
+'?#N(?
+-?(Z.?!
+6?i?7?Y
+n9??(:?6
+=?'v>?
+B?%bC?
+K?#3L?
+N?;wO?'
+X?NcY?
+^?6#_? 
+b?gvc?2
+h?Oui?
+r??'s?
+t?VDu?
+v?@3w?.
+z?t8{?Fr{?
+/~?`S~?
+u~?`S~?
+{?Fr{?t8{?D
+w?@3w?
+u?VDu?U
+s??'s?
+i?Oui?h
+c?gvc?
+_?6#_?Q
+Y?NcY?
+P?;wO?
+L?#3L?
+D?%bC?
++??'v>?
+:??(:?
+7?i?7?
+/?(Z.?
+)?#N(?>
+d>\Zb>
+[>)=Y>H
+FC>n$A>
+~=]wy=4
+b={l^=o
+xQ={;M=J	I=\
+@@333?
+@333?
+A333?
+@333?
+Array32 size mistmatch for module #%d ! (from conf : %d,  struct size : %d)
+Unknown exception
+bad allocation
+HMDSP_PP
+HMDSP_PREPP
+HMDSP_NSP
+HMDSP_SELFTUNING
+HMDSP_CALI1Mic
+HMDSP_CALI2Mic
+HMDSP_LRDETECTION
+HMDSP_LIMITERG2
+HMDSP_DIALOGUEENHANCEMENT
+HMDSP_DYNAMICEQ
+HMDSP_CMD
+[%s] 
+/data/misc/harman/hmpp.bin
+[HMPP] UserEQ bands %d, should <= %d
+[HMPP] Update UserEQ
+Tuning Name    : %s
+Tuning Version : %d
+SpatialSound_New
+[%s] SR Not Support: %d
+[%s] Channel Number Not Support: %d
+------Spatial sound mode changed: from 0x%x to 0x%x------
+Warning: cross fading broken!
+Spatial sound mode changed: 0x%x
+Error: invalid input channel number (should be 1-%d)!
+Error: invalid output channel number (should be 1-%d)!
+UserEQ bands %d, should <= %d
+InitSpkLibrary
+%s:Invalid data file name!
+%s: Can't open qeSpatial data file %s!
+%s: qeSpatial data with incorrect length!
+HARMAN LOG: fail to malloc scratch memory!
+HARMAN LOG: fail to malloc tmpbuf memory!
+HARMAN LOG: Real FFT optimization must be even.
+HARMAN LOG: kiss fft usage error: improper alloc
+?333333
+?333333
+?ffffff
+@333333
+?MG+:
+2L:MG+:
+:.K3;
+ujGs?
+UUUUUU
+UUUUUU
+UUUUUU
+UUUUUU
+TUUUU
+#4o>w
+c>v	k
+pm>6/
+^>&qN
+!\>G[
+_f>PH
+Z>w_F
+hj>>d
+L-n>4
+@pn>6
+*Vc>L
+Y>kX>
+,HR><y5
+n>log2
+#Ib?AG
+;BIb?
+TUUUU
+?WUUUUU
+UUUUUU
+UUUUUU
+"e?<<<<<<l?
+`+!]?
+b?^Cy
+j?V()
+Il?333333c?
+.i?0@I
+d?000000`?
+\$gm?
+)|B?d!
+n]?iJ
+L?UUUUUUU?
+WaNd?
+j?{$*
+&?PPPPPPP?
+0X8b?~
+%GoU?*
+(T?j?Y
+$Ib?s
+..om?
+Zod(^?
+C5R?	
+D W?{W
+N3`d?
+qS>g?h3
+?R0I?
+8ke?;
+c?FA@s}
+UUUUUU
+UUUUUU
+UUUUUU
+?UUUUUU
+TUUUU
+?7{KV
+?+>^m
+?kxG2)
+?TY,>5
+?!5WOo
+?E=$% B
+?49HoKC
+?UUUUUU
+?UUUUUU
+?UUUUUU
+sqrtf
+?UUUUUU
+?UUUUUU
+?JV8f
+?JV8f
+]-?Z8
+AUUUUUU
+UUUUUU
+UUUUUU
+@^8U)zj
+X!t5~
+8Csinf
+UUUUUU
+UUUUUU
+?{Q}<
+?8bunz8
+?@En[vP
+?expf
+fJBGo
+A03>A|
+Q5rHg,>
+<>#n2
+c0&>`
+j>>A?1
+.>PJ;I:qE>
+:>t6k'
+])6M>&
+CWD>~3
+:>)*	v
+_oD>Kg
+AK>(v
+-BH>t
+CL:>8
+E>nEA
+N>O=I9
+F>qUxv
+/2GG>!B
+Z\>z8
+OF>;^
+]>)2X
+zY;>u:m	
+P>q_Y~
+0><[cZUg^>
+v}`[>
+oI>O7
+^RfN>
+Y>kX>M
+,HR>O
+A>l$/
+H[><y5
+h>1my
+[*ncd>0
+ C>TQ
+S>$hkDh$h>[2
+UA>N0Wl
+9>powf
+X!t5~
+X!t5~
+MWp\s
+C:\SVN\DSP\Algorithms\20221116_AAE_AudioAlgorithmToolBox\Headphone\014_QuantumEngine\Trunk\Sources\ref_c_floating\win_os\quantum_engine\x64\Release\quantum_engine.pdb
+.text$di
+.text$mn
+.text$mn$00
+.text$mn$21
+.text$x
+.text$yd
+.idata$5
+.00cfg
+.CRT$XCA
+.CRT$XCU
+.CRT$XCZ
+.CRT$XIA
+.CRT$XIC
+.CRT$XIZ
+.CRT$XLA
+.CRT$XLZ
+.CRT$XPA
+.CRT$XPX
+.CRT$XPXA
+.CRT$XPZ
+.CRT$XTA
+.CRT$XTZ
+.rdata
+.rdata$00
+.rdata$T
+.rdata$r
+.rdata$voltmd
+.rdata$zzzdbg
+.rtc$IAA
+.rtc$IZZ
+.rtc$TAA
+.rtc$TZZ
+.tls$
+.tls$ZZZ
+.xdata
+.xdata$x
+.edata
+.idata$2
+.idata$3
+.idata$4
+.idata$6
+.data
+.data$r
+.data$rs
+.pdata
+.rsrc$01
+.rsrc$02
+8@HPX`hpx
+ (08@H`hrpx
+quantum_engine.dll
+InitSpkLibrary
+ReleaseSpkLibrary
+calcSpkUserEQCoefs
+destorySpkDSP
+getSmartLightingFeature
+getSpectrumVisualResult
+getSpkDspVersion
+initSpkDsp
+processSpkDsp_float
+processSpkDsp_short
+setSpatialAudioHeadPosition
+setSpatialAudioScene
+setSpkDeviceEQ
+setSpkDspMode
+setSpkUserEQ
+ReleaseSRWLockExclusive
+AcquireSRWLockExclusive
+WakeAllConditionVariable
+SleepConditionVariableSRW
+RtlCaptureContext
+RtlLookupFunctionEntry
+RtlVirtualUnwind
+UnhandledExceptionFilter
+SetUnhandledExceptionFilter
+GetCurrentProcess
+TerminateProcess
+IsProcessorFeaturePresent
+IsDebuggerPresent
+GetStartupInfoW
+GetModuleHandleW
+QueryPerformanceCounter
+GetCurrentProcessId
+GetCurrentThreadId
+GetSystemTimeAsFileTime
+InitializeSListHead
+RtlUnwindEx
+InterlockedFlushSList
+GetLastError
+SetLastError
+EncodePointer
+RaiseException
+EnterCriticalSection
+LeaveCriticalSection
+DeleteCriticalSection
+InitializeCriticalSectionAndSpinCount
+TlsAlloc
+TlsGetValue
+TlsSetValue
+TlsFree
+FreeLibrary
+GetProcAddress
+LoadLibraryExW
+RtlPcToFileHeader
+ExitProcess
+GetModuleHandleExW
+GetModuleFileNameW
+HeapAlloc
+HeapFree
+FlsAlloc
+FlsGetValue
+FlsSetValue
+FlsFree
+LCMapStringW
+GetStdHandle
+GetFileType
+CloseHandle
+ReadFile
+GetConsoleMode
+ReadConsoleW
+FindClose
+FindFirstFileExW
+FindNextFileW
+IsValidCodePage
+GetACP
+GetOEMCP
+GetCPInfo
+GetCommandLineA
+GetCommandLineW
+MultiByteToWideChar
+WideCharToMultiByte
+GetEnvironmentStringsW
+FreeEnvironmentStringsW
+GetProcessHeap
+FlushFileBuffers
+WriteFile
+GetConsoleOutputCP
+SetStdHandle
+GetFileSizeEx
+SetFilePointerEx
+GetStringTypeW
+CreateFileW
+HeapSize
+HeapReAlloc
+SetEndOfFile
+WriteConsoleW
+KERNEL32.dll
+                          
+abcdefghijklmnopqrstuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                          
+abcdefghijklmnopqrstuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+Quantum_Engine Test
+.?AVbad_exception@std@@
+.?AVbad_alloc@std@@
+.?AVexception@std@@
+.?AVtype_info@@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<assembly xmlns='urn:schemas-microsoft-com:asm.v1' manifestVersion='1.0'>
+  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
+    <security>
+      <requestedPrivileges>
+        <requestedExecutionLevel level='asInvoker' uiAccess='false' />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+</assembly>

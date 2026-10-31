@@ -1,0 +1,130 @@
+[
+  {
+    "Key": "UPDATE ERROR",
+    "Value": "UPDATE ERROR"
+  },
+  {
+    "Key": "FIND MY BUDS",
+    "Value": "FIND MY BUDS"
+  },
+  {
+    "Key": "MIC EQ",
+    "Value": "MIC EQ"
+  },
+  {
+    "Key": "EMPTY",
+    "Value": "EMPTY"
+  },
+  {
+    "Key": "PLAY/PAUSE",
+    "Value": "PLAY/PAUSE"
+  },
+  {
+    "Key": "PREVIOUS/NEXT TRACK",
+    "Value": "PREVIOUS/NEXT TRACK"
+  },
+  {
+    "Key": "VOLUME",
+    "Value": "VOLUME"
+  },
+  {
+    "Key": "Spatial sound",
+    "Value": "Spatial sound"
+  },
+  {
+    "Key": "Game & chat balance",
+    "Value": "Game & chat balance"
+  },
+  {
+    "Key": "Equalizer",
+    "Value": "Equalizer"
+  },
+  {
+    "Key": "MIC GAIN",
+    "Value": "MIC GAIN"
+  },
+  {
+    "Key": "MIC ON/OFF",
+    "Value": "MIC ON/OFF"
+  },
+  {
+    "Key": "ANC/AA/OFF",
+    "Value": "ANC/AA/OFF"
+  },
+  {
+    "Key": "SIDETONE",
+    "Value": "SIDETONE"
+  },
+  {
+    "Key": "AUDIO/VOICE MONITOR",
+    "Value": "AUDIO/VOICE MONITOR"
+  },
+  {
+    "Key": "POLAR PATTERN",
+    "Value": "POLAR PATTERN"
+  },
+  {
+    "Key": "Restore factory settings",
+    "Value": "Restore factory settings"
+  },
+  {
+    "Key": "MACRO",
+    "Value": "MACRO"
+  },
+  {
+    "Key": "Stereo",
+    "Value": "Stereo"
+  },
+  {
+    "Key": "Find my buds",
+    "Value": "Find my buds"
+  },
+  {
+    "Key": "Microphone",
+    "Value": "Microphone"
+  },
+  {
+    "Key": "Off",
+    "Value": "Off"
+  },
+  {
+    "Key": "reset",
+    "Value": "reset"
+  },
+  {
+    "Key": "ROOM SIZE",
+    "Value": "ROOM SIZE"
+  },
+  {
+    "Key": "HEAD TRACKING",
+    "Value": "HEAD TRACKING"
+  },
+  {
+    "Key": "Calibration",
+    "Value": "Calibration"
+  },
+  {
+    "Key": "Sign in",
+    "Value": "Sign in"
+  },
+  {
+    "Key": "Feedback",
+    "Value": "Feedback"
+  },
+  {
+    "Key": "Support",
+    "Value": "Support"
+  },
+  {
+    "Key": "OFFLINE",
+    "Value": "OFFLINE"
+  },
+  {
+    "Key": "Unpair",
+    "Value": "Unpair"
+  },
+  {
+    "Key": "END USER LICENSE AGREEMENT",
+    "Value": "END USER LICENSE AGREEMENT"
+  }
+]
