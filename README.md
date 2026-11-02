@@ -1,9 +1,48 @@
-# jbl-quantum-engine-linux
+# JBL QuantumENGINE for Linux
 
-Native Linux control for **JBL Quantum wireless headsets** (primary: **Quantum 810
-Wireless**, USB `0ecb:2069` dongle) — pure Python + hidapi/hidraw. No Wine, no VM, no
-JBL binaries. This is personal interoperability work: reimplementing the subset of
-QuantumENGINE's device protocol that the community has verified, with full evidence.
+An open-source, native **JBL QuantumENGINE alternative for Linux**, built by reverse
+engineering the USB HID protocol used by JBL Quantum wireless headsets. The primary
+and hardware-verified target is the **JBL Quantum 810 Wireless on Linux** (USB dongle
+`0ecb:2069`). It runs directly through Python, hidapi, and hidraw—no Wine, virtual
+machine, JBL binaries, or Windows installation required.
+
+If you are searching for **JBL QuantumENGINE Linux**, **JBL Quantum 810 Linux
+software**, or a way to control a **JBL Quantum headset on Linux**, this project is the
+native community-built implementation.
+
+## Working features
+
+The following features are working on the hardware-verified JBL Quantum 810:
+
+- Automatic headset detection, hotplug, and reconnect
+- Battery level and charging-status monitoring
+- Game/chat balance dial monitoring
+- Microphone active and mute status
+- Sidetone controls: off, low, mid, and high
+- ANC on/off and TalkThru
+- RGB lighting power, colours, zones, brightness, and effects
+- Automatic power-off timer
+- Product, serial-number, firmware, and device information
+- Desktop GUI, `jblq` command-line interface, and hotplug-aware background daemon
+
+The remaining major feature is the **DTS/QuantumSURROUND switcher**. JBL implements
+EQ and spatial processing on the host rather than in the headset dongle, so native
+Linux surround still needs a PipeWire filter-chain implementation. Contributions,
+hardware testing, protocol findings, documentation, and bug reports are welcome.
+
+## Headset support
+
+The JBL Quantum 810 Wireless is verified on real hardware. The application also
+recognizes sibling JBL Quantum models—including the Quantum 600, 610, 800, 850, 910,
+910X, 910P, 950, 950X, and ONE—from JBL's device table, but those models still need
+community hardware testing. Start with the read-only probe before enabling writes on
+an unverified model.
+
+This is personal interoperability work: it reimplements only the subset of the
+QuantumENGINE device protocol supported by reproducible evidence. Firmware and DFU
+commands are deliberately excluded.
+
+## Project layout
 
 - **`app/`** — the application: `jblq` CLI, hotplug-aware daemon, GUI, library, installer, udev rule
 - **`docs/`** — protocol documentation, evidence, USB captures
