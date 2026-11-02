@@ -10,6 +10,8 @@ If you are searching for **JBL QuantumENGINE Linux**, **JBL Quantum 810 Linux
 software**, or a way to control a **JBL Quantum headset on Linux**, this project is the
 native community-built implementation.
 
+![JBL QuantumENGINE for Linux controlling a JBL Quantum 810 headset](docs/images/jbl-quantum-engine-linux.png)
+
 ## Working features
 
 The following features are working on the hardware-verified JBL Quantum 810:
